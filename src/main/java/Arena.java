@@ -66,7 +66,7 @@ public class Arena {
         Random random = new Random();
         ArrayList<Meteor> meteors = new ArrayList<>();
         for (int i = 0; i < 5; i++)
-            meteors.add(new Meteor(random.nextInt(width - 2) + 1, 1));
+            meteors.add(new Meteor(random.nextInt(width - 2) + 1, -1));
         return meteors;
     }
 
@@ -82,7 +82,7 @@ public class Arena {
 
         for (Meteor meteor : meteors) {
             Position meteorPosition = meteor.getPosition();
-            Position newMeteorPosition = meteor.move();
+            Position newMeteorPosition = meteor.position.moveUp();
             if (spaceShipPosition.equals(meteorPosition) || spaceShipPosition.equals(newMeteorPosition)) {
                 running = false;
                 System.out.println("You lost.");

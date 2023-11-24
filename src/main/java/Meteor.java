@@ -9,9 +9,7 @@ import java.util.Random;
 public class Meteor extends Element {
     public Meteor(int x, int y) { super(x, y); }
 
-    public Position move(){
-        return new Position(getX(), getY() + 1);
-    }
+    public Position move(){ return position.moveDown(); }
 
     @Override
     public void draw(TextGraphics graphics) {
