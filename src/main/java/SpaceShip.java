@@ -4,11 +4,25 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class SpaceShip extends Element {
-    private Position position;
-    public SpaceShip(int x, int y) {super(x, y);}
-    public void draw(TextGraphics screen){
-        screen.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
-        screen.enableModifiers(SGR.BOLD);
-        screen.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "X");
+    public SpaceShip(int x, int y) {super(x, y); }
+
+    public Position moveUp(){
+        return position.moveUp();
+    }
+
+    public Position moveDown(){
+        return position.moveDown();
+    }
+
+    public Position moveRight() {
+        return position.moveRight();
+    }
+
+    public Position moveLeft(){ return position.moveLeft(); }
+
+    public void draw(TextGraphics graphics){
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "X");
     }
 }

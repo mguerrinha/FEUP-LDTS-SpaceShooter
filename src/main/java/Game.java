@@ -1,50 +1,38 @@
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.terminal.Terminal;
-
 import java.io.IOException;
 
 public class Game {
-    public Game(){
-        try {
-            TerminalSize terminalSize = new TerminalSize(100, 50);
-            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-            Terminal terminal = terminalFactory.createTerminal();
-            screen = new TerminalScreen(terminal);
 
-            screen.setCursorPosition(null);
-            screen.startScreen();
-            screen.doResizeIfNecessary();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-        arena = new Arena(100, 50);
-    }
-
-    private void draw() throws IOException{
+    private Screen screen = new TerminalScreen(new DefaultTerminalFactory().createTerminal());
+    private Arena arena;
+    private TextGraphics graphics = screen.newTextGraphics();
+    public Game() throws IOException {
+        arena = new Arena(80,24);
+        screen.setCursorPosition(null);
+        screen.startScreen();
+        screen.doResizeIfNecessary();
         screen.clear();
-        arena.draw(screen.newTextGraphics());
+        arena.draw(graphics);
         screen.refresh();
     }
 
-    public void run() {
-        try {
-            while(true) {
-                draw();
-                com.googlecode.lanterna.input.KeyStroke key = screen.readInput();
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == ('q'))
-                    screen.close();
-                if (key.getKeyType() == KeyType.EOF)
-                    break;
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+    private void draw() throws IOException {
+        screen.clear();
+        arena.draw(graphics);
+        screen.refresh();
+        screen.doResizeIfNecessary();
     }
-    private Screen screen;
-    private Arena arena;
+
+    public void run() throws IOException {
+        while(arena.getRunning()) {
+            draw();
+            KeyStroke key = screen.readInput();
+            arena.processKey(key);
+        }
+        screen.close();
+    }
 }
