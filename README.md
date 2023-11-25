@@ -1,12 +1,13 @@
 ## LDTS_<03><07> - <Space_Shooter>
 
-Neste jogo vai ser possível controlar uma nave espacial de forma a poder evitar objetos que possam causar dano à nave, nomeadamente meteoros e eliminar naves inimigas, cada uma com uma certa quantidade de vida e dano de ataque próprios. Para as combater, a nossa nave poderá, com o decorrer do jogo obter certos power-ups, que podem ir desde um aumento temporário (ou permanente) do dano de ataque, quantidade de armas e de vida e aumento da velocidade de movimento.
-O objetivo do jogo é obter o maior score possível destruindo naves inimigas com o auxílio dos power-ups, terminando quando a vida da nossa nave chega a zero.
-Este projeto foi desenvolvido por Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz (up202208011@fe.up.pt) e Sheila Albino (up202109258@fe.up.pt).
+In this game it will be possible to control a spaceship in order to avoid objects that can cause damage to the ship, namely meteors and eliminate enemy ships, each with a certain amount of life and attack damage of its own. To combat them, our ship will be able to obtain certain power-ups over the course of the game, which can range from a temporary (or permanent) increase in attack damage, number of weapons and life, and increased movement speed.
+The objective of the game is to get the highest score possible by destroying enemy ships with the help of power-ups, ending when our ship's health reaches zero.
+This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz (up202208011@fe.up.pt) and Sheila Albino (up202109258@fe.up.pt).
+
 
 ### IMPLEMENTED FEATURES
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
+The game will have a ship that moves and fires projectiles with a certain amount of health. The meteors move downwards and can fire projectiles or just fall towards our ship. Each object in the game will have an amount of life and whenever it is hit, that life decreases. Each time our ship defeats an enemy, the game's score increases.
 
 **Examples**:
 
@@ -14,9 +15,7 @@ Este projeto foi desenvolvido por Miguel Guerrinha (up202205038@fe.up.pt), Rui C
 - **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
 
 ### PLANNED FEATURES
-
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
-
+In the future we will be able to add power-ups and be able to gain certain special attributes, increase the amount of life and as the game progresses the speed of the enemies will increase.
 ### DESIGN
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
