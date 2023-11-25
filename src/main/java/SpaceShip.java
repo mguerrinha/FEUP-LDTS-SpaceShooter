@@ -21,8 +21,8 @@ public class SpaceShip extends Element {
     public Position moveLeft(){ return position.moveLeft(); }
 
     public void draw(TextGraphics graphics){
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "X");
+        graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "┃");
     }
 }
