@@ -13,6 +13,7 @@ The game will have a ship that moves and fires projectiles with a certain amount
 
 - **Jumping** - The game character will jump when the space bar key is pressed.
 - **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
+- **SpaceShip** - is responsible for the player's ship. She can move up, down, left, and right on the playing field.
 
 ### PLANNED FEATURES
 In the future we will be able to add power-ups and be able to gain certain special attributes, increase the amount of life and as the game progresses the speed of the enemies will increase.
