@@ -5,14 +5,15 @@ The objective of the game is to get the highest score possible by destroying ene
 This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz (up202208011@fe.up.pt) and Sheila Albino (up202109258@fe.up.pt).
 
 
-### IMPLEMENTED FEATURES
+## IMPLEMENTED FEATURES
 
 - **Spaceship moves** - The spaceship moves to the left, right, up and down using the respectively arrows.
 - **Meteors falling** - During the game, we have some meteors falling down the screen.
-- **Hit by a meteor** - If the spaceship has a collision with a meteor the game stops. 
+- **Hit by a meteor** - If the spaceship has a collision with a meteor the game stops.
 - **Spawn and catch power-ups** - When the game starts, a certain number of power-ups appear in the screen and we are able to catch them with our spaceship.
 
-### PLANNED FEATURES
+
+## PLANNED FEATURES
 
 - **Implement a menu** - The game will have the initial menu.
 - **Enemies spaceships** - The game will have some enemies that are other spaceships.
@@ -25,7 +26,7 @@ This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz 
 - **Score** - Every time we hit an enemy spaceship our score increase.
 
 
-### SCREENSHOTS
+## SCREENSHOTS
 
 - **Menu Preview** - Temporary menu that will still undergo several design and implementation changes. So far it's possible to start and exit the game.
 <p align="center">
@@ -38,137 +39,92 @@ This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz 
 </p>
 
 
-### DESIGN
+## DESIGN
 
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
+### Structure
 
-- **Problem in Context.** The description of the design context and the concrete problem that motivated the instantiation of the pattern. Someone else other than the original developer should be able to read and understand all the motivations for the decisions made. When refering to the implementation before the pattern was applied, don’t forget to [link to the relevant lines of code](https://help.github.com/en/articles/creating-a-permanent-link-to-a-code-snippet) in the appropriate version.
-- **The Pattern.** Identify the design pattern to be applied, why it was selected and how it is a good fit considering the existing design context and the problem at hand.
-- **Implementation.** Show how the pattern roles, operations and associations were mapped to the concrete design classes. Illustrate it with a UML class diagram, and refer to the corresponding source code with links to the relevant lines (these should be [relative links](https://help.github.com/en/articles/about-readmes#relative-links-and-image-paths-in-readme-files). When doing this, always point to the latest version of the code.
-- **Consequences.** Benefits and liabilities of the design after the pattern instantiation, eventually comparing these consequences with those of alternative solutions.
+#### Problem in Context
+The problem lies in the lack of a clear and well-defined structure to separate the game's business logic, visual presentation, and interaction control. This results in complexity, maintenance difficulties, low code reusability, and potential conflicts among different parts of the game. The **MVC pattern** is a solution that addresses these challenges by dividing the game into three distinct components (Model, View, and Controller) to provide an organized and modular structure.
 
-**Example of one of such subsections**:
+#### The Pattern
+This pattern allows for a clear separation of concerns, making it easier to maintain code, scale the application, and reuse components. In addition, it facilitates collaboration between development teams, as each component has a clearly defined responsibility.
 
-------
+#### Implementation
+For MVC Pattern implementation, the **Model**: Refactors existing classes to represent the game's business logic (such as Arena, Element, Game),
+**View**: These are the Classes related to the graphical interface (TextGraphics, on-screen drawing methods).
+and **Controller**: Manages user interaction (Arena.processKey(), input control methods).
 
-#### THE JUMP ACTION OF THE KANGAROOBOY SHOULD BEHAVE DIFFERENTLY DEPENDING ON ITS STATE
+<p align="center">
+  <img src="./resources/Images/uml.png" alt="UML">
+</p>
 
-**Problem in Context**
+#### Consequences
+- **Structured Organization**: Clear division of system responsibilities.
+- **Ease of Maintenance**: Changes to one layer do not directly affect the others.
 
-There was a lot of scattered conditional logic when deciding how the KangarooBoy should behave when jumping, as the jumps should be different depending on the items that came to his possession during the game (an helix will alow him to fly, driking a potion will allow him to jump double the height, etc.). This is a violation of the **Single Responsability Principle**. We could concentrate all the conditional logic in the same method to circumscribe the issue to that one method but the **Single Responsability Principle** would still be violated.
 
-**The Pattern**
+### State Pattern
 
-We have applied the **State** pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass). This pattern allowed to address the identified problems because […].
-
-**Implementation**
-
-The following figure shows how the pattern’s roles were mapped to the application classes.
-
-These classes can be found in the following files:
-
-- [Character](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/Character.java)
-- [JumpAbilityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/JumpAbilityState.java)
-- [DoubleJumpState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/DoubleJumpState.java)
-- [HelicopterState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/HelicopterState.java)
-- [IncreasedGravityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/IncreasedGravityState.java)
-
-**Consequences**
-
-The use of the State Pattern in the current design allows the following benefits:
-
-- The several states that represent the character’s hability to jump become explicit in the code, instead of relying on a series of flags.
-- We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
-- There are now more classes and instances to manage, but still in a reasonable number.
-
-#### State 
-
-**Problem in Context**
+#### Problem in Context
 
 In the game, different states need to be managed, such as Running, Paused, and GameOver. Each state has specific key processing logic and on-screen drawings.
 
-**The Pattern**
+#### The Pattern
 
 We have applied the ***State*** pattern. This pattern helps you in State Management, i.e. encapsulating the specific behavior of each game state in separate classes (RunningState, PausedState, GameOverState). and Extension facility that allows the addition of new states without modifying existing classes.
 
-**Implementation**
+#### Implementation
 
-Create a GameState or State interface with processKey() and draw() methods to represent the behaviors common to all states.
-Implement classes (RunningState, PausedState, GameOverState) that inherit or implement the GameState interface with state-specific logic.
+Regarding implementation, the State Pattern creates a GameState or State interface with processKey() and draw() methods to represent behaviors common to all states and also implements classes (RunningState, PausedState, GameOverState) that inherit or implement the GameState interface with specific logic. of each state.
+<p align="center">
+  <img src="./resources/Images/state_pattern.png" alt="State Pattern">
+</p>
 
-**Consequences**
+#### Consequences
 
--Maintainability: Ease of adding, removing, or modifying states.
--Readability: Clarity in separating the logic of each game state.
+The use of the State Pattern in the current design allows the following benefits:
+- **Maintainability**: Ease of adding, removing, or modifying states.
+- **Readability**: Clarity in separating the logic of each game state.
 
-#### Factory
+### Factory Pattern
 
-**Problem in Context**
+#### Problem in Context
+In this game, there will be two types of controllers: the **Game Controller**, which manages the movement of each element in the game (spaceships, meteors, etc.) and the **Menu Controller**, which allows you to move around the Menu, i.e. whether you want to leave or enter the game.
 
-The creation of game elements (Meteor, Power, SpaceShip) needs to be flexible and extensible to add new types of elements in the future.
+#### The Pattern
 
+With this problem in mind, we opted for the **Factory Pattern**, which allows objects to be created without specifying the exact class of the object to be created, and Creation Encapsulation, i.e. delegating responsibility for creation to subclasses. This way we can create more than one type of controller.
 
-**The Pattern**
+#### Implementation
 
-Flexible Object Creation: Allow the creation of objects without specifying the exact class of the object to be created.
-Encapsulate Creation: Delegate creation responsibility to subclasses.
+As for implementation, factory creates a common Element interface or abstract class for all game elements,
+implements an ElementFactory class with methods (e.g., createMeteor(), createPower(), createSpaceShip()) to create each element type and ElementFactory subclasses for each element type that implement the creation methods.
+<p align="center">
+  <img src="./resources/Images/factory_pattern.png" alt="Factory Pattern">
+</p>
 
-**Implementation**
+#### Consequences
 
-Create a common Element interface or abstract class for all game elements.
-Implement an ElementFactory class with methods (e.g., createMeteor(), createPower(), createSpaceShip()) to create each element type.
-ElementFactory subclasses for each element type that implement the authoring methods.
+- **Flexibility**: Makes it easy to add new types of elements.
+- **Decoupling**: Separates the object's creation logic from its specific implementations.
 
-
-**Consequences**
-
--Flexibility: Makes it easy to add new types of elements.
--Decoupling: Separates the object's creation logic from its specific implementations.
-
-#### MVC Pattern
-
-**Problem in Context**
-
-It is necessary to separate the responsibilities of business, GUI, and game control to facilitate the maintenance and reuse of the code.
-
-**The Pattern**
-
-Separation of Responsibilities: Divide the application into Model (business logic), View (graphical interface) and Controller (control of user interactions).
-Maintainability: Allow changes to one layer without affecting the others.
-
-**Implementation**
-
-Model: Refatorar as classes existentes para representar a lógica de negócios do jogo (como Arena, Element, Game).
-View: Classes relacionadas à interface gráfica (TextGraphics, métodos de desenho na tela).
-Controller: Gerenciar a interação do usuário (Arena.processKey(), métodos de controle de entrada).
-
-
-**Consequences**
-
--Organização Estruturada: Divisão clara das responsabilidades do sistema.
--Facilidade de Manutenção: Alterações em uma camada não afetam diretamente as outras.
-
-
-
-#### KNOWN CODE SMELLS
-
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation.
 
 ### TESTING
 We were able to successfully carry out 4 tests:
 
-- The **CollisionTest**, which checks if the game ends when a meteor collides with our ship.
-- The **MeteorTest** which allows us to test if the meteor always moves on the y-axis and downwards.
-- The **PowerTest** which checks if, after the ship collects a power-up, it disappears from the available list of power-ups.
-- The **SpaceShipTest**, which tests the movement of our spaceship because if it doesn't work properly, we won't be able to defeat the enemies that will appear in the future.
+- The **SpaceShipControllerTest**, which tests the movement of our spaceship because if it doesn't work properly, we won't be able to defeat the enemies that will appear in the future.
+- The **InterfaceTest**, which tests whether the spaceship and text are drawn correctly.
+- The **PositionTest**, allows to check that the moves of the elements work well.
+- The **ArenaViewerTest**, tests whether the arena's setSpaceShip function is implemented correctly, as well as the Clear and Refresh functions relating to the GUI interface.
+- The **SpaceShipViewerTest**, which tests whether the spaceship is well designed.
+
 
 <p align="center">
   <img src="./resources/Images/all_tests.png" alt="Tests">
 </p>
 
 
-- **Screenshot of coverage report**
-        - class coverage: 66%, method coverage: 73%, line coverage 50%
+- **Screenshot of coverage report** - class coverage: 47%, method coverage: 42%, line coverage 29%
 <p align="center">
   <img src="./resources/Images/tests_coverage.png" alt="Tests_Coverage">
 </p>
@@ -176,9 +132,7 @@ We were able to successfully carry out 4 tests:
 
 ### SELF-EVALUATION
 
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
-
-**Example**:
-
-- John Doe: 40%
-- Jane Doe: 60%
+- Miguel Guerrinha: 33,33%
+- Rui Cruz: 33,33%
+- Sheila Albino: 33,33%
+  
