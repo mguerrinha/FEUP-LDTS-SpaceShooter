@@ -1,4 +1,4 @@
-## LDTS_<03><07> - <Space_Shooter>
+## LDTS_0307 - Space Shooter
 
 In this game it will be possible to control a spaceship in order to avoid objects that can cause damage to the ship, namely meteors and eliminate enemy ships, each with a certain amount of life and attack damage of its own. To combat them, our ship will be able to obtain certain power-ups over the course of the game, which can range from a temporary (or permanent) increase in attack damage, number of weapons and life, and increased movement speed.
 The objective of the game is to get the highest score possible by destroying enemy ships with the help of power-ups, ending when our ship's health reaches zero.
@@ -45,7 +45,7 @@ This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz 
 ### Structure
 
 #### Problem in Context
-The problem lies in the lack of a clear and well-defined structure to separate the game's business logic, visual presentation, and interaction control. This results in complexity, maintenance difficulties, low code reusability, and potential conflicts among different parts of the game. The **MVC pattern** is a solution that addresses these challenges by dividing the game into three distinct components (Model, View, and Controller) to provide an organized and modular structure.
+The problem lies in the lack of a clear and well-defined structure to separate the game's business logic, visual presentation, and interaction control. This results in complexity, maintenance difficulties, low code reusability, and potential conflicts among different parts of the game. The **MVC Pattern** is a solution that addresses these challenges by dividing the game into three distinct components (Model, View, and Controller) to provide an organized and modular structure.
 
 #### The Pattern
 This pattern allows for a clear separation of concerns, making it easier to maintain code, scale the application, and reuse components. In addition, it facilitates collaboration between development teams, as each component has a clearly defined responsibility.
@@ -76,7 +76,7 @@ We have applied the ***State*** pattern. This pattern helps you in State Managem
 
 #### Implementation
 
-Regarding implementation, the State Pattern creates a GameState or State interface with processKey() and draw() methods to represent behaviors common to all states and also implements classes (RunningState, PausedState, GameOverState) that inherit or implement the GameState interface with specific logic. of each state.
+Regarding implementation, the State Pattern creates a GameState or State interface with processKey() and draw() methods to represent behaviors common to all states and also implements classes (RunningState, PausedState, GameOverState) that inherit or implement the GameState interface with specific logic of each state.
 <p align="center">
   <img src="./resources/Images/state_pattern.png" alt="State Pattern">
 </p>
@@ -98,8 +98,7 @@ With this problem in mind, we opted for the **Factory Pattern**, which allows ob
 
 #### Implementation
 
-As for implementation, factory creates a common Element interface or abstract class for all game elements,
-implements an ElementFactory class with methods (e.g., createMeteor(), createPower(), createSpaceShip()) to create each element type and ElementFactory subclasses for each element type that implement the creation methods.
+As for the implementation, the factory creates a common controller interface or an abstract class for the GameController and the MenuController, in the case of the GameController, the same goes for being able to create the concrete products, namely SpaceShipController, MeteorController, etc. The MenuController, on the other hand, can be modified in the future.
 <p align="center">
   <img src="./resources/Images/factory_pattern.png" alt="Factory Pattern">
 </p>
@@ -110,8 +109,8 @@ implements an ElementFactory class with methods (e.g., createMeteor(), createPow
 - **Decoupling**: Separates the object's creation logic from its specific implementations.
 
 
-### TESTING
-We were able to successfully carry out 4 tests:
+## TESTING
+We were able to successfully carry out some tests:
 
 - The **SpaceShipControllerTest**, which tests the movement of our spaceship because if it doesn't work properly, we won't be able to defeat the enemies that will appear in the future.
 - The **InterfaceTest**, which tests whether the spaceship and text are drawn correctly.
@@ -119,11 +118,9 @@ We were able to successfully carry out 4 tests:
 - The **ArenaViewerTest**, tests whether the arena's setSpaceShip function is implemented correctly, as well as the Clear and Refresh functions relating to the GUI interface.
 - The **SpaceShipViewerTest**, which tests whether the spaceship is well designed.
 
-
 <p align="center">
   <img src="./resources/Images/all_tests.png" alt="Tests">
 </p>
-
 
 - **Screenshot of coverage report** - class coverage: 47%, method coverage: 42%, line coverage 29%
 <p align="center">
@@ -131,7 +128,7 @@ We were able to successfully carry out 4 tests:
 </p>
 
 
-### SELF-EVALUATION
+## SELF-EVALUATION
 
 - Miguel Guerrinha: 33,33%
 - Rui Cruz: 33,33%
