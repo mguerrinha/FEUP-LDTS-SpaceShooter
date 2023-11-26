@@ -13,6 +13,7 @@ This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz 
 - **Spawn and catch power-ups** - When the game starts, a certain number of power-ups appear in the screen and we are able to catch them with our spaceship.
 
 ### PLANNED FEATURES
+
 - **Implement a menu** - The game will have the initial menu.
 - **Enemies spaceships** - The game will have some enemies that are other spaceships.
 - **Shots from enemies spaceships** - The enemies spaceships will have guns capable to fire projectile.
@@ -22,6 +23,20 @@ This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz 
 - **Health of spaceships** - Every spaceship have a certain quantity of health and when that health is zero the spaceship is destroyed.
 - **Power of shots** - During the game by catching power-ups the projectiles from our spaceship will have more power.
 - **Score** - Every time we hit an enemy spaceship our score increase.
+
+
+### SCREENSHOTS
+
+- **Menu Preview** - Temporary menu that will still undergo several design and implementation changes. So far it's possible to start and exit the game.
+<p align="center">
+  <img src="./resources/Images/menu.png" alt="Menu">
+</p>
+
+- **Arena Preview** - Like the menu, this arena is the basis of what we intend to implement in the future, the appearance of the elements will be changed, improving the visual aspect of the game and some missing elements will be added later, namely enemy spaceships.
+<p align="center">
+  <img src="./resources/Images/arena.png" alt="Menu">
+</p>
+
 
 ### DESIGN
 
@@ -50,8 +65,6 @@ We have applied the **State** pattern. This pattern allows you to represent diff
 
 The following figure shows how the pattern’s roles were mapped to the application classes.
 
-![img](https://www.fe.up.pt/~arestivo/page/img/examples/lpoo/state.svg)
-
 These classes can be found in the following files:
 
 - [Character](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/Character.java)
@@ -68,14 +81,98 @@ The use of the State Pattern in the current design allows the following benefits
 - We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
 - There are now more classes and instances to manage, but still in a reasonable number.
 
+#### State 
+
+**Problem in Context**
+
+In the game, different states need to be managed, such as Running, Paused, and GameOver. Each state has specific key processing logic and on-screen drawings.
+
+**The Pattern**
+
+We have applied the ***State*** pattern. This pattern helps you in State Management, i.e. encapsulating the specific behavior of each game state in separate classes (RunningState, PausedState, GameOverState). and Extension facility that allows the addition of new states without modifying existing classes.
+
+**Implementation**
+
+Create a GameState or State interface with processKey() and draw() methods to represent the behaviors common to all states.
+Implement classes (RunningState, PausedState, GameOverState) that inherit or implement the GameState interface with state-specific logic.
+
+**Consequences**
+
+-Maintainability: Ease of adding, removing, or modifying states.
+-Readability: Clarity in separating the logic of each game state.
+
+#### Factory
+
+**Problem in Context**
+
+The creation of game elements (Meteor, Power, SpaceShip) needs to be flexible and extensible to add new types of elements in the future.
+
+
+**The Pattern**
+
+Flexible Object Creation: Allow the creation of objects without specifying the exact class of the object to be created.
+Encapsulate Creation: Delegate creation responsibility to subclasses.
+
+**Implementation**
+
+Create a common Element interface or abstract class for all game elements.
+Implement an ElementFactory class with methods (e.g., createMeteor(), createPower(), createSpaceShip()) to create each element type.
+ElementFactory subclasses for each element type that implement the authoring methods.
+
+
+**Consequences**
+
+-Flexibility: Makes it easy to add new types of elements.
+-Decoupling: Separates the object's creation logic from its specific implementations.
+
+#### MVC Pattern
+
+**Problem in Context**
+
+It is necessary to separate the responsibilities of business, GUI, and game control to facilitate the maintenance and reuse of the code.
+
+**The Pattern**
+
+Separation of Responsibilities: Divide the application into Model (business logic), View (graphical interface) and Controller (control of user interactions).
+Maintainability: Allow changes to one layer without affecting the others.
+
+**Implementation**
+
+Model: Refatorar as classes existentes para representar a lógica de negócios do jogo (como Arena, Element, Game).
+View: Classes relacionadas à interface gráfica (TextGraphics, métodos de desenho na tela).
+Controller: Gerenciar a interação do usuário (Arena.processKey(), métodos de controle de entrada).
+
+
+**Consequences**
+
+-Organização Estruturada: Divisão clara das responsabilidades do sistema.
+-Facilidade de Manutenção: Alterações em uma camada não afetam diretamente as outras.
+
+
+
 #### KNOWN CODE SMELLS
 
 > This section should describe 3 to 5 different code smells that you have identified in your current implementation.
 
 ### TESTING
+We were able to successfully carry out 4 tests:
 
-- Screenshot of coverage report.
-- Link to mutation testing report.
+- The **CollisionTest**, which checks if the game ends when a meteor collides with our ship.
+- The **MeteorTest** which allows us to test if the meteor always moves on the y-axis and downwards.
+- The **PowerTest** which checks if, after the ship collects a power-up, it disappears from the available list of power-ups.
+- The **SpaceShipTest**, which tests the movement of our spaceship because if it doesn't work properly, we won't be able to defeat the enemies that will appear in the future.
+
+<p align="center">
+  <img src="./resources/Images/all_tests.png" alt="Tests">
+</p>
+
+
+- **Screenshot of coverage report**
+        - class coverage: 66%, method coverage: 73%, line coverage 50%
+<p align="center">
+  <img src="./resources/Images/tests_coverage.png" alt="Tests_Coverage">
+</p>
+
 
 ### SELF-EVALUATION
 
