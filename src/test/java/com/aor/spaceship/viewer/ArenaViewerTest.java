@@ -27,7 +27,7 @@ public class ArenaViewerTest {
     }
 
     @Test
-    void drawHero() throws IOException {
+    void drawSpaceShip() throws IOException {
         viewer.draw(gui);
 
         Mockito.verify(gui, Mockito.times(1)).drawSpaceship(new Position(5, 5));

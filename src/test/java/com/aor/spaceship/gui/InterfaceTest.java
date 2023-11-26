@@ -22,7 +22,7 @@ public class InterfaceTest {
     }
 
     @Test
-    void drawHero() {
+    void drawSpaceShip() {
         gui.drawSpaceship(new Position(1, 1));
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(new TextColor.RGB(255, 255, 255));
