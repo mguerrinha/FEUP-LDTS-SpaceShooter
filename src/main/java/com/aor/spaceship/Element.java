@@ -1,4 +1,7 @@
+package com.aor.spaceship;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.aor.spaceship.model.Position;
 
 public abstract class Element {
     public Position position;

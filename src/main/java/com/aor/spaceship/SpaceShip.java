@@ -1,7 +1,10 @@
+package com.aor.spaceship;
+
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.aor.spaceship.model.Position;
 
 public class SpaceShip extends Element {
     public SpaceShip(int x, int y) {super(x, y); }

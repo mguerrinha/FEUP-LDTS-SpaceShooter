@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-group = 'org.example'
+group = 'com.aor.spaceship'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -21,5 +21,5 @@ test {
 }
 
 application {
-    mainClass.set("Application")
+    mainClass.set('com.aor.spaceship.Application')
 }

@@ -1,10 +1,9 @@
+package com.aor.spaceship;
+
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import com.aor.spaceship.model.Position;
 
 public class Meteor extends Element {
     public Meteor(int x, int y) { super(x, y); }
