@@ -1,7 +1,6 @@
 package com.aor.spaceship.states;
 
 import com.aor.spaceship.Application;
-import com.aor.spaceship.Game;
 import com.aor.spaceship.controller.Controller;
 import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.viewer.Viewer;

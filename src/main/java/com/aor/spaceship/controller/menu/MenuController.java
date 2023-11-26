@@ -3,7 +3,9 @@ package com.aor.spaceship.controller.menu;
 import com.aor.spaceship.Application;
 import com.aor.spaceship.controller.Controller;
 import com.aor.spaceship.gui.GUI;
+import com.aor.spaceship.model.game.arena.RandomArenaBuilder;
 import com.aor.spaceship.model.menu.Menu;
+import com.aor.spaceship.states.GameState;
 
 public class MenuController extends Controller<Menu> {
     public MenuController(Menu menu) { super(menu); }
@@ -18,6 +20,7 @@ public class MenuController extends Controller<Menu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) application.setState(null);
+                if (getModel().isSelectedStart()) application.setState(new GameState(new RandomArenaBuilder(20, 20).createArena()));
         }
     }
 }
