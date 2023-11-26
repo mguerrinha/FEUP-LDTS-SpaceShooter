@@ -15,5 +15,4 @@ public class GameState extends State<Arena> {
 
     @Override
     protected Controller<Arena> getController() { return new ArenaController(getModel()); }
-
 }
