@@ -2,6 +2,7 @@ package com.aor.spaceship.viewer.game;
 
 import com.aor.spaceship.model.game.arena.Arena;
 import com.aor.spaceship.gui.GUI;
+import com.aor.spaceship.model.game.elements.DefaultShots;
 import com.aor.spaceship.model.game.elements.Element;
 import com.aor.spaceship.viewer.Viewer;
 
@@ -13,6 +14,7 @@ public class GameViewer extends Viewer<Arena> {
     @Override
     protected void drawElements(GUI gui) {
         drawElement(gui, getModel().getSpaceship(), new SpaceshipViewer());
+        drawElement(gui, getModel().getdefaultShots(), new DefaultShotsViewer());
     }
 
     private  <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

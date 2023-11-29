@@ -26,7 +26,7 @@ public class Application {
 
     public void start() throws IOException {
         int FPS = 10;
-        int frameTime = 1000 / FPS;
+        int frameTime = 100 / FPS;
         while (this.state != null) {
             long startTime = System.currentTimeMillis();
 
