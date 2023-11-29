@@ -86,9 +86,7 @@ public class Interface implements GUI {
     public void drawDefaultShots(Position position) { drawCharacter(position.getX(), position.getY(), '.', "#FFFFFF"); }
 
     @Override
-    public void drawMeteor(Position position) {
-        drawCharacter(position.getX(), position.getY(), '◈', "#FF0000");
-    }
+    public void drawMeteor(Position position) { drawCharacter(position.getX(), position.getY(), '□', "#FF0000"); }
 
     @Override
     public void drawText(Position position, String text, String color) {
