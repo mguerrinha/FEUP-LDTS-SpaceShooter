@@ -23,8 +23,7 @@ public class SpaceshipController extends GameController {
         if (getModel().isLimit(position)) {
             getModel().getSpaceship().setPosition(position);
             if (getModel().isPower(position)) {
-                getModel().removePower(new Power(position.getX(), position.getY()));
-                System.out.println(getModel().getPowers().size());
+                getModel().removePower(position);
             }
         }
         if (getModel().hasCollided(position)) {

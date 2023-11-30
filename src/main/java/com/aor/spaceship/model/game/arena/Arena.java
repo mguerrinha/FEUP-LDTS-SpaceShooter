@@ -33,8 +33,12 @@ public class Arena {
     public List<Power> getPowers() {return powers; }
     public List<Limit> getLimits() { return limits; }
 
-    public void removePower(Power power) {
-        powers.remove(power);
+    public void removePower(Position position) {
+        for (int i = 0; i < powers.size(); i++) {
+            if (powers.get(i).getPosition().equals(position)) {
+                powers.remove(i);
+            }
+        }
     }
 
     public void setSpaceship(Spaceship spaceship) { this.spaceship = spaceship; }
