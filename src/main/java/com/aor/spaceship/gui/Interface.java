@@ -39,8 +39,7 @@ public class Interface implements GUI {
 
     private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
         TerminalSize terminalSize = new TerminalSize(width, height + 1);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
-                .setInitialTerminalSize(terminalSize);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
         Terminal terminal = terminalFactory.createTerminal();
@@ -87,6 +86,9 @@ public class Interface implements GUI {
 
     @Override
     public void drawMeteor(Position position) { drawCharacter(position.getX(), position.getY(), '□', "#FF0000"); }
+
+    @Override
+    public void drawLimits(Position position) { drawCharacter(position.getX(), position.getY(), '#', "#FFFFFF"); }
 
     @Override
     public void drawText(Position position, String text, String color) {

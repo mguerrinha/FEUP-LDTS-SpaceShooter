@@ -15,7 +15,7 @@ public class Application {
     private State state;
 
     public Application() throws IOException, URISyntaxException, FontFormatException {
-        this.gui = new Interface(20, 20);
+        this.gui = new Interface(30, 30);
         this.state = new MenuState(new Menu());
     }
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {

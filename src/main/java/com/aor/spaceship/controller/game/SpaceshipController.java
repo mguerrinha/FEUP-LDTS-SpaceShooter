@@ -19,7 +19,9 @@ public class SpaceshipController extends GameController {
     }
 
     public void moveSpaceship(Position position) {
-        getModel().getSpaceship().setPosition(position);
+        if (getModel().isLimit(position)) {
+            getModel().getSpaceship().setPosition(position);
+        }
         if (getModel().hasCollided(position)) {
             getModel().getSpaceship().setEnergyToZero();
         }
