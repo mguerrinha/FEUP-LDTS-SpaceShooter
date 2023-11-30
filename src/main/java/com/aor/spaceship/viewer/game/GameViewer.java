@@ -15,6 +15,7 @@ public class GameViewer extends Viewer<Arena> {
     protected void drawElements(GUI gui) {
         drawElement(gui, getModel().getSpaceship(), new SpaceshipViewer());
         drawElement(gui, getModel().getdefaultShots(), new DefaultShotsViewer());
+        drawElements(gui, getModel().getMeteors(), new MeteorViewer());
     }
 
     private  <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
