@@ -88,6 +88,9 @@ public class Interface implements GUI {
     public void drawMeteor(Position position) { drawCharacter(position.getX(), position.getY(), '□', "#FF0000"); }
 
     @Override
+    public void drawPower(Position position) { drawCharacter(position.getX(), position.getY(), '?', "#FFFF00"); }
+
+    @Override
     public void drawLimits(Position position) { drawCharacter(position.getX(), position.getY(), '#', "#FFFFFF"); }
 
     @Override
