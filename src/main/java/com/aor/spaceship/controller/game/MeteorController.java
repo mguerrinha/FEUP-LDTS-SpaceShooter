@@ -7,6 +7,7 @@ import com.aor.spaceship.model.game.arena.Arena;
 import com.aor.spaceship.model.game.elements.Meteor;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class MeteorController extends GameController {
 
@@ -26,15 +27,14 @@ public class MeteorController extends GameController {
         }
     }
     private void moveMeteor(Meteor meteor, Position position) {
+        Random random = new Random();
         meteor.setPosition(position);
-        /*
         if (position.getY() >= getModel().getHeight()) {
-            getModel().getMeteors().remove(meteor);
+            meteor.setPosition(new Position(random.nextInt(getModel().getWidth() - 2) + 1, -2));
         }
-        if (getModel().getMeteors().isEmpty()) {
-
+        else {
+            meteor.setPosition(position);
         }
-        */
         if (getModel().getSpaceship().getPosition().equals(position))
             getModel().getSpaceship().setEnergyToZero();
     }
