@@ -9,7 +9,7 @@ public class Arena {
     private int width;
     private int height;
     private Spaceship spaceship;
-    private DefaultShots defaultShots;
+    private List<DefaultShots> defaultShots;
     private List<Meteor> meteors;
     private List<Power> powers;
     private List<Limit> limits;
@@ -26,8 +26,7 @@ public class Arena {
         return height;
     }
     public Spaceship getSpaceship() { return spaceship; }
-    public DefaultShots getdefaultShots() { return defaultShots; }
-
+    public List<DefaultShots> getdefaultShots() { return defaultShots; }
     public List<Meteor> getMeteors() {return meteors; }
 
     public List<Power> getPowers() {return powers; }
@@ -42,7 +41,7 @@ public class Arena {
     }
 
     public void setSpaceship(Spaceship spaceship) { this.spaceship = spaceship; }
-    public void setDefaultShots(DefaultShots defaultShots) { this.defaultShots = defaultShots; }
+    public void setDefaultShots(List<DefaultShots> defaultShots) { this.defaultShots = defaultShots; }
 
     public void setMeteors(List<Meteor> meteors) { this.meteors = meteors; }
 

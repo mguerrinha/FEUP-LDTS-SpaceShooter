@@ -10,12 +10,10 @@ import java.io.IOException;
 
 public class ArenaController extends GameController {
     private final SpaceshipController spaceshipController;
-    private final DefaultShotsController defaultShotsController;
     private final MeteorController meteorController;
     public ArenaController(Arena arena) {
         super(arena);
         this.spaceshipController = new SpaceshipController(arena);
-        this.defaultShotsController = new DefaultShotsController(arena);
         this.meteorController = new MeteorController(arena);
     }
     @Override
@@ -25,7 +23,6 @@ public class ArenaController extends GameController {
         }
         else {
             spaceshipController.step(application, action, time);
-            defaultShotsController.step(application, action, time);
             meteorController.step(application, action, time);
         }
     }

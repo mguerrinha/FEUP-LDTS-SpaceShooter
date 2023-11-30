@@ -34,7 +34,9 @@ public class ArenaBuilder {
         this.spaceship = new Spaceship (width/2, heigth/2);
         return spaceship;
     }
-    protected DefaultShots createDefaultShots() { return new DefaultShots(spaceship.getPosition().getX(), spaceship.getPosition().getY()-1); }
+    protected List<DefaultShots> createDefaultShots() {
+        return new ArrayList<>();
+    }
 
     protected List<Meteor> createMeteors() {
         List<Meteor> meteors = new ArrayList<>();
