@@ -27,10 +27,12 @@ public class MeteorController extends GameController {
         }
     }
     private void moveMeteor(Meteor meteor, Position position) {
+        int min = 8;
+        int max = getModel().getWidth()-2;
         Random random = new Random();
         meteor.setPosition(position);
         if (position.getY() >= getModel().getHeight()) {
-            meteor.setPosition(new Position(random.nextInt(getModel().getWidth() - 2) + 1, -2));
+            meteor.setPosition(new Position(random.ints(min, max).findFirst().getAsInt(), -2));
         }
         else {
             meteor.setPosition(position);
