@@ -1,9 +1,7 @@
 package com.aor.spaceship.model.game.arena;
 
-import com.aor.spaceship.model.game.elements.DefaultShots;
-import com.aor.spaceship.model.game.elements.Limit;
-import com.aor.spaceship.model.game.elements.Meteor;
-import com.aor.spaceship.model.game.elements.Spaceship;
+import com.aor.spaceship.model.Position;
+import com.aor.spaceship.model.game.elements.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +23,7 @@ public class ArenaBuilder {
         arena.setSpaceship(createSpaceship());
         arena.setDefaultShots(createDefaultShots());
         arena.setMeteors(createMeteors());
+        arena.setPowers(createPowers());
         arena.setLimits(createLimits());
         return arena;
     }
@@ -45,6 +44,16 @@ public class ArenaBuilder {
             meteors.add(new Meteor(random.ints(min, max).findFirst().getAsInt(), -2));
         }
         return meteors;
+    }
+
+    protected List<Power> createPowers() {
+        List<Power> powers = new ArrayList<>();
+        int min = 9;
+        int max = width-2;
+        for (int i = 0; i <= 1; i++) {
+            powers.add(new Power(random.ints(min, max).findFirst().getAsInt(), random.ints(min, max).findFirst().getAsInt()));
+        }
+        return powers;
     }
 
     protected List<Limit> createLimits() {

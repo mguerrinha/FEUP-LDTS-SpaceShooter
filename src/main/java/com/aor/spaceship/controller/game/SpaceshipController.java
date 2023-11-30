@@ -4,6 +4,7 @@ import com.aor.spaceship.Application;
 import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.arena.Arena;
+import com.aor.spaceship.model.game.elements.Power;
 
 import java.io.IOException;
 
@@ -21,6 +22,9 @@ public class SpaceshipController extends GameController {
     public void moveSpaceship(Position position) {
         if (getModel().isLimit(position)) {
             getModel().getSpaceship().setPosition(position);
+            if (getModel().isPower(position)) {
+                getModel().removePower(position);
+            }
         }
         if (getModel().hasCollided(position)) {
             getModel().getSpaceship().setEnergyToZero();
