@@ -4,14 +4,25 @@ import com.aor.spaceship.Application;
 import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.arena.Arena;
+import com.aor.spaceship.model.game.elements.Meteor;
 
 import java.io.IOException;
 
 public class SpaceshipController extends GameController {
-    public SpaceshipController(Arena arena) { super(arena); }
+    private long lastMovement;
+    ShootingController shootingController;
+    public SpaceshipController(Arena arena) {
+        super(arena);
+        lastMovement = 0;
+        shootingController = new ShootingController(arena, getModel().getSpaceship());
+    }
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
+        if (time - lastMovement > 300) {
+            shootingController.defaultShot();
+            this.lastMovement = time;
+        }
         if (action == GUI.Action.LEFT) { moveSpaceshipLeft(); }
         if (action == GUI.Action.RIGHT) { moveSpaceshipRight(); }
         if (action == GUI.Action.UP) { moveSpaceshipUp(); }

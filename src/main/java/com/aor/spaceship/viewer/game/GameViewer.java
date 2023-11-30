@@ -14,7 +14,7 @@ public class GameViewer extends Viewer<Arena> {
     @Override
     protected void drawElements(GUI gui) {
         drawElement(gui, getModel().getSpaceship(), new SpaceshipViewer());
-        drawElement(gui, getModel().getdefaultShots(), new DefaultShotsViewer());
+        drawElements(gui, getModel().getdefaultShots(), new DefaultShotsViewer());
         drawElements(gui, getModel().getMeteors(), new MeteorViewer());
         drawElements(gui, getModel().getLimits(), new LimitViewer());
     }
