@@ -37,22 +37,50 @@ public class ArenaBuilder {
         return new ArrayList<>();
     }
 
+    private boolean isValidMeteorPosition(List<Meteor> meteors, int x) {
+        for (Meteor meteor : meteors) {
+            if (meteor.getPosition().getX() == x) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     protected List<Meteor> createMeteors() {
         List<Meteor> meteors = new ArrayList<>();
-        int min = 8;
-        int max = width-2;
-        for (int i = 0; i <= 2; i++) {
-            meteors.add(new Meteor(random.ints(min, max).findFirst().getAsInt(), -2));
+        int min = 9;
+        int max = width - 1;
+        int x_aux;
+        int y_aux = -2;
+        while (meteors.size() < 3) {
+            x_aux = random.ints(min, max).findFirst().getAsInt();
+            if (isValidMeteorPosition(meteors, x_aux)) {
+                meteors.add(new Meteor(x_aux, y_aux));
+            }
         }
         return meteors;
+    }
+
+    private boolean isValidPowerPosition(List<Power> powers, int x, int y) {
+        for (Power power : powers) {
+            if (power.getPosition().getX() == x && power.getPosition().getY() == y) {
+                return false;
+            }
+        }
+        return true;
     }
 
     protected List<Power> createPowers() {
         List<Power> powers = new ArrayList<>();
         int min = 9;
-        int max = width-2;
-        for (int i = 0; i <= 1; i++) {
-            powers.add(new Power(random.ints(min, max).findFirst().getAsInt(), random.ints(min, max).findFirst().getAsInt()));
+        int max = width - 1;
+        int x_aux, y_aux;
+        while (powers.size() < 2) {
+            x_aux = random.ints(min, max).findFirst().getAsInt();
+            y_aux = random.ints(min, max).findFirst().getAsInt();
+            if (isValidPowerPosition(powers, x_aux, y_aux)) {
+                powers.add(new Power(x_aux, y_aux));
+            }
         }
         return powers;
     }
