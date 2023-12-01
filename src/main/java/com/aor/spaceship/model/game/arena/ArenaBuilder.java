@@ -1,6 +1,5 @@
 package com.aor.spaceship.model.game.arena;
 
-import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.elements.*;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class ArenaBuilder {
         this.spaceship = new Spaceship (width/2, heigth/2);
         return spaceship;
     }
-    protected List<DefaultShots> createDefaultShots() {
+    protected List<DefaultShot> createDefaultShots() {
         return new ArrayList<>();
     }
 
