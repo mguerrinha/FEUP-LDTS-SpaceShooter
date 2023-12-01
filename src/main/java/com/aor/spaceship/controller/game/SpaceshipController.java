@@ -38,7 +38,7 @@ public class SpaceshipController extends GameController {
             }
         }
         if (getModel().hasCollided(position)) {
-            getModel().getSpaceship().setEnergyToZero();
+            getModel().getSpaceship().reduceEnergy();
         }
     }
 

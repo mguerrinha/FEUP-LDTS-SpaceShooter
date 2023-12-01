@@ -1,5 +1,6 @@
 package com.aor.spaceship.viewer.game;
 
+import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.arena.Arena;
 import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.game.elements.Element;
@@ -17,6 +18,15 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getMeteors(), new MeteorViewer());
         drawElements(gui, getModel().getLimits(), new LimitViewer());
         drawElements(gui, getModel().getPowers(), new PowerViewer());
+
+        gui.drawText(new Position(0, 1), "Highest", "#89CFF0");
+        gui.drawText(new Position(0, 2), "Score", "#89CFF0");
+        gui.drawText(new Position(0, 3), ":0", "#FFFFFF");
+        gui.drawText(new Position(0, 14), "Current", "#89CFF0");
+        gui.drawText(new Position(0, 15), "Score", "#89CFF0");
+        gui.drawText(new Position(0, 16), ":0", "#FFFFFF");
+        gui.drawText(new Position(0, 28), "Lives", "#89CFF0");
+        gui.drawText(new Position(0, 29), ":" + getModel().getSpaceship().getEnergy(), "#FFFFFF");
     }
 
     private  <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

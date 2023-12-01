@@ -7,6 +7,7 @@ import com.aor.spaceship.model.game.arena.Arena;
 import com.aor.spaceship.model.game.elements.Meteor;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 
 public class MeteorController extends GameController {
@@ -20,24 +21,38 @@ public class MeteorController extends GameController {
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
-        if (time - lastMovement > 300) {
+        if (time - lastMovement > 250) {
             for (Meteor meteor : getModel().getMeteors())
                 moveMeteor(meteor, meteor.getPosition().moveDown());
             this.lastMovement = time;
         }
     }
+
+    private boolean isValidMeteorPosition(int newX, List<Meteor> existingMeteors) {
+        for (Meteor existingMeteor : existingMeteors) {
+            if (existingMeteor.getPosition().getX() == newX) {
+                return false;
+            }
+        }
+        return true;
+    }
     private void moveMeteor(Meteor meteor, Position position) {
-        int min = 8;
-        int max = getModel().getWidth()-2;
+        int min = 9;
+        int max = getModel().getWidth() - 1;
         Random random = new Random();
         meteor.setPosition(position);
         if (position.getY() >= getModel().getHeight()) {
-            meteor.setPosition(new Position(random.ints(min, max).findFirst().getAsInt(), -2));
+            int newX;
+            do {
+                newX = random.ints(min, max).findFirst().getAsInt();
+            } while (!isValidMeteorPosition(newX, getModel().getMeteors()));
+
+            meteor.setPosition(new Position(newX, -2));
         }
         else {
             meteor.setPosition(position);
         }
         if (getModel().getSpaceship().getPosition().equals(position))
-            getModel().getSpaceship().setEnergyToZero();
+            getModel().getSpaceship().reduceEnergy();
     }
 }

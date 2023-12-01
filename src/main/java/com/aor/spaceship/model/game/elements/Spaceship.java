@@ -5,14 +5,14 @@ public class Spaceship extends Element {
 
     public Spaceship(int x, int y) {
         super(x, y);
-        this.energy = 1;
+        this.energy = 3;
     }
 
     public int getEnergy() {
         return energy;
     }
 
-    public void setEnergyToZero() {
-        this.energy = 0;
+    public void reduceEnergy() {
+        this.energy--;
     }
 }
