@@ -67,25 +67,10 @@ public class Arena {
         return false;
     }
 
-    public boolean isEmpty(Position position) {
-        if (hasCollided(position)) {
-            return false;
-        }
-        else return !isLimit(position);
-    }
-
     public void removePower(Position position) {
         for (int i = 0; i < powers.size(); i++) {
             if (powers.get(i).getPosition().equals(position)) {
                 powers.remove(i);
-            }
-        }
-    }
-
-    public void removeDefaultShot(Position position) {
-        for (int i = 0; i < defaultShots.size(); i++) {
-            if (defaultShots.get(i).getPosition().equals(position)) {
-                defaultShots.remove(i);
             }
         }
     }
