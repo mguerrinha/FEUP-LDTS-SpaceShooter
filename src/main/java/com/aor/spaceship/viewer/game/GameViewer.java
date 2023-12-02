@@ -13,11 +13,12 @@ public class GameViewer extends Viewer<Arena> {
 
     @Override
     protected void drawElements(GUI gui) {
-        drawElement(gui, getModel().getSpaceship(), new SpaceshipViewer());
         drawElements(gui, getModel().getdefaultShots(), new DefaultShotsViewer());
+        drawElement(gui, getModel().getSpaceship(), new SpaceshipViewer());
         drawElements(gui, getModel().getMeteors(), new MeteorViewer());
         drawElements(gui, getModel().getLimits(), new LimitViewer());
         drawElements(gui, getModel().getPowers(), new PowerViewer());
+
 
         gui.drawText(new Position(0, 1), "Highest", "#89CFF0");
         gui.drawText(new Position(0, 2), "Score", "#89CFF0");

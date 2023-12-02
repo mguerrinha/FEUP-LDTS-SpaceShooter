@@ -10,19 +10,19 @@ This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz 
 - **Implement a menu** - The game have an initial menu.
 - **Interactive menu** - The menu is interactive, and we can navigate it using the up and down arrows.
 - **Spaceship moves** - The spaceship moves to the left, right, up and down using the respectively arrows.
+- **Spawn and catch power-ups** - When the game starts, a certain number of power-ups appear in the screen and, we are able to catch them with our spaceship.
+- **Meteors falling** - During the game, we have some meteors falling down the screen.
+- **Hit by a meteor** - If the spaceship has a collision with a meteor the game stops.
+- **Shots from our spaceship** - Our spaceship have guns capable to fire projectiles able to destroy enemies spaceships.
+- **Health of spaceships** - Every spaceship have a certain quantity of health and when that health is zero the spaceship is destroyed.
 
 
 ## PLANNED FEATURES
 
-- **Spawn and catch power-ups** - When the game starts, a certain number of power-ups appear in the screen and, we are able to catch them with our spaceship.
 - **Enemies spaceships** - The game will have some enemies that are other spaceships.
-- **Meteors falling** - During the game, we have some meteors falling down the screen.
-- **Hit by a meteor** - If the spaceship has a collision with a meteor the game stops.
 - **Shots from enemies spaceships** - The enemies spaceships will have guns capable to fire projectile.
 - **Enemies projectiles can kill our spaceship** - If a projectile from an enemy spaceship hit our spaceship we lost.
 - **Spawning power-ups** - If we kill a special enemy spaceship it will drop a power-up that will fall down and if we can catch it, it will upgrade our spaceship.
-- **Shots from our spaceship** - Our spaceship have guns capable to fire projectiles able to destroy enemies spaceships.
-- **Health of spaceships** - Every spaceship have a certain quantity of health and when that health is zero the spaceship is destroyed.
 - **Power of shots** - During the game by catching power-ups the projectiles from our spaceship will have more power.
 - **Score** - Every time we hit an enemy spaceship our score increase.
 
