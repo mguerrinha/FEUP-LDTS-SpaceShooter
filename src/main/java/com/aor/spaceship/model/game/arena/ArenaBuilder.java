@@ -52,11 +52,12 @@ public class ArenaBuilder {
         int min = 9;
         int max = width - 1;
         int x_aux;
-        int y_aux = -2;
-        while (meteors.size() < 3) {
+        int y_aux;
+        while (meteors.size() < 4) {
             x_aux = random.ints(min, max).findFirst().getAsInt();
+            y_aux = random.ints(1, 7).findFirst().getAsInt();
             if (isValidMeteorPosition(meteors, x_aux)) {
-                meteors.add(new Meteor(x_aux, y_aux));
+                meteors.add(new Meteor(x_aux, -y_aux));
             }
         }
         return meteors;

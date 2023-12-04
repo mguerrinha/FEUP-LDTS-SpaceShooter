@@ -19,24 +19,24 @@ public class SpecialEnemyController extends GameController {
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
         Random random = new Random();
-        if (time - lastMovement > 500) {
+        if (time - lastMovement > 300) {
             for (SpecialEnemy specialEnemy : getModel().getSpecialEnemies()) {
                 int randomPosition = random.ints(1, 5).findFirst().getAsInt();
                 switch (randomPosition) {
                     case 1:
-                        if (!getModel().isLimit(specialEnemy.getPosition().moveUp()) && !getModel().hasCollided(specialEnemy.getPosition().moveUp()))
+                        if (!getModel().isLimit(specialEnemy.getPosition().moveUp()) && !getModel().hasCollided(specialEnemy.getPosition().moveUp()) && !getModel().isEnemy(specialEnemy.getPosition().moveUp()))
                             moveSpecialEnemy(specialEnemy, specialEnemy.getPosition().moveUp());
                         break;
                     case 2:
-                        if (!getModel().isLimit(specialEnemy.getPosition().moveDown()) && !getModel().hasCollided(specialEnemy.getPosition().moveDown()))
+                        if (!getModel().isLimit(specialEnemy.getPosition().moveDown()) && !getModel().hasCollided(specialEnemy.getPosition().moveDown()) && !getModel().hasCollided(specialEnemy.getPosition().moveUp()) && !getModel().isEnemy(specialEnemy.getPosition().moveDown()))
                             moveSpecialEnemy(specialEnemy, specialEnemy.getPosition().moveDown());
                         break;
                     case 3:
-                        if (!getModel().isLimit(specialEnemy.getPosition().moveLeft()) && !getModel().hasCollided(specialEnemy.getPosition().moveLeft()))
+                        if (!getModel().isLimit(specialEnemy.getPosition().moveLeft()) && !getModel().hasCollided(specialEnemy.getPosition().moveLeft()) && !getModel().hasCollided(specialEnemy.getPosition().moveUp()) && !getModel().isEnemy(specialEnemy.getPosition().moveLeft()))
                             moveSpecialEnemy(specialEnemy, specialEnemy.getPosition().moveLeft());
                         break;
                     case 4:
-                        if (!getModel().isLimit(specialEnemy.getPosition().moveRight()) && !getModel().hasCollided(specialEnemy.getPosition().moveRight()))
+                        if (!getModel().isLimit(specialEnemy.getPosition().moveRight()) && !getModel().hasCollided(specialEnemy.getPosition().moveRight()) && !getModel().hasCollided(specialEnemy.getPosition().moveUp()) && !getModel().isEnemy(specialEnemy.getPosition().moveRight()))
                             moveSpecialEnemy(specialEnemy, specialEnemy.getPosition().moveRight());
                         break;
                     default:
