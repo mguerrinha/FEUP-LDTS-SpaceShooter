@@ -92,6 +92,8 @@ public class Interface implements GUI {
 
     @Override
     public void drawLimits(Position position) { drawCharacter(position.getX(), position.getY(), '#', "#FFFFFF"); }
+    @Override
+    public void drawSpecialEnemies(Position position) { drawCharacter(position.getX(), position.getY(), '!', "#FF0FF0"); }
 
     @Override
     public void drawText(Position position, String text, String color) {

@@ -13,6 +13,7 @@ public class Arena {
     private List<Meteor> meteors;
     private List<Power> powers;
     private List<Limit> limits;
+    private List<SpecialEnemy> specialEnemies;
     public Arena(int width, int height) {
         this.height = height;
         this.width = width;
@@ -31,6 +32,7 @@ public class Arena {
 
     public List<Power> getPowers() {return powers; }
     public List<Limit> getLimits() { return limits; }
+    public List<SpecialEnemy> getSpecialEnemies() { return specialEnemies; }
 
     public void setSpaceship(Spaceship spaceship) { this.spaceship = spaceship; }
     public void setDefaultShots(List<DefaultShot> defaultShots) { this.defaultShots = defaultShots; }
@@ -39,6 +41,8 @@ public class Arena {
 
     public void setPowers(List<Power> powers) { this.powers = powers; }
     public void setLimits(List<Limit> limits) { this.limits = limits; }
+
+    public void setSpecialEnemies(List<SpecialEnemy> specialEnemies) { this.specialEnemies = specialEnemies; }
 
     public boolean hasCollided(Position position) {
         for (Meteor meteor : meteors) {
@@ -58,6 +62,15 @@ public class Arena {
         return false;
     }
 
+    public boolean isEnemy(Position position) {
+        for (SpecialEnemy specialEnemy : specialEnemies) {
+            if (specialEnemy.getPosition().equals(position)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean isPower(Position position) {
         for (Power power : powers) {
             if (power.getPosition().equals(position)) {
@@ -71,6 +84,17 @@ public class Arena {
         for (int i = 0; i < powers.size(); i++) {
             if (powers.get(i).getPosition().equals(position)) {
                 powers.remove(i);
+                spaceship.addScore(50);
+            }
+        }
+    }
+
+    public void removeSpecialEnemy(Position position) {
+        for (int i = 0; i < specialEnemies.size(); i++) {
+            if (specialEnemies.get(i).getPosition().equals(position)) {
+                specialEnemies.remove(i);
+                powers.add(new Power(position.getX(), position.getY()));
+                spaceship.addScore(250);
             }
         }
     }

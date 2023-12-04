@@ -23,8 +23,10 @@ public class ShootingController {
             if (arena.hasCollided(defaultShot.getPosition()) || arena.hasCollided(defaultShot.getPosition().moveUp())) {
                 defaultShot.setPosition(new Position(0, -2));
             }
+            if (arena.isEnemy(defaultShot.getPosition())) {
+                arena.removeSpecialEnemy(defaultShot.getPosition());
+                defaultShot.setPosition(new Position(0, -2));
+            }
         }
      }
-
-
 }

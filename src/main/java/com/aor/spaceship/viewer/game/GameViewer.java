@@ -18,6 +18,7 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getMeteors(), new MeteorViewer());
         drawElements(gui, getModel().getLimits(), new LimitViewer());
         drawElements(gui, getModel().getPowers(), new PowerViewer());
+        drawElements(gui, getModel().getSpecialEnemies(), new SpecialEnemiesViewer());
 
 
         gui.drawText(new Position(0, 1), "Highest", "#89CFF0");
@@ -25,7 +26,7 @@ public class GameViewer extends Viewer<Arena> {
         gui.drawText(new Position(0, 3), ":0", "#FFFFFF");
         gui.drawText(new Position(0, 14), "Current", "#89CFF0");
         gui.drawText(new Position(0, 15), "Score", "#89CFF0");
-        gui.drawText(new Position(0, 16), ":0", "#FFFFFF");
+        gui.drawText(new Position(0, 16), ":" + getModel().getSpaceship().getScore(), "#FFFFFF");
         gui.drawText(new Position(0, 28), "Lives", "#89CFF0");
         gui.drawText(new Position(0, 29), ":" + getModel().getSpaceship().getEnergy(), "#FFFFFF");
     }

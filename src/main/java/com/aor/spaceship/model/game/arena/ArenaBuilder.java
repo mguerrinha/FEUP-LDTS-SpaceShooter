@@ -24,6 +24,7 @@ public class ArenaBuilder {
         arena.setMeteors(createMeteors());
         arena.setPowers(createPowers());
         arena.setLimits(createLimits());
+        arena.setSpecialEnemies(createSpecialEnemies());
         return arena;
     }
 
@@ -51,11 +52,12 @@ public class ArenaBuilder {
         int min = 9;
         int max = width - 1;
         int x_aux;
-        int y_aux = -2;
-        while (meteors.size() < 3) {
+        int y_aux;
+        while (meteors.size() < 4) {
             x_aux = random.ints(min, max).findFirst().getAsInt();
+            y_aux = random.ints(1, 7).findFirst().getAsInt();
             if (isValidMeteorPosition(meteors, x_aux)) {
-                meteors.add(new Meteor(x_aux, y_aux));
+                meteors.add(new Meteor(x_aux, -y_aux));
             }
         }
         return meteors;
@@ -70,20 +72,7 @@ public class ArenaBuilder {
         return true;
     }
 
-    protected List<Power> createPowers() {
-        List<Power> powers = new ArrayList<>();
-        int min = 9;
-        int max = width - 1;
-        int x_aux, y_aux;
-        while (powers.size() < 2) {
-            x_aux = random.ints(min, max).findFirst().getAsInt();
-            y_aux = random.ints(min, max).findFirst().getAsInt();
-            if (isValidPowerPosition(powers, x_aux, y_aux)) {
-                powers.add(new Power(x_aux, y_aux));
-            }
-        }
-        return powers;
-    }
+    protected List<Power> createPowers() { return new ArrayList<>(); }
 
     protected List<Limit> createLimits() {
         List<Limit> limits = new ArrayList<>();
@@ -98,5 +87,20 @@ public class ArenaBuilder {
             limits.add(new Limit(width-1, i));
         }
         return limits;
+    }
+
+    protected List<SpecialEnemy> createSpecialEnemies() {
+        List<SpecialEnemy> specialEnemies = new ArrayList<>();
+        int x_min = 9;
+        int x_max = width - 1;
+        int y_min = 1;
+        int y_max = heigth / 2;
+        int x_aux, y_aux;
+        while (specialEnemies.size() < 3) {
+            x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
+            y_aux = random.ints(y_min, y_max).findFirst().getAsInt();
+            specialEnemies.add(new SpecialEnemy(x_aux, y_aux));
+        }
+        return specialEnemies;
     }
 }

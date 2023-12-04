@@ -13,10 +13,12 @@ import java.io.IOException;
 public class ArenaController extends GameController {
     private final SpaceshipController spaceshipController;
     private final MeteorController meteorController;
+    private final SpecialEnemyController specialEnemyController;
     public ArenaController(Arena arena) {
         super(arena);
         this.spaceshipController = new SpaceshipController(arena);
         this.meteorController = new MeteorController(arena);
+        this.specialEnemyController = new SpecialEnemyController(arena);
     }
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
@@ -29,6 +31,7 @@ public class ArenaController extends GameController {
         else {
             spaceshipController.step(application, action, time);
             meteorController.step(application, action, time);
+            specialEnemyController.step(application, action, time);
         }
     }
 }
