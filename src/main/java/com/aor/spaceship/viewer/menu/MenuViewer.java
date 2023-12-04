@@ -1,5 +1,6 @@
 package com.aor.spaceship.viewer.menu;
 
+import com.aor.spaceship.Application;
 import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.menu.Menu;
 import com.aor.spaceship.viewer.Viewer;
@@ -9,7 +10,7 @@ public class MenuViewer extends Viewer<Menu> {
     public MenuViewer(Menu menu) { super(menu); }
 
     @Override
-    public void drawElements(GUI gui) {
+    public void drawElements(Application application, GUI gui) {
         gui.drawText(new Position(12, 12), "Menu", "#FFFFFF");
         for (int i = 0; i < getModel().getNumberEntries(); i++) {
             gui.drawText(new Position(12, 14+i), getModel().getEntry(i), getModel().isSelected(i) ? "#89CFF0" : "#FFFFFF");

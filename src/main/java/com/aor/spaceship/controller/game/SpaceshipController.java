@@ -20,7 +20,7 @@ public class SpaceshipController extends GameController {
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
-        if (time - lastMovement > 100) {
+        if (time - lastMovement > 200) {
             shootingController.defaultShot();
             this.lastMovement = time;
         }

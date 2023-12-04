@@ -28,6 +28,8 @@ public class ArenaController extends GameController {
             application.setState(new MenuState(new Menu()));
         }
         else if (getModel().getSpaceship().getEnergy() == 0) {
+            if (getModel().getSpaceship().getScore() > application.getHishestScore())
+                application.setHighestScore(getModel().getSpaceship().getScore());
             application.setState(new DefeatMenuState(new DefeatMenu()));
         }
         else {

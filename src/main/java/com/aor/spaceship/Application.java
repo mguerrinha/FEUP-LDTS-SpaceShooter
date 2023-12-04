@@ -13,6 +13,7 @@ public class Application {
     private Interface gui;
 
     private State state;
+    private int highestScore = 0;
 
     public Application() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new Interface(30, 30);
@@ -22,6 +23,8 @@ public class Application {
         new Application().start();
     }
 
+    public void setHighestScore(int highestScore) { this.highestScore = highestScore; }
+    public int getHishestScore() { return highestScore; }
     public void setState(State state) { this.state = state; }
 
     public void start() throws IOException {
