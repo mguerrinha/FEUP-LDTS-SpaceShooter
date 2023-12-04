@@ -25,6 +25,7 @@ public class ArenaBuilder {
         arena.setPowers(createPowers());
         arena.setLimits(createLimits());
         arena.setSpecialEnemies(createSpecialEnemies());
+        arena.setDefaultEnemies(createDefaultEnemies());
         return arena;
     }
 
@@ -102,5 +103,20 @@ public class ArenaBuilder {
             specialEnemies.add(new SpecialEnemy(x_aux, y_aux));
         }
         return specialEnemies;
+    }
+
+    protected List<DefaultEnemy> createDefaultEnemies() {
+        List<DefaultEnemy> defaultEnemies = new ArrayList<>();
+        int x_min = 9;
+        int x_max = width - 1;
+        int y_min = 1;
+        int y_max = 2;
+        int x_aux, y_aux;
+        while (defaultEnemies.size() < 3) {
+            x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
+            y_aux = random.ints(y_min, y_max).findFirst().getAsInt();
+            defaultEnemies.add(new DefaultEnemy(x_aux, y_aux));
+        }
+        return defaultEnemies;
     }
 }

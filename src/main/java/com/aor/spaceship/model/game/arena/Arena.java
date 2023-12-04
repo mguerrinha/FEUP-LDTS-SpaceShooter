@@ -13,6 +13,7 @@ public class Arena {
     private List<Meteor> meteors;
     private List<Power> powers;
     private List<Limit> limits;
+    private List<DefaultEnemy> defaultEnemies;
     private List<SpecialEnemy> specialEnemies;
     public Arena(int width, int height) {
         this.height = height;
@@ -32,6 +33,8 @@ public class Arena {
 
     public List<Power> getPowers() {return powers; }
     public List<Limit> getLimits() { return limits; }
+
+    public List<DefaultEnemy> getDefaultEnemies() { return defaultEnemies; }
     public List<SpecialEnemy> getSpecialEnemies() { return specialEnemies; }
 
     public void setSpaceship(Spaceship spaceship) { this.spaceship = spaceship; }
@@ -41,6 +44,8 @@ public class Arena {
 
     public void setPowers(List<Power> powers) { this.powers = powers; }
     public void setLimits(List<Limit> limits) { this.limits = limits; }
+
+    public void setDefaultEnemies(List<DefaultEnemy> defaultEnemies) { this.defaultEnemies = defaultEnemies; }
 
     public void setSpecialEnemies(List<SpecialEnemy> specialEnemies) { this.specialEnemies = specialEnemies; }
 
@@ -65,6 +70,11 @@ public class Arena {
     public boolean isEnemy(Position position) {
         for (SpecialEnemy specialEnemy : specialEnemies) {
             if (specialEnemy.getPosition().equals(position)) {
+                return true;
+            }
+        }
+        for (DefaultEnemy defaultEnemy : defaultEnemies) {
+            if (defaultEnemy.getPosition().equals(position)) {
                 return true;
             }
         }
@@ -95,6 +105,15 @@ public class Arena {
                 specialEnemies.remove(i);
                 powers.add(new Power(position.getX(), position.getY()));
                 spaceship.addScore(250);
+            }
+        }
+    }
+
+    public void removeDefaultEnemy(Position position) {
+        for (int i = 0; i < defaultEnemies.size(); i++) {
+            if (defaultEnemies.get(i).getPosition().equals(position)) {
+                defaultEnemies.remove(i);
+                spaceship.addScore(150);
             }
         }
     }

@@ -25,6 +25,7 @@ public class ShootingController {
             }
             if (arena.isEnemy(defaultShot.getPosition())) {
                 arena.removeSpecialEnemy(defaultShot.getPosition());
+                arena.removeDefaultEnemy(defaultShot.getPosition());
                 defaultShot.setPosition(new Position(0, -2));
             }
         }

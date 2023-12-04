@@ -19,6 +19,7 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getLimits(), new LimitViewer());
         drawElements(gui, getModel().getPowers(), new PowerViewer());
         drawElements(gui, getModel().getSpecialEnemies(), new SpecialEnemiesViewer());
+        drawElements(gui, getModel().getDefaultEnemies(), new DefaultEnemiesViewer());
 
 
         gui.drawText(new Position(0, 1), "Highest", "#89CFF0");
