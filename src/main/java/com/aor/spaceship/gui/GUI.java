@@ -10,6 +10,8 @@ public interface GUI {
     void drawPower(Position position);
     void drawDefaultShots(Position position);
     void drawLimits(Position position);
+
+    void drawDefaultEnemies(Position position);
     void drawSpecialEnemies(Position position);
     void drawText(Position position, String text, String color);
     void clear();
