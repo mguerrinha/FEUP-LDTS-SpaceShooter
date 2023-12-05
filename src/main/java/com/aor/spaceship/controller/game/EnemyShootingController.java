@@ -19,10 +19,6 @@ public class EnemyShootingController {
     public void DefaultEnemyShot() {
         for (DefaultEnemy defaultEnemy : defaultEnemies) {
             arena.getEnemyShots().add(new EnemyShot(defaultEnemy.getPosition().getX(), defaultEnemy.getPosition().moveDown().getY()));
-            moveEnemyShot();
-        }
-        if (defaultEnemies.isEmpty()) {
-            moveEnemyShot();
         }
     }
 

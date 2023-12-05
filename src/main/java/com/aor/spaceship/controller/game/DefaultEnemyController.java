@@ -12,6 +12,7 @@ import java.util.Random;
 public class DefaultEnemyController extends GameController {
     private long lastMovement;
     private long lastShot;
+    private long lastAdd;
     EnemyShootingController enemyShootingController;
 
     public DefaultEnemyController(Arena arena) {
@@ -22,8 +23,12 @@ public class DefaultEnemyController extends GameController {
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
-        if (time - lastShot > 100) {
+        if (time - lastAdd > 500) {
             enemyShootingController.DefaultEnemyShot();
+            this.lastAdd = time;
+        }
+        if (time - lastShot > 100) {
+            enemyShootingController.moveEnemyShot();
             this.lastShot = time;
         }
         Random random = new Random();
