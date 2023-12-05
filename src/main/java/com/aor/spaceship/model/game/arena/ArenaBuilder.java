@@ -33,7 +33,7 @@ public class ArenaBuilder {
     protected int getWidth() { return width; };
     protected int getHeight() { return heigth; };
     protected Spaceship createSpaceship() {
-        this.spaceship = new Spaceship (width/2, heigth/2);
+        this.spaceship = new Spaceship (width/2+4, heigth-3);
         return spaceship;
     }
 
@@ -61,7 +61,7 @@ public class ArenaBuilder {
         int y_aux;
         while (meteors.size() < 4) {
             x_aux = random.ints(min, max).findFirst().getAsInt();
-            y_aux = random.ints(1, 7).findFirst().getAsInt();
+            y_aux = random.ints(1, 10).findFirst().getAsInt();
             if (isValidMeteorPosition(meteors, x_aux)) {
                 meteors.add(new Meteor(x_aux, -y_aux));
             }
@@ -105,7 +105,7 @@ public class ArenaBuilder {
         while (specialEnemies.size() < 2) {
             x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
             y_aux = random.ints(y_min, y_max).findFirst().getAsInt();
-            specialEnemies.add(new SpecialEnemy(x_aux, y_aux));
+            specialEnemies.add(new SpecialEnemy(x_aux, y_aux, 1));
         }
         return specialEnemies;
     }
@@ -120,7 +120,7 @@ public class ArenaBuilder {
         while (defaultEnemies.size() < 1) {
             x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
             y_aux = random.ints(y_min, y_max).findFirst().getAsInt();
-            defaultEnemies.add(new DefaultEnemy(x_aux, y_aux));
+            defaultEnemies.add(new DefaultEnemy(x_aux, y_aux, 1));
         }
         return defaultEnemies;
     }

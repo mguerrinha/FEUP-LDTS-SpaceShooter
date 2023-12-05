@@ -44,7 +44,7 @@ public class MeteorController extends GameController {
         if (position.getY() >= getModel().getHeight()) {
             int newX;
             long timeSinceLastSpawn = currentTime - meteor.getLastSpawnTime();
-            long randomSpawnInterval = random.nextInt(10000) + 1000;
+            long randomSpawnInterval = random.nextInt(5000) + 4000;
             if (timeSinceLastSpawn > randomSpawnInterval) {
                 do {
                     newX = random.ints(min, max).findFirst().getAsInt();

@@ -3,6 +3,8 @@ package com.aor.spaceship.controller.game;
 import com.aor.spaceship.Application;
 import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.game.arena.Arena;
+import com.aor.spaceship.model.game.elements.DefaultEnemy;
+import com.aor.spaceship.model.game.elements.DefaultShot;
 import com.aor.spaceship.model.menu.DefeatMenu;
 import com.aor.spaceship.model.menu.Menu;
 import com.aor.spaceship.states.DefeatMenuState;

@@ -107,9 +107,12 @@ public class Arena {
     public void removeSpecialEnemy(Position position) {
         for (int i = 0; i < specialEnemies.size(); i++) {
             if (specialEnemies.get(i).getPosition().equals(position)) {
-                specialEnemies.remove(i);
-                powers.add(new Power(position.getX(), position.getY()));
-                spaceship.addScore(250);
+                specialEnemies.get(i).reduceHealth();
+                if (specialEnemies.get(i).getHealth() == 0) {
+                    specialEnemies.remove(i);
+                    powers.add(new Power(position.getX(), position.getY()));
+                    spaceship.addScore(250);
+                }
             }
         }
     }
@@ -117,8 +120,11 @@ public class Arena {
     public void removeDefaultEnemy(Position position) {
         for (int i = 0; i < defaultEnemies.size(); i++) {
             if (defaultEnemies.get(i).getPosition().equals(position)) {
-                defaultEnemies.remove(i);
-                spaceship.addScore(150);
+                defaultEnemies.get(i).reduceHealth();
+                if (defaultEnemies.get(i).getHealth() == 0) {
+                    defaultEnemies.remove(i);
+                    spaceship.addScore(150);
+                }
             }
         }
     }
