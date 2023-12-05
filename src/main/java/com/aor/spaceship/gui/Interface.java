@@ -82,6 +82,9 @@ public class Interface implements GUI {
     }
 
     @Override
+    public void drawEnemyShots(Position position) { drawCharacter(position.getX(), position.getY(), '.', "#FFA500"); }
+
+    @Override
     public void drawDefaultShots(Position position) { drawCharacter(position.getX(), position.getY(), '.', "#FFFFFF"); }
 
     @Override

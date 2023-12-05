@@ -5,7 +5,11 @@ public class Bullet extends Element {
         super(x, y);
     }
 
-    public void moveBullet() {
+    public void moveBulletUp() {
         this.setPosition(getPosition().moveUp());
+    }
+
+    public void moveBulletDown() {
+        this.setPosition(getPosition().moveDown());
     }
 }

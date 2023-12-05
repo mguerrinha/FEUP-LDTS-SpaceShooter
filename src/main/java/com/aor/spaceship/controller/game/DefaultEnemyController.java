@@ -12,16 +12,19 @@ import java.util.Random;
 
 public class DefaultEnemyController extends GameController {
     private long lastMovement;
+    DefaultEnemyShootingController defaultEnemyShootingController;
 
     public DefaultEnemyController(Arena arena) {
         super(arena);
         this.lastMovement = 0;
+        defaultEnemyShootingController = new DefaultEnemyShootingController(arena, getModel().getDefaultEnemies());
     }
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
         Random random = new Random();
         if (time - lastMovement > 300) {
+            defaultEnemyShootingController.DefaultEnemyShot();
             for (DefaultEnemy defaultEnemy : getModel().getDefaultEnemies()) {
                 int randomPosition = random.ints(1, 3).findFirst().getAsInt();
                 switch (randomPosition) {

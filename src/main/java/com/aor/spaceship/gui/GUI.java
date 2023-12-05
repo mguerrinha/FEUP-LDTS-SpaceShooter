@@ -8,6 +8,7 @@ public interface GUI {
     void drawSpaceship(Position position);
     void drawMeteor(Position position);
     void drawPower(Position position);
+    void drawEnemyShots(Position position);
     void drawDefaultShots(Position position);
     void drawLimits(Position position);
 
