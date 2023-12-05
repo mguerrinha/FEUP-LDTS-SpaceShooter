@@ -23,7 +23,7 @@ public class MeteorController extends GameController {
     public void step(Application application, GUI.Action action, long time) throws IOException {
         if (time - lastMovement > 250) {
             for (Meteor meteor : getModel().getMeteors())
-                moveMeteor(meteor, meteor.getPosition().moveDown());
+                moveMeteor(meteor, meteor.getPosition().moveDown(), time);
             this.lastMovement = time;
         }
     }
@@ -36,18 +36,23 @@ public class MeteorController extends GameController {
         }
         return true;
     }
-    private void moveMeteor(Meteor meteor, Position position) {
+    private void moveMeteor(Meteor meteor, Position position, long currentTime) {
         int min = 9;
         int max = getModel().getWidth() - 1;
         Random random = new Random();
         meteor.setPosition(position);
         if (position.getY() >= getModel().getHeight()) {
             int newX;
-            do {
-                newX = random.ints(min, max).findFirst().getAsInt();
-            } while (!isValidMeteorPosition(newX, getModel().getMeteors()));
+            long timeSinceLastSpawn = currentTime - meteor.getLastSpawnTime();
+            long randomSpawnInterval = random.nextInt(10000) + 1000;
+            if (timeSinceLastSpawn > randomSpawnInterval) {
+                do {
+                    newX = random.ints(min, max).findFirst().getAsInt();
+                } while (!isValidMeteorPosition(newX, getModel().getMeteors()));
 
-            meteor.setPosition(new Position(newX, -2));
+                meteor.setPosition(new Position(newX, -2));
+                meteor.setLastSpawnTime(currentTime);
+            }
         }
         else {
             meteor.setPosition(position);
