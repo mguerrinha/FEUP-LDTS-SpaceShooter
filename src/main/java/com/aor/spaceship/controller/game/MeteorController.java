@@ -13,10 +13,19 @@ import java.util.Random;
 public class MeteorController extends GameController {
 
     private long lastMovement;
+    private Random random = new Random();
+
 
     public MeteorController(Arena arena) {
         super(arena);
         this.lastMovement = 0;
+        initializeMeteorSpawnTimings();
+    }
+
+    private void initializeMeteorSpawnTimings() {
+        for (Meteor meteor : getModel().getMeteors()) {
+            meteor.setLastSpawnTime(System.currentTimeMillis() - random.nextInt(10000));
+        }
     }
 
     @Override
@@ -39,12 +48,11 @@ public class MeteorController extends GameController {
     private void moveMeteor(Meteor meteor, Position position, long currentTime) {
         int min = 9;
         int max = getModel().getWidth() - 1;
-        Random random = new Random();
         meteor.setPosition(position);
         if (position.getY() >= getModel().getHeight()) {
             int newX;
             long timeSinceLastSpawn = currentTime - meteor.getLastSpawnTime();
-            long randomSpawnInterval = random.nextInt(5000) + 4000;
+            long randomSpawnInterval = random.nextInt(30000) + 15000;
             if (timeSinceLastSpawn > randomSpawnInterval) {
                 do {
                     newX = random.ints(min, max).findFirst().getAsInt();
