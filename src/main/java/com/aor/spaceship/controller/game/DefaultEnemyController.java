@@ -5,21 +5,32 @@ import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.arena.Arena;
 import com.aor.spaceship.model.game.elements.DefaultEnemy;
-import com.aor.spaceship.model.game.elements.SpecialEnemy;
 
 import java.io.IOException;
 import java.util.Random;
 
 public class DefaultEnemyController extends GameController {
     private long lastMovement;
+    private long lastShot;
+    private long lastAdd;
+    EnemyShootingController enemyShootingController;
 
     public DefaultEnemyController(Arena arena) {
         super(arena);
         this.lastMovement = 0;
+        enemyShootingController = new EnemyShootingController(arena, getModel().getDefaultEnemies());
     }
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
+        if (time - lastAdd > 500) {
+            enemyShootingController.DefaultEnemyShot();
+            this.lastAdd = time;
+        }
+        if (time - lastShot > 100) {
+            enemyShootingController.moveEnemyShot();
+            this.lastShot = time;
+        }
         Random random = new Random();
         if (time - lastMovement > 300) {
             for (DefaultEnemy defaultEnemy : getModel().getDefaultEnemies()) {

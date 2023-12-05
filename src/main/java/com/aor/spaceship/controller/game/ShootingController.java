@@ -19,7 +19,7 @@ public class ShootingController {
 
      public void moveShot() {
         for (DefaultShot defaultShot : arena.getdefaultShots()) {
-            defaultShot.moveBullet();
+            defaultShot.moveBulletUp();
             if (arena.hasCollided(defaultShot.getPosition()) || arena.hasCollided(defaultShot.getPosition().moveUp())) {
                 defaultShot.setPosition(new Position(0, -2));
             }

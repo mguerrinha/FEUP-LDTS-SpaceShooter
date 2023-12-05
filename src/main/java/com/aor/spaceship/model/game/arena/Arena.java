@@ -9,6 +9,7 @@ public class Arena {
     private int width;
     private int height;
     private Spaceship spaceship;
+    private List<EnemyShot> enemyShots;
     private List<DefaultShot> defaultShots;
     private List<Meteor> meteors;
     private List<Power> powers;
@@ -28,6 +29,8 @@ public class Arena {
         return height;
     }
     public Spaceship getSpaceship() { return spaceship; }
+
+    public List<EnemyShot> getEnemyShots() { return enemyShots; }
     public List<DefaultShot> getdefaultShots() { return defaultShots; }
     public List<Meteor> getMeteors() {return meteors; }
 
@@ -38,6 +41,8 @@ public class Arena {
     public List<SpecialEnemy> getSpecialEnemies() { return specialEnemies; }
 
     public void setSpaceship(Spaceship spaceship) { this.spaceship = spaceship; }
+
+    public void setEnemyShots(List<EnemyShot> enemyShots) { this.enemyShots = enemyShots; }
     public void setDefaultShots(List<DefaultShot> defaultShots) { this.defaultShots = defaultShots; }
 
     public void setMeteors(List<Meteor> meteors) { this.meteors = meteors; }
@@ -102,9 +107,12 @@ public class Arena {
     public void removeSpecialEnemy(Position position) {
         for (int i = 0; i < specialEnemies.size(); i++) {
             if (specialEnemies.get(i).getPosition().equals(position)) {
-                specialEnemies.remove(i);
-                powers.add(new Power(position.getX(), position.getY()));
-                spaceship.addScore(250);
+                specialEnemies.get(i).reduceHealth();
+                if (specialEnemies.get(i).getHealth() == 0) {
+                    specialEnemies.remove(i);
+                    powers.add(new Power(position.getX(), position.getY()));
+                    spaceship.addScore(250);
+                }
             }
         }
     }
@@ -112,8 +120,11 @@ public class Arena {
     public void removeDefaultEnemy(Position position) {
         for (int i = 0; i < defaultEnemies.size(); i++) {
             if (defaultEnemies.get(i).getPosition().equals(position)) {
-                defaultEnemies.remove(i);
-                spaceship.addScore(150);
+                defaultEnemies.get(i).reduceHealth();
+                if (defaultEnemies.get(i).getHealth() == 0) {
+                    defaultEnemies.remove(i);
+                    spaceship.addScore(150);
+                }
             }
         }
     }

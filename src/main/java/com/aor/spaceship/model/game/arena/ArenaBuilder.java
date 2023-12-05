@@ -20,6 +20,7 @@ public class ArenaBuilder {
     public Arena createArena() {
         Arena arena = new Arena(getWidth(), getHeight());
         arena.setSpaceship(createSpaceship());
+        arena.setEnemyShots(createEnemyShots());
         arena.setDefaultShots(createDefaultShots());
         arena.setMeteors(createMeteors());
         arena.setPowers(createPowers());
@@ -32,8 +33,12 @@ public class ArenaBuilder {
     protected int getWidth() { return width; };
     protected int getHeight() { return heigth; };
     protected Spaceship createSpaceship() {
-        this.spaceship = new Spaceship (width/2, heigth/2);
+        this.spaceship = new Spaceship (width/2+4, heigth-3);
         return spaceship;
+    }
+
+    protected List<EnemyShot> createEnemyShots() {
+        return new ArrayList<>();
     }
     protected List<DefaultShot> createDefaultShots() {
         return new ArrayList<>();
@@ -56,7 +61,7 @@ public class ArenaBuilder {
         int y_aux;
         while (meteors.size() < 4) {
             x_aux = random.ints(min, max).findFirst().getAsInt();
-            y_aux = random.ints(1, 7).findFirst().getAsInt();
+            y_aux = random.ints(1, 10).findFirst().getAsInt();
             if (isValidMeteorPosition(meteors, x_aux)) {
                 meteors.add(new Meteor(x_aux, -y_aux));
             }
@@ -100,7 +105,7 @@ public class ArenaBuilder {
         while (specialEnemies.size() < 2) {
             x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
             y_aux = random.ints(y_min, y_max).findFirst().getAsInt();
-            specialEnemies.add(new SpecialEnemy(x_aux, y_aux));
+            specialEnemies.add(new SpecialEnemy(x_aux, y_aux, 1));
         }
         return specialEnemies;
     }
@@ -112,10 +117,10 @@ public class ArenaBuilder {
         int y_min = 1;
         int y_max = 2;
         int x_aux, y_aux;
-        while (defaultEnemies.size() < 3) {
+        while (defaultEnemies.size() < 1) {
             x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
             y_aux = random.ints(y_min, y_max).findFirst().getAsInt();
-            defaultEnemies.add(new DefaultEnemy(x_aux, y_aux));
+            defaultEnemies.add(new DefaultEnemy(x_aux, y_aux, 1));
         }
         return defaultEnemies;
     }

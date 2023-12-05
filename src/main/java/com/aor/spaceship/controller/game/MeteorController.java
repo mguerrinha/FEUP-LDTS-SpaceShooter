@@ -13,17 +13,26 @@ import java.util.Random;
 public class MeteorController extends GameController {
 
     private long lastMovement;
+    private Random random = new Random();
+
 
     public MeteorController(Arena arena) {
         super(arena);
         this.lastMovement = 0;
+        initializeMeteorSpawnTimings();
+    }
+
+    private void initializeMeteorSpawnTimings() {
+        for (Meteor meteor : getModel().getMeteors()) {
+            meteor.setLastSpawnTime(System.currentTimeMillis() - random.nextInt(10000));
+        }
     }
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
         if (time - lastMovement > 250) {
             for (Meteor meteor : getModel().getMeteors())
-                moveMeteor(meteor, meteor.getPosition().moveDown());
+                moveMeteor(meteor, meteor.getPosition().moveDown(), time);
             this.lastMovement = time;
         }
     }
@@ -36,18 +45,22 @@ public class MeteorController extends GameController {
         }
         return true;
     }
-    private void moveMeteor(Meteor meteor, Position position) {
+    private void moveMeteor(Meteor meteor, Position position, long currentTime) {
         int min = 9;
         int max = getModel().getWidth() - 1;
-        Random random = new Random();
         meteor.setPosition(position);
         if (position.getY() >= getModel().getHeight()) {
             int newX;
-            do {
-                newX = random.ints(min, max).findFirst().getAsInt();
-            } while (!isValidMeteorPosition(newX, getModel().getMeteors()));
+            long timeSinceLastSpawn = currentTime - meteor.getLastSpawnTime();
+            long randomSpawnInterval = random.nextInt(30000) + 15000;
+            if (timeSinceLastSpawn > randomSpawnInterval) {
+                do {
+                    newX = random.ints(min, max).findFirst().getAsInt();
+                } while (!isValidMeteorPosition(newX, getModel().getMeteors()));
 
-            meteor.setPosition(new Position(newX, -2));
+                meteor.setPosition(new Position(newX, -2));
+                meteor.setLastSpawnTime(currentTime);
+            }
         }
         else {
             meteor.setPosition(position);
