@@ -23,7 +23,7 @@ public class DefaultEnemyController extends GameController {
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
-        if (time - lastAdd > 500) {
+        if (time - lastAdd > 700) {
             enemyShootingController.DefaultEnemyShot();
             this.lastAdd = time;
         }
@@ -32,9 +32,9 @@ public class DefaultEnemyController extends GameController {
             this.lastShot = time;
         }
         Random random = new Random();
-        if (time - lastMovement > 300) {
+        if (time - lastMovement > 500) {
             for (DefaultEnemy defaultEnemy : getModel().getDefaultEnemies()) {
-                int randomPosition = random.ints(1, 3).findFirst().getAsInt();
+                int randomPosition = random.ints(1, 5).findFirst().getAsInt();
                 switch (randomPosition) {
                     case 1:
                         if (!getModel().isLimit(defaultEnemy.getPosition().moveLeft()) && !getModel().hasCollided(defaultEnemy.getPosition().moveLeft()) && !getModel().isEnemy(defaultEnemy.getPosition().moveLeft()))
@@ -43,6 +43,14 @@ public class DefaultEnemyController extends GameController {
                     case 2:
                         if (!getModel().isLimit(defaultEnemy.getPosition().moveRight()) && !getModel().hasCollided(defaultEnemy.getPosition().moveRight()) && !getModel().isEnemy(defaultEnemy.getPosition().moveRight()))
                             moveDefaultEnemy(defaultEnemy, defaultEnemy.getPosition().moveRight());
+                        break;
+                    case 3:
+                        if (!getModel().isLimit(defaultEnemy.getPosition().moveUp()) && !getModel().hasCollided(defaultEnemy.getPosition().moveUp()) && !getModel().isEnemy(defaultEnemy.getPosition().moveUp()))
+                            moveDefaultEnemy(defaultEnemy, defaultEnemy.getPosition().moveUp());
+                        break;
+                    case 4:
+                        if (!getModel().isLimit(defaultEnemy.getPosition().moveDown()) && !getModel().hasCollided(defaultEnemy.getPosition().moveDown()) && !getModel().isEnemy(defaultEnemy.getPosition().moveDown()))
+                            moveDefaultEnemy(defaultEnemy, defaultEnemy.getPosition().moveDown());
                         break;
                     default:
                 }
