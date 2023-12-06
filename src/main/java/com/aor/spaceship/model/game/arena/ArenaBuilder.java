@@ -69,15 +69,6 @@ public class ArenaBuilder {
         return meteors;
     }
 
-    private boolean isValidPowerPosition(List<Power> powers, int x, int y) {
-        for (Power power : powers) {
-            if (power.getPosition().getX() == x && power.getPosition().getY() == y) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     protected List<Power> createPowers() { return new ArrayList<>(); }
 
     protected List<Limit> createLimits() {
@@ -99,8 +90,8 @@ public class ArenaBuilder {
         List<SpecialEnemy> specialEnemies = new ArrayList<>();
         int x_min = 9;
         int x_max = width - 1;
-        int y_min = 1;
-        int y_max = heigth / 2;
+        int y_min = 0;
+        int y_max = 2;
         int x_aux, y_aux;
         while (specialEnemies.size() < 2) {
             x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
@@ -114,8 +105,8 @@ public class ArenaBuilder {
         List<DefaultEnemy> defaultEnemies = new ArrayList<>();
         int x_min = 9;
         int x_max = width - 1;
-        int y_min = 1;
-        int y_max = 2;
+        int y_min = 3;
+        int y_max = heigth/2 - 4;
         int x_aux, y_aux;
         while (defaultEnemies.size() < 1) {
             x_aux = random.ints(x_min, x_max).findFirst().getAsInt();

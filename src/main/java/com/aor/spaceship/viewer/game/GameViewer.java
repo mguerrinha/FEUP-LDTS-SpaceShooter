@@ -16,10 +16,11 @@ public class GameViewer extends Viewer<Arena> {
     protected void drawElements(Application application, GUI gui) {
         drawElements(gui, getModel().getdefaultShots(), new DefaultShotsViewer());
         drawElements(gui, getModel().getEnemyShots(), new EnemyShotsViewer());
+        drawElements(gui, getModel().getPowers(), new PowerViewer());
+
         drawElement(gui, getModel().getSpaceship(), new SpaceshipViewer());
         drawElements(gui, getModel().getMeteors(), new MeteorViewer());
         drawElements(gui, getModel().getLimits(), new LimitViewer());
-        drawElements(gui, getModel().getPowers(), new PowerViewer());
         drawElements(gui, getModel().getSpecialEnemies(), new SpecialEnemiesViewer());
         drawElements(gui, getModel().getDefaultEnemies(), new DefaultEnemiesViewer());
 

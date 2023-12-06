@@ -30,6 +30,9 @@ public class SpaceshipController extends GameController {
             shootingController.moveShot();
             this.lastShot = time;
         }
+        if (getModel().isPower(getModel().getSpaceship().getPosition())) {
+            getModel().removePower(getModel().getSpaceship().getPosition());
+        }
         if (action == GUI.Action.LEFT) { moveSpaceshipLeft(); }
         if (action == GUI.Action.RIGHT) { moveSpaceshipRight(); }
         if (action == GUI.Action.UP) { moveSpaceshipUp(); }
@@ -39,7 +42,7 @@ public class SpaceshipController extends GameController {
     public void moveSpaceship(Position position) {
         if (!getModel().isLimit(position)) {
             getModel().getSpaceship().setPosition(position);
-            if (getModel().isPower(position)) {
+            if (getModel().isPower(position) || getModel().isPower(position.moveDown()) || getModel().isPower(position.moveUp())) {
                 getModel().removePower(position);
             }
         }
