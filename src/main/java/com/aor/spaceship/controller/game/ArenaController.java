@@ -17,12 +17,14 @@ public class ArenaController extends GameController {
     private final MeteorController meteorController;
     private final SpecialEnemyController specialEnemyController;
     private final DefaultEnemyController defaultEnemyController;
+    private final PowerController powerController;
     public ArenaController(Arena arena) {
         super(arena);
         this.spaceshipController = new SpaceshipController(arena);
         this.meteorController = new MeteorController(arena);
         this.specialEnemyController = new SpecialEnemyController(arena);
         this.defaultEnemyController = new DefaultEnemyController(arena);
+        this.powerController = new PowerController(arena);
     }
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
@@ -41,6 +43,7 @@ public class ArenaController extends GameController {
             meteorController.step(application, action, time);
             specialEnemyController.step(application, action, time);
             defaultEnemyController.step(application, action, time);
+            powerController.step(application, action, time);
         }
     }
 }
