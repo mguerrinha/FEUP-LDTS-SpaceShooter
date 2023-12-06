@@ -14,7 +14,6 @@ public class ShootingController {
     }
      public void defaultShot() {
         arena.getdefaultShots().add(new DefaultShot(spaceship.getPosition().getX(), spaceship.getPosition().moveUp().getY()));
-        moveShot();
      }
 
      public void moveShot() {

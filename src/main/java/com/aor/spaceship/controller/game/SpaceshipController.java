@@ -11,18 +11,24 @@ import java.io.IOException;
 
 public class SpaceshipController extends GameController {
     private long lastMovement;
+    private long lastShot;
     ShootingController shootingController;
     public SpaceshipController(Arena arena) {
         super(arena);
         lastMovement = 0;
+        lastShot = 0;
         shootingController = new ShootingController(arena, getModel().getSpaceship());
     }
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
-        if (time - lastMovement > 200) {
+        if (time - lastMovement > 300) {
             shootingController.defaultShot();
             this.lastMovement = time;
+        }
+        if (time - lastShot > 100) {
+            shootingController.moveShot();
+            this.lastShot = time;
         }
         if (action == GUI.Action.LEFT) { moveSpaceshipLeft(); }
         if (action == GUI.Action.RIGHT) { moveSpaceshipRight(); }
