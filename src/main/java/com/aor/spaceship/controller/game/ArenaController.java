@@ -27,11 +27,13 @@ public class ArenaController extends GameController {
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
         if (action == GUI.Action.QUIT) {
+            getModel().getExecutorService().shutdown();
             application.setState(new MenuState(new Menu()));
         }
         else if (getModel().getSpaceship().getEnergy() == 0) {
             if (getModel().getSpaceship().getScore() > application.getHishestScore())
                 application.setHighestScore(getModel().getSpaceship().getScore());
+            getModel().getExecutorService().shutdown();
             application.setState(new DefeatMenuState(new DefeatMenu()));
         }
         else {

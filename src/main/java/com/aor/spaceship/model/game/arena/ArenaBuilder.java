@@ -120,7 +120,7 @@ public class ArenaBuilder {
         while (defaultEnemies.size() < 1) {
             x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
             y_aux = random.ints(y_min, y_max).findFirst().getAsInt();
-            defaultEnemies.add(new DefaultEnemy(x_aux, y_aux, 1));
+            defaultEnemies.add(new DefaultEnemy(x_aux, y_aux, 3));
         }
         return defaultEnemies;
     }
