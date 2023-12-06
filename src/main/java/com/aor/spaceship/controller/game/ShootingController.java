@@ -6,6 +6,8 @@ import com.aor.spaceship.model.game.elements.DefaultEnemy;
 import com.aor.spaceship.model.game.elements.DefaultShot;
 import com.aor.spaceship.model.game.elements.Spaceship;
 
+import java.util.Iterator;
+
 public class ShootingController {
     private Arena arena;
     private Spaceship spaceship;
@@ -29,5 +31,16 @@ public class ShootingController {
                 defaultShot.setPosition(new Position(0, -2));
             }
         }
+        cleanUpDefaultShots();
      }
+
+    private void cleanUpDefaultShots() {
+        Iterator<DefaultShot> iterator = arena.getdefaultShots().iterator();
+        while (iterator.hasNext()) {
+            DefaultShot defaultShot = iterator.next();
+            if (defaultShot.getPosition().getY() < 0) {
+                iterator.remove();
+            }
+        }
+    }
 }

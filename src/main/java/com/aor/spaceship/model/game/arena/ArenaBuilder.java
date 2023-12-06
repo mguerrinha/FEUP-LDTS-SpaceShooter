@@ -93,10 +93,10 @@ public class ArenaBuilder {
         int y_min = 0;
         int y_max = 2;
         int x_aux, y_aux;
-        while (specialEnemies.size() < 2) {
+        while (specialEnemies.size() < 1) {
             x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
             y_aux = random.ints(y_min, y_max).findFirst().getAsInt();
-            specialEnemies.add(new SpecialEnemy(x_aux, y_aux, 1));
+            specialEnemies.add(new SpecialEnemy(x_aux, y_aux, 5));
         }
         return specialEnemies;
     }
