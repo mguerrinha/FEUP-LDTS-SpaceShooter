@@ -4,6 +4,10 @@ import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.elements.*;
 
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Arena {
     private int width;
@@ -16,6 +20,8 @@ public class Arena {
     private List<Limit> limits;
     private List<DefaultEnemy> defaultEnemies;
     private List<SpecialEnemy> specialEnemies;
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+
     public Arena(int width, int height) {
         this.height = height;
         this.width = width;
@@ -39,6 +45,8 @@ public class Arena {
 
     public List<DefaultEnemy> getDefaultEnemies() { return defaultEnemies; }
     public List<SpecialEnemy> getSpecialEnemies() { return specialEnemies; }
+
+    public ExecutorService getExecutorService() {return executorService; }
 
     public void setSpaceship(Spaceship spaceship) { this.spaceship = spaceship; }
 
@@ -127,6 +135,21 @@ public class Arena {
                 }
             }
         }
+        if (getDefaultEnemies().isEmpty()) {
+            scheduleEnemySpawnWithDelay();
+        }
     }
 
+    private void scheduleEnemySpawnWithDelay() {
+        Random random = new Random();
+        executorService.submit(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            getDefaultEnemies().add(new DefaultEnemy(random.ints(9, width - 1).findFirst().getAsInt(), random.ints(3, height/2 - 4).findFirst().getAsInt(), 3));
+        });
+
+    }
 }

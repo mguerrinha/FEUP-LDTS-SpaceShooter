@@ -2,6 +2,7 @@ package com.aor.spaceship.controller.game;
 
 import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.arena.Arena;
+import com.aor.spaceship.model.game.elements.DefaultEnemy;
 import com.aor.spaceship.model.game.elements.DefaultShot;
 import com.aor.spaceship.model.game.elements.Spaceship;
 

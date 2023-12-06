@@ -17,21 +17,25 @@ public class ArenaController extends GameController {
     private final MeteorController meteorController;
     private final SpecialEnemyController specialEnemyController;
     private final DefaultEnemyController defaultEnemyController;
+    private final PowerController powerController;
     public ArenaController(Arena arena) {
         super(arena);
         this.spaceshipController = new SpaceshipController(arena);
         this.meteorController = new MeteorController(arena);
         this.specialEnemyController = new SpecialEnemyController(arena);
         this.defaultEnemyController = new DefaultEnemyController(arena);
+        this.powerController = new PowerController(arena);
     }
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
         if (action == GUI.Action.QUIT) {
+            getModel().getExecutorService().shutdown();
             application.setState(new MenuState(new Menu()));
         }
         else if (getModel().getSpaceship().getEnergy() == 0) {
             if (getModel().getSpaceship().getScore() > application.getHishestScore())
                 application.setHighestScore(getModel().getSpaceship().getScore());
+            getModel().getExecutorService().shutdown();
             application.setState(new DefeatMenuState(new DefeatMenu()));
         }
         else {
@@ -39,6 +43,7 @@ public class ArenaController extends GameController {
             meteorController.step(application, action, time);
             specialEnemyController.step(application, action, time);
             defaultEnemyController.step(application, action, time);
+            powerController.step(application, action, time);
         }
     }
 }
