@@ -12,6 +12,8 @@ public class Spaceship extends Element {
         return energy;
     }
 
+    public void increaseEnergy() { this.energy++; }
+
     public void reduceEnergy() {
         this.energy--;
     }

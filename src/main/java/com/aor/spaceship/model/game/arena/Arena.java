@@ -103,11 +103,22 @@ public class Arena {
         return false;
     }
 
+    public void GetRandomPower() {
+        Random random = new Random();
+        int randomPower = random.ints(1, 2).findFirst().getAsInt();
+        switch (randomPower) {
+            case 1:
+                this.spaceship.increaseEnergy();
+                break;
+            default:
+        }
+    }
     public void removePower(Position position) {
         for (int i = 0; i < powers.size(); i++) {
             if (powers.get(i).getPosition().equals(position)) {
                 powers.remove(i);
                 spaceship.addScore(50);
+                GetRandomPower();
             }
         }
     }
