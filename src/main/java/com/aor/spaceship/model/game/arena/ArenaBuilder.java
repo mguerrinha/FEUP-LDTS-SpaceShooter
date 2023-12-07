@@ -22,6 +22,7 @@ public class ArenaBuilder {
         arena.setSpaceship(createSpaceship());
         arena.setEnemyShots(createEnemyShots());
         arena.setDefaultShots(createDefaultShots());
+        arena.setDoubleShots(creteDoubleShots());
         arena.setMeteors(createMeteors());
         arena.setPowers(createPowers());
         arena.setLimits(createLimits());
@@ -43,6 +44,7 @@ public class ArenaBuilder {
     protected List<DefaultShot> createDefaultShots() {
         return new ArrayList<>();
     }
+    protected List<DoubleShot> creteDoubleShots() { return new ArrayList<>(); }
 
     private boolean isValidMeteorPosition(List<Meteor> meteors, int x) {
         for (Meteor meteor : meteors) {
@@ -93,7 +95,7 @@ public class ArenaBuilder {
         int y_min = 0;
         int y_max = 2;
         int x_aux, y_aux;
-        while (specialEnemies.size() < 1) {
+        while (specialEnemies.size() < 2) {
             x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
             y_aux = random.ints(y_min, y_max).findFirst().getAsInt();
             specialEnemies.add(new SpecialEnemy(x_aux, y_aux, 5));
@@ -108,7 +110,7 @@ public class ArenaBuilder {
         int y_min = 3;
         int y_max = heigth/2 - 4;
         int x_aux, y_aux;
-        while (defaultEnemies.size() < 1) {
+        while (defaultEnemies.size() < 2) {
             x_aux = random.ints(x_min, x_max).findFirst().getAsInt();
             y_aux = random.ints(y_min, y_max).findFirst().getAsInt();
             defaultEnemies.add(new DefaultEnemy(x_aux, y_aux, 3));

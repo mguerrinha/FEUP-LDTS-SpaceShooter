@@ -54,7 +54,7 @@ public class Interface implements GUI {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 30);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
@@ -86,6 +86,9 @@ public class Interface implements GUI {
 
     @Override
     public void drawDefaultShots(Position position) { drawCharacter(position.getX(), position.getY(), '.' , "#FFFFFF"); }
+
+    @Override
+    public void drawDoubleShots(Position position) { drawCharacter(position.getX(), position.getY(), '"', "#FFFFFF");}
 
     @Override
     public void drawMeteor(Position position) { drawCharacter(position.getX(), position.getY(), '□', "#FF0000"); }

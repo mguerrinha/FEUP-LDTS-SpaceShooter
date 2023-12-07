@@ -4,32 +4,46 @@ import com.aor.spaceship.Application;
 import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.arena.Arena;
-import com.aor.spaceship.model.game.elements.Meteor;
-import com.aor.spaceship.model.game.elements.Power;
 
 import java.io.IOException;
 
 public class SpaceshipController extends GameController {
     private long lastMovement;
-    private long lastShot;
+    private long lastDefaultShot;
+    private long lastDoubleShot;
+
     ShootingController shootingController;
     public SpaceshipController(Arena arena) {
         super(arena);
         lastMovement = 0;
-        lastShot = 0;
+        lastDefaultShot = 0;
+        lastDoubleShot = 0;
         shootingController = new ShootingController(arena, getModel().getSpaceship());
     }
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
-        if (time - lastMovement > 300) {
-            shootingController.defaultShot();
-            this.lastMovement = time;
+        switch (getModel().getSpaceship().getShot()) {
+            case "defaultShot":
+                if (time - lastMovement > 300) {
+                    shootingController.defaultShot();
+                    this.lastMovement = time;
+                }
+            case "doubleShot":
+                if (time - lastMovement > 300) {
+                    shootingController.doubleShots();
+                    this.lastMovement = time;
+                }
         }
-        if (time - lastShot > 100) {
-            shootingController.moveShot();
-            this.lastShot = time;
+        if (time - lastDefaultShot > 100) {
+            shootingController.moveDefaultShot();
+            this.lastDefaultShot = time;
         }
+        if (time - lastDoubleShot > 100) {
+            shootingController.moveDoubletShot();
+            this.lastDoubleShot = time;
+        }
+
         if (getModel().isPower(getModel().getSpaceship().getPosition())) {
             getModel().removePower(getModel().getSpaceship().getPosition());
         }

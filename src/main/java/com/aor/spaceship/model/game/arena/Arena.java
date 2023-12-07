@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class Arena {
     private int width;
@@ -15,6 +14,7 @@ public class Arena {
     private Spaceship spaceship;
     private List<EnemyShot> enemyShots;
     private List<DefaultShot> defaultShots;
+    private List<DoubleShot> doubleShots;
     private List<Meteor> meteors;
     private List<Power> powers;
     private List<Limit> limits;
@@ -41,6 +41,7 @@ public class Arena {
 
     public List<EnemyShot> getEnemyShots() { return enemyShots; }
     public List<DefaultShot> getdefaultShots() { return defaultShots; }
+    public List<DoubleShot> getDoubleShots() { return doubleShots; }
     public List<Meteor> getMeteors() {return meteors; }
 
     public List<Power> getPowers() {return powers; }
@@ -57,6 +58,7 @@ public class Arena {
 
     public void setEnemyShots(List<EnemyShot> enemyShots) { this.enemyShots = enemyShots; }
     public void setDefaultShots(List<DefaultShot> defaultShots) { this.defaultShots = defaultShots; }
+    public void setDoubleShots(List<DoubleShot> doubleShots) { this.doubleShots = doubleShots; }
 
     public void setMeteors(List<Meteor> meteors) { this.meteors = meteors; }
 
@@ -119,11 +121,13 @@ public class Arena {
     }
 
     public void GetRandomPower() {
-        int randomPower = random.ints(1, 2).findFirst().getAsInt();
+        int randomPower = random.ints(1, 3).findFirst().getAsInt();
         switch (randomPower) {
             case 1:
                 this.spaceship.increaseEnergy();
                 break;
+            case 2:
+                this.spaceship.setShot("doubleShot");
             default:
         }
     }
@@ -137,11 +141,11 @@ public class Arena {
         }
     }
 
-    public void removeSpecialEnemy(Position position) {
+    public void reduceHPSpecialEnemy(Position position, int damage) {
         for (int i = 0; i < specialEnemies.size(); i++) {
             if (specialEnemies.get(i).getPosition().equals(position)) {
-                specialEnemies.get(i).reduceHealth();
-                if (specialEnemies.get(i).getHealth() == 0) {
+                specialEnemies.get(i).reduceHealth(damage);
+                if (specialEnemies.get(i).getHealth() <= 0) {
                     specialEnemies.remove(i);
                     powers.add(new Power(position.getX(), position.getY()));
                     spaceship.addScore(250);
@@ -166,11 +170,11 @@ public class Arena {
         });
     }
 
-    public void removeDefaultEnemy(Position position) {
+    public void reduceHPDefaultEnemy(Position position, int damage) {
         for (int i = 0; i < defaultEnemies.size(); i++) {
             if (defaultEnemies.get(i).getPosition().equals(position)) {
-                defaultEnemies.get(i).reduceHealth();
-                if (defaultEnemies.get(i).getHealth() == 0) {
+                defaultEnemies.get(i).reduceHealth(damage);
+                if (defaultEnemies.get(i).getHealth() <= 0) {
                     defaultEnemies.remove(i);
                     spaceship.addScore(150);
                 }
