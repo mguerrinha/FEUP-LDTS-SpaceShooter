@@ -20,11 +20,14 @@ public class Arena {
     private List<Limit> limits;
     private List<DefaultEnemy> defaultEnemies;
     private List<SpecialEnemy> specialEnemies;
-    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private ExecutorService DefaultEnemyexecutorService = Executors.newSingleThreadExecutor();
+    private ExecutorService SpecialEnemyexecutorService = Executors.newSingleThreadExecutor();
+    private final Random random;
 
     public Arena(int width, int height) {
         this.height = height;
         this.width = width;
+        this.random = new Random();
     }
 
     public int getWidth() {
@@ -46,7 +49,9 @@ public class Arena {
     public List<DefaultEnemy> getDefaultEnemies() { return defaultEnemies; }
     public List<SpecialEnemy> getSpecialEnemies() { return specialEnemies; }
 
-    public ExecutorService getExecutorService() {return executorService; }
+    public ExecutorService getDefaultEnemyexecutorService() {return DefaultEnemyexecutorService; }
+
+    public ExecutorService getSpecialEnemyexecutorService() {return SpecialEnemyexecutorService; }
 
     public void setSpaceship(Spaceship spaceship) { this.spaceship = spaceship; }
 
@@ -103,11 +108,31 @@ public class Arena {
         return false;
     }
 
+    public boolean isBeyondMovementLimit(Position position) {
+        if (position.getX() < 9 || position.getX() > width -1) {
+            return true;
+        }
+        else if (position.getY() < 3 || position.getY() > height/2 - 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public void GetRandomPower() {
+        int randomPower = random.ints(1, 2).findFirst().getAsInt();
+        switch (randomPower) {
+            case 1:
+                this.spaceship.increaseEnergy();
+                break;
+            default:
+        }
+    }
     public void removePower(Position position) {
         for (int i = 0; i < powers.size(); i++) {
             if (powers.get(i).getPosition().equals(position)) {
                 powers.remove(i);
                 spaceship.addScore(50);
+                GetRandomPower();
             }
         }
     }
@@ -123,6 +148,22 @@ public class Arena {
                 }
             }
         }
+        if (getSpecialEnemies().isEmpty()) {
+            scheduleSpecialEnemySpawnWithDelay();
+        }
+    }
+
+    private void scheduleSpecialEnemySpawnWithDelay() {
+        SpecialEnemyexecutorService.submit(() -> {
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (getSpecialEnemies().isEmpty()) {
+                getSpecialEnemies().add(new SpecialEnemy(random.ints(9, width - 1).findFirst().getAsInt(), random.ints(0, 2).findFirst().getAsInt(), 5));
+            }
+        });
     }
 
     public void removeDefaultEnemy(Position position) {
@@ -136,20 +177,20 @@ public class Arena {
             }
         }
         if (getDefaultEnemies().isEmpty()) {
-            scheduleEnemySpawnWithDelay();
+            scheduleDefaultEnemySpawnWithDelay();
         }
     }
 
-    private void scheduleEnemySpawnWithDelay() {
-        Random random = new Random();
-        executorService.submit(() -> {
+    private void scheduleDefaultEnemySpawnWithDelay() {
+        DefaultEnemyexecutorService.submit(() -> {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            getDefaultEnemies().add(new DefaultEnemy(random.ints(9, width - 1).findFirst().getAsInt(), random.ints(3, height/2 - 4).findFirst().getAsInt(), 3));
+            if (getDefaultEnemies().isEmpty()) {
+                getDefaultEnemies().add(new DefaultEnemy(random.ints(9, width - 1).findFirst().getAsInt(), random.ints(3, height/2 - 4).findFirst().getAsInt(), 3));
+            }
         });
-
     }
 }

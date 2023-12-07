@@ -37,19 +37,19 @@ public class DefaultEnemyController extends GameController {
                 int randomPosition = random.ints(1, 5).findFirst().getAsInt();
                 switch (randomPosition) {
                     case 1:
-                        if (!getModel().isLimit(defaultEnemy.getPosition().moveLeft()) && !getModel().hasCollided(defaultEnemy.getPosition().moveLeft()) && !getModel().isEnemy(defaultEnemy.getPosition().moveLeft()))
+                        if (!getModel().isLimit(defaultEnemy.getPosition().moveLeft()) && !getModel().hasCollided(defaultEnemy.getPosition().moveLeft()) && !getModel().isEnemy(defaultEnemy.getPosition().moveLeft()) && !getModel().isBeyondMovementLimit(defaultEnemy.getPosition().moveLeft()))
                             moveDefaultEnemy(defaultEnemy, defaultEnemy.getPosition().moveLeft());
                         break;
                     case 2:
-                        if (!getModel().isLimit(defaultEnemy.getPosition().moveRight()) && !getModel().hasCollided(defaultEnemy.getPosition().moveRight()) && !getModel().isEnemy(defaultEnemy.getPosition().moveRight()))
+                        if (!getModel().isLimit(defaultEnemy.getPosition().moveRight()) && !getModel().hasCollided(defaultEnemy.getPosition().moveRight()) && !getModel().isEnemy(defaultEnemy.getPosition().moveRight()) && !getModel().isBeyondMovementLimit(defaultEnemy.getPosition().moveRight()))
                             moveDefaultEnemy(defaultEnemy, defaultEnemy.getPosition().moveRight());
                         break;
                     case 3:
-                        if (!getModel().isLimit(defaultEnemy.getPosition().moveUp()) && !getModel().hasCollided(defaultEnemy.getPosition().moveUp()) && !getModel().isEnemy(defaultEnemy.getPosition().moveUp()))
+                        if (!getModel().isLimit(defaultEnemy.getPosition().moveUp()) && !getModel().hasCollided(defaultEnemy.getPosition().moveUp()) && !getModel().isEnemy(defaultEnemy.getPosition().moveUp()) && !getModel().isBeyondMovementLimit(defaultEnemy.getPosition().moveUp()))
                             moveDefaultEnemy(defaultEnemy, defaultEnemy.getPosition().moveUp());
                         break;
                     case 4:
-                        if (!getModel().isLimit(defaultEnemy.getPosition().moveDown()) && !getModel().hasCollided(defaultEnemy.getPosition().moveDown()) && !getModel().isEnemy(defaultEnemy.getPosition().moveDown()))
+                        if (!getModel().isLimit(defaultEnemy.getPosition().moveDown()) && !getModel().hasCollided(defaultEnemy.getPosition().moveDown()) && !getModel().isEnemy(defaultEnemy.getPosition().moveDown()) && !getModel().isBeyondMovementLimit(defaultEnemy.getPosition().moveDown()))
                             moveDefaultEnemy(defaultEnemy, defaultEnemy.getPosition().moveDown());
                         break;
                     default:

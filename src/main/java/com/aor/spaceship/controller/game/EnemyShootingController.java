@@ -3,8 +3,10 @@ package com.aor.spaceship.controller.game;
 import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.arena.Arena;
 import com.aor.spaceship.model.game.elements.DefaultEnemy;
+import com.aor.spaceship.model.game.elements.DefaultShot;
 import com.aor.spaceship.model.game.elements.EnemyShot;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class EnemyShootingController {
@@ -30,6 +32,17 @@ public class EnemyShootingController {
             }
             if (arena.getSpaceship().getPosition().equals(enemyShot.getPosition()))
                 arena.getSpaceship().reduceEnergy();
+        }
+        cleanUpEnemyShots();
+    }
+
+    private void cleanUpEnemyShots() {
+        Iterator<EnemyShot> iterator = arena.getEnemyShots().iterator();
+        while (iterator.hasNext()) {
+            EnemyShot enemyShot = iterator.next();
+            if (enemyShot.getPosition().getY() > arena.getHeight()) {
+                iterator.remove();
+            }
         }
     }
 }
