@@ -16,10 +16,10 @@ public class MenuViewer extends Viewer<Menu> {
         gui.drawText(new Position(2, 4), "|        SPACE         |", "#FFFFFF");
         gui.drawText(new Position(2, 5), "|       SHOOTER        |", "#FFFFFF");
         gui.drawText(new Position(3, 6), "----------------------", "#FFFFFF");
-        gui.drawText(new Position(9, 20), "Insert Coin", "#FFFFFF");
-        gui.drawText(new Position(15, 22), "Credits: 0", "#FFFFFF");
         for (int i = 0; i < getModel().getNumberEntries(); i++) {
             gui.drawText(new Position(12, 14+i), getModel().getEntry(i), getModel().isSelected(i) ? "#89CFF0" : "#FFFFFF");
         }
+        gui.drawText(new Position(7, 22), "Insert Coin (c)", application.hasCoins() ? "#FF0000" :"#FFFFFF");
+        gui.drawText(new Position(18, 29), "Credits: " + application.getCoins(), "#FFFFFF");
     }
 }

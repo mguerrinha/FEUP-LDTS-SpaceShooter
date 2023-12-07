@@ -11,9 +11,11 @@ public class DefeatMenuViewer extends Viewer<DefeatMenu> {
 
     @Override
     public void drawElements(Application application, GUI gui) {
-        gui.drawText(new Position(11, 13), "YOU LOST!", "#FFFFFF");
+        gui.drawText(new Position(10, 13), "YOU LOST!", "#FFFFFF");
         for (int i = 0; i < getModel().getNumberEntries(); i++) {
-            gui.drawText(new Position(11, 15+i), getModel().getEntry(i), getModel().isSelected(i) ? "#880808" : "#FFFFFF");
+            gui.drawText(new Position(10, 15+i), getModel().getEntry(i), getModel().isSelected(i) ? "#FF0000" : "#FFFFFF");
         }
+        gui.drawText(new Position(8, 22), "Insert Coin (c)", application.hasCoins() ? "#FF0000" :"#FFFFFF");
+        gui.drawText(new Position(18, 29), "Credits: " + application.getCoins(), "#FFFFFF");
     }
 }

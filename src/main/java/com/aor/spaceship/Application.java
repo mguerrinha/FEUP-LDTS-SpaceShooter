@@ -14,6 +14,7 @@ public class Application {
     private Interface gui;
     private State state;
     private int highestScore;
+    private int coins;
     private static final String SCORE_FILE = "highest_score.txt";
 
 
@@ -21,6 +22,7 @@ public class Application {
         this.gui = new Interface(30, 30);
         this.state = new MenuState(new Menu());
         this.highestScore = loadHighestScore();
+        this.coins = 0;
     }
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
         new Application().start();
@@ -32,6 +34,17 @@ public class Application {
 
     }
     public int getHishestScore() { return highestScore; }
+
+    public int getCoins() { return coins; }
+
+    public void addCoin() { this.coins++; }
+
+    public void useCoin() { this.coins--; }
+
+    public boolean hasCoins() {
+        return coins == 0;
+    }
+
     public void setState(State state) { this.state = state; }
 
     private int loadHighestScore() {

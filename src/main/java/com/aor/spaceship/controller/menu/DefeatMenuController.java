@@ -21,7 +21,15 @@ public class DefeatMenuController extends Controller<DefeatMenu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) application.setState(null);
-                if (getModel().isSelectedStart()) application.setState(new GameState(new ArenaBuilder(30, 30).createArena()));
+                if (getModel().isSelectedStart() && application.getCoins() > 0) {
+                    application.setState(new GameState(new ArenaBuilder(30, 30).createArena()));
+                    application.useCoin();
+                }
+                break;
+            case COIN:
+                if (application.getCoins() < 9)
+                    application.addCoin();
+                break;
         }
     }
 
