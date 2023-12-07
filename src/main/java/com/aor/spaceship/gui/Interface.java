@@ -47,7 +47,7 @@ public class Interface implements GUI {
     }
 
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
-        URL resource = getClass().getClassLoader().getResource("fonts/kongtext.ttf");
+        URL resource = getClass().getClassLoader().getResource("fonts/KongtextRegular.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
@@ -78,7 +78,7 @@ public class Interface implements GUI {
     }
     @Override
     public void drawSpaceship(Position position) {
-        drawCharacter(position.getX(), position.getY(), '|', "#FFFFFF");
+        drawCharacter(position.getX(), position.getY(), '»', "#FFFFFF");
     }
 
     @Override
