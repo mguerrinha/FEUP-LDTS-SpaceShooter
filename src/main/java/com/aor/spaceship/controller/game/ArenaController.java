@@ -31,13 +31,13 @@ public class ArenaController extends GameController {
         if (getModel().getSpaceship().getScore() > application.getHishestScore())
             application.setHighestScore(getModel().getSpaceship().getScore());
         if (action == GUI.Action.QUIT) {
-            getModel().getDefaultEnemyexecutorService().shutdown();
-            getModel().getSpecialEnemyexecutorService().shutdown();
+            getModel().getDefaultEnemyexecutorService().shutdownNow();
+            getModel().getSpecialEnemyexecutorService().shutdownNow();
             application.setState(new MenuState(new Menu()));
         }
         else if (getModel().getSpaceship().getEnergy() == 0) {
-            getModel().getDefaultEnemyexecutorService().shutdown();
-            getModel().getSpecialEnemyexecutorService().shutdown();
+            getModel().getDefaultEnemyexecutorService().shutdownNow();
+            getModel().getSpecialEnemyexecutorService().shutdownNow();
             application.setState(new DefeatMenuState(new DefeatMenu()));
         }
         else {
