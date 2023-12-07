@@ -20,14 +20,14 @@ public class MenuController extends Controller<Menu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) application.setState(null);
-                if (getModel().isSelectedStart() && application.getCoins() > 0)  {
-                    application.useCoin();
+                if (getModel().isSelectedStart() && application.getCredits() > 0)  {
+                    application.useCredit();
                     application.setState(new GameState(new ArenaBuilder(30, 30).createArena()));
                 }
                 break;
             case COIN:
-                if (application.getCoins() < 9)
-                    application.addCoin();
+                if (application.getCredits() < 9)
+                    application.addCredit();
                 break;
 
         }

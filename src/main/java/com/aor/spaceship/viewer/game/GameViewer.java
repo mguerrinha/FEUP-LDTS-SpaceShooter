@@ -35,7 +35,7 @@ public class GameViewer extends Viewer<Arena> {
         gui.drawText(new Position(0, 19), "Lives", "#89CFF0");
         gui.drawText(new Position(0, 20), ":" + getModel().getSpaceship().getEnergy(), "#FFFFFF");
         gui.drawText(new Position(0, 27), "Credits", "#89CFF0");
-        gui.drawText(new Position(0, 28), ":" + application.getCoins(), "#FFFFFF");
+        gui.drawText(new Position(0, 28), ":" + application.getCredits(), "#FFFFFF");
     }
 
     private  <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {

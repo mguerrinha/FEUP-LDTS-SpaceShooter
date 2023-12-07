@@ -15,7 +15,7 @@ public class DefeatMenuViewer extends Viewer<DefeatMenu> {
         for (int i = 0; i < getModel().getNumberEntries(); i++) {
             gui.drawText(new Position(10, 15+i), getModel().getEntry(i), getModel().isSelected(i) ? "#FF0000" : "#FFFFFF");
         }
-        gui.drawText(new Position(8, 22), "Insert Coin (c)", application.hasCoins() ? "#FF0000" :"#FFFFFF");
-        gui.drawText(new Position(18, 29), "Credits: " + application.getCoins(), "#FFFFFF");
+        gui.drawText(new Position(8, 22), "Insert Coin (c)", application.hasCredits() ? "#FF0000" :"#FFFFFF");
+        gui.drawText(new Position(18, 29), "Credits: " + application.getCredits(), "#FFFFFF");
     }
 }

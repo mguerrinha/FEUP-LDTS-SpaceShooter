@@ -5,12 +5,10 @@ import java.util.List;
 
 public class Menu {
     private final List<String> entries;
-    private int coins;
     private int currentEntry = 0;
 
     public Menu() {
         this.entries = Arrays.asList("Start", "Score", "Exit");
-        this.coins = 0;
     }
 
     public void nextEntry() {

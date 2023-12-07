@@ -19,7 +19,7 @@ public class MenuViewer extends Viewer<Menu> {
         for (int i = 0; i < getModel().getNumberEntries(); i++) {
             gui.drawText(new Position(12, 14+i), getModel().getEntry(i), getModel().isSelected(i) ? "#89CFF0" : "#FFFFFF");
         }
-        gui.drawText(new Position(7, 22), "Insert Coin (c)", application.hasCoins() ? "#FF0000" :"#FFFFFF");
-        gui.drawText(new Position(18, 29), "Credits: " + application.getCoins(), "#FFFFFF");
+        gui.drawText(new Position(7, 22), "Insert Coin (c)", application.hasCredits() ? "#FF0000" :"#FFFFFF");
+        gui.drawText(new Position(18, 29), "Credits: " + application.getCredits(), "#FFFFFF");
     }
 }
