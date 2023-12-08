@@ -23,7 +23,7 @@ public class DefaultEnemyController extends GameController {
 
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
-        if (time - lastAdd > 700) {
+        if (time - lastAdd > 1000) {
             enemyShootingController.DefaultEnemyShot();
             this.lastAdd = time;
         }

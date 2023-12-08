@@ -10,6 +10,7 @@ public interface GUI {
     void drawPower(Position position);
     void drawEnemyShots(Position position);
     void drawDefaultShots(Position position);
+    void drawDoubleShots(Position position);
     void drawLimits(Position position);
 
     void drawDefaultEnemies(Position position);
@@ -18,6 +19,6 @@ public interface GUI {
     void clear();
     void refresh() throws IOException;
     void close() throws IOException;
-    enum Action {UP, DOWN, LEFT, RIGHT, NONE, QUIT, SELECT}
+    enum Action {UP, DOWN, LEFT, RIGHT, NONE, QUIT, SELECT, COIN}
     Action getNextAction() throws IOException;
 }

@@ -9,5 +9,5 @@ public class SpecialEnemy extends Element {
 
     public int getHealth() { return health; }
 
-    public void reduceHealth() { this.health--; }
+    public void reduceHealth(int damage) { this.health -= damage; }
 }

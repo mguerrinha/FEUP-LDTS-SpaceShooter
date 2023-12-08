@@ -12,16 +12,36 @@ public class DefeatMenuController extends Controller<DefeatMenu> {
 
     @Override
     public void step(Application application, GUI.Action action, long time) {
-        switch (action) {
-            case UP:
-                getModel().previousEntry();
-                break;
-            case DOWN:
-                getModel().nextEntry();
-                break;
-            case SELECT:
-                if (getModel().isSelectedExit()) application.setState(null);
-                if (getModel().isSelectedStart()) application.setState(new GameState(new ArenaBuilder(30, 30).createArena()));
+        if (!application.hasCredits()) {
+            switch (action) {
+                case SELECT:
+                    application.setState(null);
+                    break;
+                case COIN:
+                    application.addCredit();
+                    break;
+            }
+        }
+        else {
+            switch (action) {
+                case UP:
+                    getModel().previousEntry();
+                    break;
+                case DOWN:
+                    getModel().nextEntry();
+                    break;
+                case SELECT:
+                    if (getModel().isSelectedExit()) application.setState(null);
+                    if (getModel().isSelectedStart() && application.getCredits() > 0) {
+                        application.setState(new GameState(new ArenaBuilder(30, 30).createArena()));
+                        application.useCredit();
+                    }
+                    break;
+                case COIN:
+                    if (application.getCredits() < 9)
+                        application.addCredit();
+                    break;
+            }
         }
     }
 

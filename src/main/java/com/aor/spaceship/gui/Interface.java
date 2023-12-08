@@ -30,7 +30,6 @@ public class Interface implements GUI {
     private Screen createScreen(Terminal terminal) throws IOException {
         final Screen screen;
         screen = new TerminalScreen(terminal);
-
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
@@ -54,7 +53,7 @@ public class Interface implements GUI {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 30);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }
@@ -62,12 +61,13 @@ public class Interface implements GUI {
     public Action getNextAction() throws IOException {
         KeyStroke keyStroke = screen.pollInput();
         if (keyStroke == null) return Action.NONE;
-        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return Action.QUIT;
+        if (keyStroke.getKeyType() == KeyType.Character && (keyStroke.getCharacter() == 'q' || keyStroke.getCharacter() == 'Q')) return Action.QUIT;
         if (keyStroke.getKeyType() == KeyType.ArrowUp) return Action.UP;
         if (keyStroke.getKeyType() == KeyType.ArrowRight) return Action.RIGHT;
         if (keyStroke.getKeyType() == KeyType.ArrowDown) return Action.DOWN;
         if (keyStroke.getKeyType() == KeyType.ArrowLeft) return Action.LEFT;
         if (keyStroke.getKeyType() == KeyType.Enter) return Action.SELECT;
+        if (keyStroke.getKeyType() == KeyType.Character && (keyStroke.getCharacter() == 'c' || keyStroke.getCharacter() == 'C')) return Action.COIN;
         return Action.NONE;
     }
 
@@ -88,7 +88,11 @@ public class Interface implements GUI {
     public void drawDefaultShots(Position position) { drawCharacter(position.getX(), position.getY(), '.' , "#FFFFFF"); }
 
     @Override
+    public void drawDoubleShots(Position position) { drawCharacter(position.getX(), position.getY(), '"', "#FFFFFF");}
+
+    @Override
     public void drawMeteor(Position position) { drawCharacter(position.getX(), position.getY(), 'Ó', "#FF0000"); }
+
 
     @Override
     public void drawPower(Position position) { drawCharacter(position.getX(), position.getY(), 'Ù', "#FFFF00"); }
