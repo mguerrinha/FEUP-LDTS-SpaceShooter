@@ -6,8 +6,10 @@ import com.aor.spaceship.model.game.arena.Arena;
 import com.aor.spaceship.model.game.elements.DefaultEnemy;
 import com.aor.spaceship.model.game.elements.DefaultShot;
 import com.aor.spaceship.model.menu.DefeatMenu;
+import com.aor.spaceship.model.menu.Initial;
 import com.aor.spaceship.model.menu.Menu;
 import com.aor.spaceship.states.DefeatMenuState;
+import com.aor.spaceship.states.InitialState;
 import com.aor.spaceship.states.MenuState;
 
 import java.io.IOException;
@@ -33,7 +35,9 @@ public class ArenaController extends GameController {
         if (action == GUI.Action.QUIT) {
             getModel().getDefaultEnemyexecutorService().shutdownNow();
             getModel().getSpecialEnemyexecutorService().shutdownNow();
-            application.setState(new MenuState(new Menu()));
+            if (application.hasCredits())
+                application.setState(new MenuState(new Menu()));
+            else application.setState(new InitialState(new Initial()));
         }
         else if (getModel().getSpaceship().getEnergy() == 0) {
             getModel().getDefaultEnemyexecutorService().shutdownNow();

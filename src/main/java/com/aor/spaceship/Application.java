@@ -2,8 +2,10 @@ package com.aor.spaceship;
 
 import com.aor.spaceship.gui.Interface;
 import com.aor.spaceship.model.menu.DefeatMenu;
+import com.aor.spaceship.model.menu.Initial;
 import com.aor.spaceship.model.menu.Menu;
 import com.aor.spaceship.states.DefeatMenuState;
+import com.aor.spaceship.states.InitialState;
 import com.aor.spaceship.states.MenuState;
 import com.aor.spaceship.states.State;
 
@@ -22,8 +24,9 @@ public class Application {
 
     public Application() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new Interface(30, 30);
-        this.state = new MenuState(new Menu());
+        //this.state = new MenuState(new Menu());
         //this.state = new DefeatMenuState(new DefeatMenu());
+        this.state = new InitialState(new Initial());
         this.highestScore = loadHighestScore();
         this.credits = 0;
     }
