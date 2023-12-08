@@ -33,7 +33,7 @@ public class DefeatMenuViewer extends Viewer<DefeatMenu> {
         gui.drawText(new Position(11, 18), "|__| | /  \\ | |__|", "#FFFFFF");
         gui.drawText(new Position(11, 19), "     |/    \\|     ", "#FFFFFF");
 
-        gui.drawText(new Position(8, 22), "Insert Coin (c)", !application.hasCredits() ? "#FF0000" :"#FFFFFF");
+        gui.drawText(new Position(8, 22), "Insert Coin (c)", !application.hasCredits() ? "#FF0000" :"#000000");
         gui.drawText(new Position(18, 29), "Credits: " + application.getCredits(), !application.hasCredits() ? "#FF0000" : "#FFFFFF");
 
         if (application.hasCredits()) {

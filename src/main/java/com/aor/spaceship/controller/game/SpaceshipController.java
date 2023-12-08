@@ -29,11 +29,13 @@ public class SpaceshipController extends GameController {
                     shootingController.defaultShot();
                     this.lastMovement = time;
                 }
+                break;
             case "doubleShot":
                 if (time - lastMovement > 300) {
                     shootingController.doubleShots();
                     this.lastMovement = time;
                 }
+                break;
         }
         if (time - lastDefaultShot > 100) {
             shootingController.moveDefaultShot();
