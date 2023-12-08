@@ -34,7 +34,7 @@ public class GameViewer extends Viewer<Arena> {
         gui.drawText(new Position(0, 12), ":" + getModel().getSpaceship().getScore(), "#FFFFFF");
         gui.drawText(new Position(0, 19), "Lives", "#89CFF0");
         gui.drawText(new Position(0, 20), ":" + getModel().getSpaceship().getEnergy(), "#FFFFFF");
-        gui.drawText(new Position(0, 27), "Credits", "#89CFF0");
+        gui.drawText(new Position(0, 27), "Credits", application.getCredits() > 0 ? "#89CFF0" : "#FF0000");
         gui.drawText(new Position(0, 28), ":" + application.getCredits(), "#FFFFFF");
     }
 

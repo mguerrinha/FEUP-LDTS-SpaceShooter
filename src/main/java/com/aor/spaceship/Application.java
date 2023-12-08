@@ -22,7 +22,8 @@ public class Application {
 
     public Application() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new Interface(30, 30);
-        this.state = new DefeatMenuState(new DefeatMenu());
+        this.state = new MenuState(new Menu());
+        //this.state = new DefeatMenuState(new DefeatMenu());
         this.highestScore = loadHighestScore();
         this.credits = 0;
     }
