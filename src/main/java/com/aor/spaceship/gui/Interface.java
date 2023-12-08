@@ -46,7 +46,7 @@ public class Interface implements GUI {
     }
 
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
-        URL resource = getClass().getClassLoader().getResource("fonts/kongtext.ttf");
+        URL resource = getClass().getClassLoader().getResource("fonts/KongtextModified.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
@@ -78,7 +78,7 @@ public class Interface implements GUI {
     }
     @Override
     public void drawSpaceship(Position position) {
-        drawCharacter(position.getX(), position.getY(), '|', "#FFFFFF");
+        drawCharacter(position.getX(), position.getY(), '»', "#FFFFFF");
     }
 
     @Override
@@ -91,17 +91,18 @@ public class Interface implements GUI {
     public void drawDoubleShots(Position position) { drawCharacter(position.getX(), position.getY(), '"', "#FFFFFF");}
 
     @Override
-    public void drawMeteor(Position position) { drawCharacter(position.getX(), position.getY(), '□', "#FF0000"); }
+    public void drawMeteor(Position position) { drawCharacter(position.getX(), position.getY(), 'Ó', "#FF0000"); }
+
 
     @Override
-    public void drawPower(Position position) { drawCharacter(position.getX(), position.getY(), '?', "#FFFF00"); }
+    public void drawPower(Position position) { drawCharacter(position.getX(), position.getY(), 'Ù', "#FFFF00"); }
 
     @Override
     public void drawLimits(Position position) { drawCharacter(position.getX(), position.getY(), '#', "#FFFFFF"); }
     @Override
-    public void drawDefaultEnemies(Position position) { drawCharacter(position.getX(), position.getY(), '!', "#FFC300"); }
+    public void drawDefaultEnemies(Position position) { drawCharacter(position.getX(), position.getY(), 'Ú', "#FFC300"); }
     @Override
-    public void drawSpecialEnemies(Position position) { drawCharacter(position.getX(), position.getY(), '!', "#FF0FF0"); }
+    public void drawSpecialEnemies(Position position) { drawCharacter(position.getX(), position.getY(), 'Û', "#FF0FF0"); }
 
     @Override
     public void drawText(Position position, String text, String color) {
