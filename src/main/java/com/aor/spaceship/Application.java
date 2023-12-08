@@ -45,7 +45,7 @@ public class Application {
     public void useCredit() { this.credits--; }
 
     public boolean hasCredits() {
-        return credits == 0;
+        return credits > 0;
     }
 
     public void setState(State state) { this.state = state; }
@@ -69,7 +69,7 @@ public class Application {
 
     public void start() throws IOException {
         int FPS = 10;
-        int frameTime = 100 / FPS;
+        int frameTime = 100/ FPS;
         while (this.state != null) {
             long startTime = System.currentTimeMillis();
 

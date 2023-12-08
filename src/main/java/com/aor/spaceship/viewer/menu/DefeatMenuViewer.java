@@ -11,10 +11,7 @@ public class DefeatMenuViewer extends Viewer<DefeatMenu> {
 
     @Override
     public void drawElements(Application application, GUI gui) {
-        gui.drawText(new Position(1, 10), "YOU LOST!", "#FFFFFF");
-        for (int i = 0; i < getModel().getNumberEntries(); i++) {
-            gui.drawText(new Position(1, 12+i), getModel().getEntry(i), getModel().isSelected(i) ? "#FF0000" : "#FFFFFF");
-        }
+        gui.drawText(new Position(1, 5), "YOU LOST!", "#FFFFFF");
         gui.drawText(new Position(11, 0),  "        __          ", "#FFFFFF");
         gui.drawText(new Position(11, 1),  "       /  \\       ", "#FFFFFF");
         gui.drawText(new Position(11, 2),  "      /    \\      ", "#FFFFFF");
@@ -36,7 +33,13 @@ public class DefeatMenuViewer extends Viewer<DefeatMenu> {
         gui.drawText(new Position(11, 18), "|__| | /  \\ | |__|", "#FFFFFF");
         gui.drawText(new Position(11, 19), "     |/    \\|     ", "#FFFFFF");
 
-        gui.drawText(new Position(8, 22), "Insert Coin (c)", application.hasCredits() ? "#FF0000" :"#FFFFFF");
-        gui.drawText(new Position(18, 29), "Credits: " + application.getCredits(), "#FFFFFF");
+        gui.drawText(new Position(8, 22), "Insert Coin (c)", !application.hasCredits() ? "#FF0000" :"#FFFFFF");
+        gui.drawText(new Position(18, 29), "Credits: " + application.getCredits(), !application.hasCredits() ? "#FF0000" : "#FFFFFF");
+
+        if (application.hasCredits()) {
+            for (int i = 0; i < getModel().getNumberEntries(); i++) {
+                gui.drawText(new Position(1, 12 + i), getModel().getEntry(i), getModel().isSelected(i) ? "#FF0000" : "#FFFFFF");
+            }
+        }
     }
 }
