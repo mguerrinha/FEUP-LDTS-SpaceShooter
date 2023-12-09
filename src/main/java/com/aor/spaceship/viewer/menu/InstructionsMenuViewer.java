@@ -14,13 +14,13 @@ public class InstructionsMenuViewer extends Viewer<InstructionsMenu> {
         gui.drawText(new Position(26, 1), getModel().getEntry(0), getModel().isSelected(0) ? "#00FF00" : "#FFFFFF");
         gui.drawText(new Position(28, 1), getModel().getEntry(1), getModel().isSelected(1) ? "#FF0000" : "#FFFFFF");
         gui.drawText(new Position(1,1), "Controls: ", "#89CFF0");
-        gui.drawText(new Position(1,3), "↑", "#89CFF0");
+        gui.drawText(new Position(1,3), "È", "#89CFF0");
         gui.drawText(new Position(2,3), " : Move Up", "#FFFFFF");
-        gui.drawText(new Position(1,5), "↓", "#89CFF0");
+        gui.drawText(new Position(1,5), "Ã", "#89CFF0");
         gui.drawText(new Position(2,5), " : Move Down", "#FFFFFF");
-        gui.drawText(new Position(1,7), "←", "#89CFF0");
+        gui.drawText(new Position(1,7), "À", "#89CFF0");
         gui.drawText(new Position(2,7), " : Move Left", "#FFFFFF");
-        gui.drawText(new Position(1,9), "→", "#89CFF0");
+        gui.drawText(new Position(1,9), "Â", "#89CFF0");
         gui.drawText(new Position(2,9), " : Move Right", "#FFFFFF");
         gui.drawText(new Position(1,15), "Elements: ", "#89CFF0");
         gui.drawText(new Position(1,17), "»", "#FFFFFF");
