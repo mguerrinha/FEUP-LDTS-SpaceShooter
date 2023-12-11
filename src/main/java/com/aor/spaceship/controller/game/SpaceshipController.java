@@ -36,6 +36,11 @@ public class SpaceshipController extends GameController {
                     this.lastMovement = time;
                 }
                 break;
+            case "burst":
+                if(time - lastMovement > 50) {
+                    shootingController.defaultShot();
+                    this.lastMovement = time;
+                }
         }
         if (time - lastDefaultShot > 100) {
             shootingController.moveDefaultShot();

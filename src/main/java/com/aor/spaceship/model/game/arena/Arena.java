@@ -121,14 +121,15 @@ public class Arena {
     }
 
     public void GetRandomPower() {
-        int randomPower = random.ints(1, 3).findFirst().getAsInt();
+        int randomPower = random.ints(1, 4).findFirst().getAsInt();
         switch (randomPower) {
             case 1:
                 this.spaceship.increaseEnergy();
                 break;
             case 2:
                 this.spaceship.setShot("doubleShot");
-            default:
+            case 3:
+                this.spaceship.setShot("burst");
         }
     }
     public void removePower(Position position) {
