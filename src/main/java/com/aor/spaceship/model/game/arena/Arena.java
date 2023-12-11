@@ -5,6 +5,8 @@ import com.aor.spaceship.model.game.elements.*;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,11 +27,14 @@ public class Arena {
     private ExecutorService DefaultEnemyexecutorService = Executors.newSingleThreadExecutor();
     private ExecutorService SpecialEnemyexecutorService = Executors.newSingleThreadExecutor();
     private final Random random;
+    private Timer powerTimer;
+
 
     public Arena(int width, int height) {
         this.height = height;
         this.width = width;
         this.random = new Random();
+        this.powerTimer = new Timer();
     }
 
     public int getWidth() {
@@ -57,6 +62,8 @@ public class Arena {
     public ExecutorService getDefaultEnemyexecutorService() {return DefaultEnemyexecutorService; }
 
     public ExecutorService getSpecialEnemyexecutorService() {return SpecialEnemyexecutorService; }
+
+    public Timer getPowerTimer() { return powerTimer; }
 
     public void setSpaceship(Spaceship spaceship) { this.spaceship = spaceship; }
 
@@ -126,18 +133,33 @@ public class Arena {
     }
 
     public void GetRandomPower() {
-        int randomPower = random.ints(1, 4).findFirst().getAsInt();
+        int randomPower = random.ints(1, 5).findFirst().getAsInt();
         switch (randomPower) {
             case 1:
                 this.spaceship.increaseEnergy();
                 break;
             case 2:
                 this.spaceship.setShot("doubleShot");
+                schedulePowerDuration(10);
+                System.out.println("DS");
             case 3:
                 this.spaceship.setShot("burst");
+                schedulePowerDuration(5);
+                System.out.println("BS");
             case 4:
                 this.spaceship.setShot("tripleShot");
+                schedulePowerDuration(5);
+                System.out.println("TS");
         }
+    }
+
+    private void schedulePowerDuration(int seconds) {
+        powerTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                spaceship.setShot("defaultShot");
+            }
+        }, seconds * 1000);
     }
     public void removePower(Position position) {
         for (int i = 0; i < powers.size(); i++) {

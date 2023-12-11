@@ -7,7 +7,7 @@ public class Spaceship extends Element {
     public Spaceship(int x, int y) {
         super(x, y);
         this.energy = 3;
-        this.shot = "tripleShot";
+        this.shot = "defaultShot";
     }
 
     public int getEnergy() {

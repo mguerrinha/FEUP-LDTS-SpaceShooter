@@ -4,7 +4,7 @@ public class TripleShot extends Bullet {
     private int damage;
     public TripleShot(int x, int y) {
         super(x, y);
-        damage = 3;
+        damage = 1;
     }
 
     public int getDamage() { return this.damage; }
