@@ -40,7 +40,7 @@ public class Arena {
     public Spaceship getSpaceship() { return spaceship; }
 
     public List<EnemyShot> getEnemyShots() { return enemyShots; }
-    public List<DefaultShot> getdefaultShots() { return defaultShots; }
+    public List<DefaultShot> getDefaultShots() { return defaultShots; }
     public List<DoubleShot> getDoubleShots() { return doubleShots; }
     public List<Meteor> getMeteors() {return meteors; }
 
