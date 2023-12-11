@@ -23,7 +23,11 @@ public class ShootingController {
      public void burstShots() {
         arena.getBurstShots().add(new BurstShot(spaceship.getPosition().getX(), spaceship.getPosition().moveUp().getY()));
      }
-
+     public void tripleShots() {
+        arena.getTripleShots().add(new TripleShot(spaceship.getPosition().getX(), spaceship.getPosition().moveUp().getY()));
+        arena.getTripleShots().add(new TripleShot(spaceship.getPosition().moveLeft().getX(), spaceship.getPosition().moveUp().getY()));
+        arena.getTripleShots().add(new TripleShot(spaceship.getPosition().moveRight().getX(), spaceship.getPosition().moveUp().getY()));
+     }
      public void moveDefaultShot() {
         for (DefaultShot defaultShot : arena.getDefaultShots()) {
             defaultShot.moveBulletUp();
@@ -69,6 +73,21 @@ public class ShootingController {
         cleanUpBurstShots();
     }
 
+    public void moveTripleShots() {
+        for (TripleShot tripleShot : arena.getTripleShots()) {
+            tripleShot.moveBulletUp();
+            if (arena.hasCollided(tripleShot.getPosition()) || arena.hasCollided(tripleShot.getPosition().moveUp())) {
+                tripleShot.setPosition(new Position(0, -2));
+            }
+            if (arena.isEnemy(tripleShot.getPosition())) {
+                arena.reduceHPSpecialEnemy(tripleShot.getPosition(), tripleShot.getDamage());
+                arena.reduceHPDefaultEnemy(tripleShot.getPosition(), tripleShot.getDamage());
+                tripleShot.setPosition(new Position(0, -2));
+            }
+        }
+        cleanUpTripleShots();
+    }
+
     private void cleanUpDefaultShots() {
         Iterator<DefaultShot> iterator = arena.getDefaultShots().iterator();
         while (iterator.hasNext()) {
@@ -94,6 +113,16 @@ public class ShootingController {
         while (iterator.hasNext()) {
             BurstShot burstShot = iterator.next();
             if (burstShot.getPosition().getY() < 0) {
+                iterator.remove();
+            }
+        }
+    }
+
+    private void cleanUpTripleShots() {
+        Iterator<TripleShot> iterator = arena.getTripleShots().iterator();
+        while (iterator.hasNext()) {
+            TripleShot tripleShot = iterator.next();
+            if (tripleShot.getPosition().getY() < 0) {
                 iterator.remove();
             }
         }

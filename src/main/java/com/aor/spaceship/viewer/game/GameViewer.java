@@ -17,6 +17,7 @@ public class GameViewer extends Viewer<Arena> {
         drawElements(gui, getModel().getDefaultShots(), new DefaultShotsViewer());
         drawElements(gui, getModel().getDoubleShots(), new DoubleShotsViewer());
         drawElements(gui, getModel().getBurstShots(), new BurstShotsViewer());
+        drawElements(gui, getModel().getTripleShots(), new TripleShotsViewer());
         drawElements(gui, getModel().getEnemyShots(), new EnemyShotsViewer());
         drawElements(gui, getModel().getPowers(), new PowerViewer());
 

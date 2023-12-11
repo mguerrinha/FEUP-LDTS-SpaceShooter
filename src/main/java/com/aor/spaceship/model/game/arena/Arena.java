@@ -16,6 +16,7 @@ public class Arena {
     private List<DefaultShot> defaultShots;
     private List<DoubleShot> doubleShots;
     private List<BurstShot> burstShots;
+    private List<TripleShot> tripleShots;
     private List<Meteor> meteors;
     private List<Power> powers;
     private List<Limit> limits;
@@ -44,6 +45,7 @@ public class Arena {
     public List<DefaultShot> getDefaultShots() { return defaultShots; }
     public List<DoubleShot> getDoubleShots() { return doubleShots; }
     public List<BurstShot> getBurstShots() { return burstShots; }
+    public List<TripleShot> getTripleShots() { return tripleShots; }
     public List<Meteor> getMeteors() {return meteors; }
 
     public List<Power> getPowers() {return powers; }
@@ -62,6 +64,7 @@ public class Arena {
     public void setDefaultShots(List<DefaultShot> defaultShots) { this.defaultShots = defaultShots; }
     public void setDoubleShots(List<DoubleShot> doubleShots) { this.doubleShots = doubleShots; }
     public void setBurstShots(List<BurstShot> burstShots) { this.burstShots = burstShots; }
+    public void setTripleShots(List<TripleShot> tripleShots) { this.tripleShots = tripleShots; }
     public void setMeteors(List<Meteor> meteors) { this.meteors = meteors; }
 
     public void setPowers(List<Power> powers) { this.powers = powers; }
@@ -132,6 +135,8 @@ public class Arena {
                 this.spaceship.setShot("doubleShot");
             case 3:
                 this.spaceship.setShot("burst");
+            case 4:
+                this.spaceship.setShot("tripleShot");
         }
     }
     public void removePower(Position position) {

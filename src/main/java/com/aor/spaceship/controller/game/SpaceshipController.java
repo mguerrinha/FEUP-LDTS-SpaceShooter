@@ -12,6 +12,7 @@ public class SpaceshipController extends GameController {
     private long lastDefaultShot;
     private long lastDoubleShot;
     private long lastBurstShot;
+    private long lastTripleShot;
 
     ShootingController shootingController;
     public SpaceshipController(Arena arena) {
@@ -20,6 +21,7 @@ public class SpaceshipController extends GameController {
         lastDefaultShot = 0;
         lastDoubleShot = 0;
         lastBurstShot = 0;
+        lastTripleShot = 0;
         shootingController = new ShootingController(arena, getModel().getSpaceship());
     }
 
@@ -39,8 +41,13 @@ public class SpaceshipController extends GameController {
                 }
                 break;
             case "burst":
-                if(time - lastMovement > 10) {
+                if (time - lastMovement > 10) {
                     shootingController.burstShots();
+                    this.lastMovement = time;
+                }
+            case "tripleShot":
+                if (time - lastMovement > 300) {
+                    shootingController.tripleShots();
                     this.lastMovement = time;
                 }
         }
@@ -55,6 +62,10 @@ public class SpaceshipController extends GameController {
         if (time - lastBurstShot > 10) {
             shootingController.moveBurstShots();
             this.lastBurstShot = time;
+        }
+        if (time - lastTripleShot > 100) {
+            shootingController.moveTripleShots();
+            this.lastTripleShot = time;
         }
 
         if (getModel().isPower(getModel().getSpaceship().getPosition())) {

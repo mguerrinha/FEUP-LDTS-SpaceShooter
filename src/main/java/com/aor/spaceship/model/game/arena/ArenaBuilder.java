@@ -24,6 +24,7 @@ public class ArenaBuilder {
         arena.setDefaultShots(createDefaultShots());
         arena.setDoubleShots(createDoubleShots());
         arena.setBurstShots(createBurstShots());
+        arena.setTripleShots(createTripleShots());
         arena.setMeteors(createMeteors());
         arena.setPowers(createPowers());
         arena.setLimits(createLimits());
@@ -47,6 +48,7 @@ public class ArenaBuilder {
     }
     protected List<DoubleShot> createDoubleShots() { return new ArrayList<>(); }
     protected List<BurstShot> createBurstShots() { return new ArrayList<>(); }
+    protected List<TripleShot> createTripleShots() { return new ArrayList<>(); }
 
     private boolean isValidMeteorPosition(List<Meteor> meteors, int x) {
         for (Meteor meteor : meteors) {

@@ -88,10 +88,13 @@ public class Interface implements GUI {
     public void drawDefaultShots(Position position) { drawCharacter(position.getX(), position.getY(), '.' , "#FFFFFF"); }
 
     @Override
-    public void drawDoubleShots(Position position) { drawCharacter(position.getX(), position.getY(), '"', "#FFFFFF");}
+    public void drawDoubleShots(Position position) { drawCharacter(position.getX(), position.getY(), '"', "#FFFFFF"); }
 
     @Override
-    public void drawBurstShots(Position position) { drawCharacter(position.getX(), position.getY(), '|', "#FFFFFF");}
+    public void drawBurstShots(Position position) { drawCharacter(position.getX(), position.getY(), '|', "#FFFFFF"); }
+
+    @Override
+    public void drawTripleShots(Position position) { drawCharacter(position.getX(), position.getY(), '.', "#FFFFFF"); }
 
     @Override
     public void drawMeteor(Position position) { drawCharacter(position.getX(), position.getY(), 'Ó', "#FF0000"); }
