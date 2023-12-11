@@ -2,9 +2,7 @@ package com.aor.spaceship.controller.game;
 
 import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.arena.Arena;
-import com.aor.spaceship.model.game.elements.DefaultShot;
-import com.aor.spaceship.model.game.elements.DoubleShot;
-import com.aor.spaceship.model.game.elements.Spaceship;
+import com.aor.spaceship.model.game.elements.*;
 
 import java.util.Iterator;
 
@@ -21,6 +19,9 @@ public class ShootingController {
 
      public void doubleShots() {
         arena.getDoubleShots().add(new DoubleShot(spaceship.getPosition().getX(), spaceship.getPosition().moveUp().getY()));
+     }
+     public void burstShots() {
+        arena.getBurstShots().add(new BurstShot(spaceship.getPosition().getX(), spaceship.getPosition().moveUp().getY()));
      }
 
      public void moveDefaultShot() {
@@ -53,6 +54,21 @@ public class ShootingController {
         cleanUpDoubleShots();
     }
 
+    public void moveBurstShots() {
+        for (BurstShot burstShot : arena.getBurstShots()) {
+            burstShot.moveBulletUp();
+            if (arena.hasCollided(burstShot.getPosition()) || arena.hasCollided(burstShot.getPosition().moveUp())) {
+                burstShot.setPosition(new Position(0, -2));
+            }
+            if (arena.isEnemy(burstShot.getPosition())) {
+                arena.reduceHPSpecialEnemy(burstShot.getPosition(), burstShot.getDamage());
+                arena.reduceHPDefaultEnemy(burstShot.getPosition(), burstShot.getDamage());
+                burstShot.setPosition(new Position(0, -2));
+            }
+        }
+        cleanUpBurstShots();
+    }
+
     private void cleanUpDefaultShots() {
         Iterator<DefaultShot> iterator = arena.getDefaultShots().iterator();
         while (iterator.hasNext()) {
@@ -68,6 +84,16 @@ public class ShootingController {
         while (iterator.hasNext()) {
             DoubleShot doubleShot = iterator.next();
             if (doubleShot.getPosition().getY() < 0) {
+                iterator.remove();
+            }
+        }
+    }
+
+    private void cleanUpBurstShots() {
+        Iterator<BurstShot> iterator = arena.getBurstShots().iterator();
+        while (iterator.hasNext()) {
+            BurstShot burstShot = iterator.next();
+            if (burstShot.getPosition().getY() < 0) {
                 iterator.remove();
             }
         }

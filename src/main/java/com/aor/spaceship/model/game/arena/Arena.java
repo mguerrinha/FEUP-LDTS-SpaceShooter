@@ -15,6 +15,7 @@ public class Arena {
     private List<EnemyShot> enemyShots;
     private List<DefaultShot> defaultShots;
     private List<DoubleShot> doubleShots;
+    private List<BurstShot> burstShots;
     private List<Meteor> meteors;
     private List<Power> powers;
     private List<Limit> limits;
@@ -42,6 +43,7 @@ public class Arena {
     public List<EnemyShot> getEnemyShots() { return enemyShots; }
     public List<DefaultShot> getDefaultShots() { return defaultShots; }
     public List<DoubleShot> getDoubleShots() { return doubleShots; }
+    public List<BurstShot> getBurstShots() { return burstShots; }
     public List<Meteor> getMeteors() {return meteors; }
 
     public List<Power> getPowers() {return powers; }
@@ -59,7 +61,7 @@ public class Arena {
     public void setEnemyShots(List<EnemyShot> enemyShots) { this.enemyShots = enemyShots; }
     public void setDefaultShots(List<DefaultShot> defaultShots) { this.defaultShots = defaultShots; }
     public void setDoubleShots(List<DoubleShot> doubleShots) { this.doubleShots = doubleShots; }
-
+    public void setBurstShots(List<BurstShot> burstShots) { this.burstShots = burstShots; }
     public void setMeteors(List<Meteor> meteors) { this.meteors = meteors; }
 
     public void setPowers(List<Power> powers) { this.powers = powers; }

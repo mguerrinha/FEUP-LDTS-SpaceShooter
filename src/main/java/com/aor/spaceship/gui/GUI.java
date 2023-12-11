@@ -11,6 +11,7 @@ public interface GUI {
     void drawEnemyShots(Position position);
     void drawDefaultShots(Position position);
     void drawDoubleShots(Position position);
+    void drawBurstShots(Position position);
     void drawLimits(Position position);
 
     void drawDefaultEnemies(Position position);
