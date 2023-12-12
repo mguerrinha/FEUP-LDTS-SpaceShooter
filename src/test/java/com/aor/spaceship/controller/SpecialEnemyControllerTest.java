@@ -1,30 +1,54 @@
 package com.aor.spaceship.controller.game;
 
-        import com.aor.spaceship.model.Position;
-        import com.aor.spaceship.model.game.arena.Arena;
-        import com.aor.spaceship.model.game.elements.SpecialEnemy;
-        import org.junit.jupiter.api.BeforeEach;
-        import org.junit.jupiter.api.Test;
+import com.aor.spaceship.gui.GUI;
+import com.aor.spaceship.model.Position;
+import com.aor.spaceship.model.game.arena.Arena;
+import com.aor.spaceship.model.game.elements.SpecialEnemy;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-        import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class SpecialEnemyControllerTest {
+import static org.mockito.Mockito.*;
+
+class SpecialEnemyControllerTest {
+
     private SpecialEnemyController specialEnemyController;
-    private Arena arena;
+    private Arena mockArena;
 
     @BeforeEach
-    public void setUp() {
-        arena = new Arena();
-        specialEnemyController = new SpecialEnemyController(arena);
+    void setUp() {
+        mockArena = mock(Arena.class);
+        specialEnemyController = new SpecialEnemyController(mockArena);
     }
 
     @Test
-    public void testMoveSpecialEnemy() {
-        SpecialEnemy specialEnemy = new SpecialEnemy(new Position(0, 0));
-        Position position = new Position(1, 0);
+    void step_ShouldMoveSpecialEnemiesWithinLimits() throws IOException {
+        // Arrange
+        List<SpecialEnemy> specialEnemies = new ArrayList<>();
+        SpecialEnemy specialEnemy = new SpecialEnemy();
+        specialEnemy.setPosition(new Position(5, 5));
+        specialEnemies.add(specialEnemy);
 
-        specialEnemyController.moveSpecialEnemy(specialEnemy, position);
+        when(mockArena.getSpecialEnemies()).thenReturn(specialEnemies);
+        when(mockArena.isLimit(any())).thenReturn(false);
+        when(mockArena.hasCollided(any())).thenReturn(false);
+        when(mockArena.isEnemy(any())).thenReturn(false);
+        GUI.Action action = GUI.Action.NONE;
+        long time = 500;
 
-        assertEquals(position, specialEnemy.getPosition());
+
+        specialEnemyController.step(null, action, time);
+
+
+        verify(mockArena, times(1)).getSpecialEnemies();
+        verify(mockArena, times(1)).isLimit(any());
+        verify(mockArena, times(1)).hasCollided(any());
+        verify(mockArena, times(1)).isEnemy(any());
+
+
+        verify(mockArena).moveSpecialEnemy(specialEnemy, new Position(6, 5));
     }
 }
