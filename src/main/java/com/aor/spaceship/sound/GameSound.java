@@ -12,7 +12,7 @@ public class GameSound extends SoundEffect {
     }
 
     @Override
-    public void playMusic() { // talvez não seja preciso
+    public void playMusic() {
         try {
             URL resource = getClass().getClassLoader().getResource(this.soundFile);
             File musicFile = new File(resource.toURI());

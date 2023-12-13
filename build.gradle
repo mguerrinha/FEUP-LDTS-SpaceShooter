@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'info.solidsoft.pitest' version '1.6.0'
 }
 
 group = 'com.aor.spaceship'
@@ -24,4 +25,8 @@ test {
 
 application {
     mainClass.set('com.aor.spaceship.Application')
+}
+
+pitest {
+    junit5PluginVersion = '0.12'
 }
