@@ -26,7 +26,7 @@ public class InterfaceTest {
         gui.drawSpaceship(new Position(1, 1));
 
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(new TextColor.RGB(255, 255, 255));
-        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "|");
+        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "»");
     }
 
     @Test

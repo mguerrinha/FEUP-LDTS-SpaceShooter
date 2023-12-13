@@ -1,14 +1,13 @@
 package com.aor.spaceship.viewer;
 
 import com.aor.spaceship.gui.GUI;
-import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.elements.EnemyShot;
 import com.aor.spaceship.viewer.game.ElementViewer;
 import com.aor.spaceship.viewer.game.EnemyShotsViewer;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
-public class EnemyShotsViewerTest {
+public class EnemyShotViewerTest {
 
     @Test
     public void testDraw() {
