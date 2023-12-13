@@ -9,12 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MenuControllerTest {
     private Menu menu;
-    private MenuController menuController;
 
     @BeforeEach
     void setUp() {
         menu = new Menu();
-        menuController = new MenuController(menu);
     }
 
     @Test
