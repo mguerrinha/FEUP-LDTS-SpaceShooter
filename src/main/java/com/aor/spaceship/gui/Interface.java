@@ -78,7 +78,7 @@ public class Interface implements GUI {
     }
     @Override
     public void drawSpaceship(Position position) {
-        drawCharacter(position.getX(), position.getY(), '»', "#FFFFFF");
+        drawCharacter(position.getX(), position.getY(), '\u00BB', "#FFFFFF");
     }
 
     @Override
@@ -97,18 +97,18 @@ public class Interface implements GUI {
     public void drawTripleShots(Position position) { drawCharacter(position.getX(), position.getY(), '.', "#FFFFFF"); }
 
     @Override
-    public void drawMeteor(Position position) { drawCharacter(position.getX(), position.getY(), 'Ó', "#FF0000"); }
+    public void drawMeteor(Position position) { drawCharacter(position.getX(), position.getY(), '\u00D3', "#FF0000"); }
 
 
     @Override
-    public void drawPower(Position position) { drawCharacter(position.getX(), position.getY(), 'Ù', "#FFFF00"); }
+    public void drawPower(Position position) { drawCharacter(position.getX(), position.getY(), '\u00D9', "#FFFF00"); }
 
     @Override
     public void drawLimits(Position position) { drawCharacter(position.getX(), position.getY(), '#', "#FFFFFF"); }
     @Override
-    public void drawDefaultEnemies(Position position) { drawCharacter(position.getX(), position.getY(), 'Ú', "#FFC300"); }
+    public void drawDefaultEnemies(Position position) { drawCharacter(position.getX(), position.getY(), '\u00DA', "#FFC300"); }
     @Override
-    public void drawSpecialEnemies(Position position) { drawCharacter(position.getX(), position.getY(), 'Û', "#FF0FF0"); }
+    public void drawSpecialEnemies(Position position) { drawCharacter(position.getX(), position.getY(), '\u00DB', "#FF0FF0"); }
 
     @Override
     public void drawText(Position position, String text, String color) {

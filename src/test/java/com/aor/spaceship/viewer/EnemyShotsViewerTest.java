@@ -14,8 +14,8 @@ public class EnemyShotsViewerTest {
     public void testDraw() {
 
         GUI mockGUI = mock(GUI.class);
-
-        EnemyShot enemyShot = new EnemyShot(new Position(5, 5));
+        Position position = new Position(5, 5);
+        EnemyShot enemyShot = new EnemyShot(position.getX(), position.getY());
 
 
         ElementViewer<EnemyShot> enemyShotsViewer = new EnemyShotsViewer();

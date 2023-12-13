@@ -38,7 +38,7 @@ public class SpecialEnemyController extends GameController {
         }
     }
 
-    private void moveSpecialEnemy(SpecialEnemy specialEnemy, Position position) {
+    void moveSpecialEnemy(SpecialEnemy specialEnemy, Position position) {
         specialEnemy.setPosition(position);
     }
 }

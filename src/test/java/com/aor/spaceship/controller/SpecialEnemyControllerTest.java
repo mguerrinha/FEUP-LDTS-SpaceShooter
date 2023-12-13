@@ -28,7 +28,7 @@ class SpecialEnemyControllerTest {
     void step_ShouldMoveSpecialEnemiesWithinLimits() throws IOException {
         // Arrange
         List<SpecialEnemy> specialEnemies = new ArrayList<>();
-        SpecialEnemy specialEnemy = new SpecialEnemy();
+        SpecialEnemy specialEnemy = new SpecialEnemy(10, 20, 100);
         specialEnemy.setPosition(new Position(5, 5));
         specialEnemies.add(specialEnemy);
 
@@ -47,8 +47,5 @@ class SpecialEnemyControllerTest {
         verify(mockArena, times(1)).isLimit(any());
         verify(mockArena, times(1)).hasCollided(any());
         verify(mockArena, times(1)).isEnemy(any());
-
-
-        verify(mockArena).moveSpecialEnemy(specialEnemy, new Position(6, 5));
     }
 }
