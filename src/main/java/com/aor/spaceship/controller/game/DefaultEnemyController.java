@@ -59,7 +59,7 @@ public class DefaultEnemyController extends GameController {
         }
     }
 
-    private void moveDefaultEnemy(DefaultEnemy defaultEnemy, Position position) {
+    public void moveDefaultEnemy(DefaultEnemy defaultEnemy, Position position) {
         defaultEnemy.setPosition(position);
     }
 

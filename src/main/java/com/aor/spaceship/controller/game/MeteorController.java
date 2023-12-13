@@ -45,7 +45,8 @@ public class MeteorController extends GameController {
         }
         return true;
     }
-    private void moveMeteor(Meteor meteor, Position position, long currentTime) {
+
+    public void moveMeteor(Meteor meteor, Position position, long currentTime) {
         int min = 9;
         int max = getModel().getWidth() - 1;
         meteor.setPosition(position);
