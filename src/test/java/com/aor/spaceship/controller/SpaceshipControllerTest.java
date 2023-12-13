@@ -5,9 +5,13 @@ import com.aor.spaceship.controller.game.SpaceshipController;
 import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.arena.Arena;
-import com.aor.spaceship.model.game.elements.Spaceship;
+import com.aor.spaceship.model.game.elements.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,11 +22,29 @@ public class SpaceshipControllerTest {
     @BeforeEach
     void setUp() {
         arena = new Arena(20, 20);
+        arena.setLimits(createLimits());
+        arena.setMeteors(createMeteors());
+        arena.setPowers(createPowers());
+        arena.setSpecialEnemies(createSpecialEnemy());
+        arena.setDefaultEnemies(createDefaultEnemy());
         spaceship = new Spaceship(10, 10);
         arena.setSpaceship(spaceship);
         spaceshipController = new SpaceshipController(arena);
     }
 
+    protected List<Limit> createLimits() {
+        return new ArrayList<>();
+    }
+
+    protected List<Meteor> createMeteors() {
+        return new ArrayList<>();
+    }
+
+    protected List<Power> createPowers() { return new ArrayList<>(); }
+
+    protected List<DefaultEnemy> createDefaultEnemy() { return new ArrayList<>(); }
+
+    protected List<SpecialEnemy> createSpecialEnemy() { return new ArrayList<>(); }
     @Test
     void moveSpaceshipDown() {
         spaceshipController.moveSpaceshipDown();
