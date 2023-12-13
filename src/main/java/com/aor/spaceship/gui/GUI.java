@@ -1,6 +1,7 @@
 package com.aor.spaceship.gui;
 
 import com.aor.spaceship.model.Position;
+import com.aor.spaceship.model.game.elements.Meteor;
 
 import java.io.IOException;
 
@@ -21,6 +22,7 @@ public interface GUI {
     void clear();
     void refresh() throws IOException;
     void close() throws IOException;
-    enum Action {UP, DOWN, LEFT, RIGHT, NONE, QUIT, SELECT, COIN}
+
+    enum Action {UP, DOWN, LEFT, RIGHT, NONE, QUIT, SELECT, SPACE, COIN}
     Action getNextAction() throws IOException;
 }

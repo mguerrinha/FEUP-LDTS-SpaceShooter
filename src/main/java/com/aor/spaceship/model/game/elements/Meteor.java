@@ -9,7 +9,6 @@ public class Meteor extends Element {
         super(x, y);
         this.lastSpawnTime = 0;
     }
-
     public long getLastSpawnTime() {
         return lastSpawnTime;
     }
