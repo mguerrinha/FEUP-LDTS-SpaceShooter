@@ -12,7 +12,7 @@ public class InitialViewer extends Viewer<Initial> {
     }
 
     @Override
-    protected void drawElements(Application application, GUI gui) {
+    public void drawElements(Application application, GUI gui) {
         gui.drawText(new Position(3, 3),  " ----------------------", "#FFFFFF");
         gui.drawText(new Position(3, 4),  "|         SPACE        |", "#FFFFFF");
         gui.drawText(new Position(3, 5),  "|        SHOOTER       |", "#FFFFFF");

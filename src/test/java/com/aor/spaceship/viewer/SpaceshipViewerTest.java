@@ -2,9 +2,7 @@ package com.aor.spaceship.viewer;
 
 import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.game.elements.Spaceship;
-import com.aor.spaceship.viewer.game.GameViewer;
 import com.aor.spaceship.viewer.game.SpaceshipViewer;
-import com.googlecode.lanterna.screen.Screen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
