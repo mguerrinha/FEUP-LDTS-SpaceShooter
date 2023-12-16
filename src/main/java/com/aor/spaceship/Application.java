@@ -53,6 +53,8 @@ public class Application {
 
     public void setState(State state) { this.state = state; }
 
+    public State getState() { return this.state; }
+
     private int loadHighestScore() {
         try (BufferedReader reader = new BufferedReader(new FileReader(SCORE_FILE))) {
             String line = reader.readLine();
