@@ -22,7 +22,7 @@ public class InitialStateTest {
     }
 
     @Test
-    public void selectCoin() {
+    void selectCoin() {
         GameState gameState = new GameState(new ArenaBuilder(30, 30).createArena());
         application.setState(gameState);
         assertEquals(null, application.getState());

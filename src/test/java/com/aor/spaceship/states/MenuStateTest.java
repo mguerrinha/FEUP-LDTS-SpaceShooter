@@ -30,13 +30,13 @@ public class MenuStateTest {
     }
 
     @Test
-    public void selectExit() {
+    void selectExit() {
         application.setState(null);
         assertEquals(null, application.getState());
     }
 
     @Test
-    public void selectInstructions() {
+    void selectInstructions() {
         application.setState(new InstructionsMenuState( new InstructionsMenu()));
         assertEquals(null, application.getState());
     }

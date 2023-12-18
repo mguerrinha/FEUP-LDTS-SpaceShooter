@@ -22,7 +22,7 @@ public class InstructionsMenuStateTest {
     }
 
     @Test
-    public void selectExit() {
+    void selectExit() {
         application.setState(new MenuState(new Menu()));
         assertEquals(null, application.getState());
     }

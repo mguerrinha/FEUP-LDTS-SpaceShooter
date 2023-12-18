@@ -23,21 +23,21 @@ public class GameStateTest {
     }
 
     @Test
-    public void startGame() {
+    void startGame() {
         gameState = new GameState(new ArenaBuilder(30, 30).createArena());
         application.setState(gameState);
         assertEquals(null, application.getState());
     }
 
     @Test
-    public void loseGame() {
+    void loseGame() {
         DefeatMenuState defeatMenuState = new DefeatMenuState(new DefeatMenu());
         application.setState(defeatMenuState);
         assertEquals(null, application.getState());
     }
 
     @Test
-    public void endGame() {
+    void endGame() {
         application.setState(null);
         assertEquals(null, application.getState());
     }

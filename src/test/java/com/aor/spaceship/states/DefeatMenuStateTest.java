@@ -22,14 +22,14 @@ public class DefeatMenuStateTest {
     }
 
     @Test
-    public void selectRematch() {
+    void selectRematch() {
         GameState gameState = new GameState(new ArenaBuilder(30, 30).createArena());
         application.setState(gameState);
         assertEquals(null, application.getState());
     }
 
     @Test
-    public void selectExit() {
+    void selectExit() {
         application.setState(null);
         assertEquals(null, application.getState());
     }
