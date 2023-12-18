@@ -3,7 +3,6 @@ package com.aor.spaceship.controller.game;
 import com.aor.spaceship.model.Position;
 import com.aor.spaceship.model.game.arena.Arena;
 import com.aor.spaceship.model.game.elements.DefaultEnemy;
-import com.aor.spaceship.model.game.elements.DefaultShot;
 import com.aor.spaceship.model.game.elements.EnemyShot;
 
 import java.util.Iterator;
@@ -18,13 +17,13 @@ public class EnemyShootingController {
         this.defaultEnemies = defaultEnemies;
     }
 
-    public void DefaultEnemyShot() {
+    public void DefaultEnemyShots() {
         for (DefaultEnemy defaultEnemy : defaultEnemies) {
             arena.getEnemyShots().add(new EnemyShot(defaultEnemy.getPosition().getX(), defaultEnemy.getPosition().moveDown().getY()));
         }
     }
 
-    public void moveEnemyShot() {
+    public void moveEnemyShots() {
         for (EnemyShot enemyShot : arena.getEnemyShots()) {
             enemyShot.moveBulletDown();
             if (arena.hasCollided(enemyShot.getPosition()) || arena.hasCollided(enemyShot.getPosition().moveDown()) || arena.isEnemy(enemyShot.getPosition())) {

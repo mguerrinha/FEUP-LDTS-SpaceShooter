@@ -13,7 +13,7 @@ public class ShootingController {
         this.arena = arena;
         this.spaceship = spaceship;
     }
-     public void defaultShot() {
+     public void defaultShots() {
         arena.getDefaultShots().add(new DefaultShot(spaceship.getPosition().getX(), spaceship.getPosition().moveUp().getY()));
      }
 
@@ -28,7 +28,7 @@ public class ShootingController {
         arena.getTripleShots().add(new TripleShot(spaceship.getPosition().moveLeft().getX(), spaceship.getPosition().moveUp().getY()));
         arena.getTripleShots().add(new TripleShot(spaceship.getPosition().moveRight().getX(), spaceship.getPosition().moveUp().getY()));
      }
-     public void moveDefaultShot() {
+     public void moveDefaultShots() {
         for (DefaultShot defaultShot : arena.getDefaultShots()) {
             defaultShot.moveBulletUp();
             if (arena.hasCollided(defaultShot.getPosition()) || arena.hasCollided(defaultShot.getPosition().moveUp())) {
@@ -43,7 +43,7 @@ public class ShootingController {
         cleanUpDefaultShots();
      }
 
-    public void moveDoubletShot() {
+    public void moveDoubletShots() {
         for (DoubleShot doubleShot : arena.getDoubleShots()) {
             doubleShot.moveBulletUp();
             if (arena.hasCollided(doubleShot.getPosition()) || arena.hasCollided(doubleShot.getPosition().moveUp())) {
