@@ -11,14 +11,10 @@ public class InstructionsMenu {
 
     public void nextEntry() {
         currentEntry++;
-        if (currentEntry > this.entries.size() - 1)
-            currentEntry = 0;
     }
 
     public void previousEntry() {
         currentEntry--;
-        if (currentEntry < 0)
-            currentEntry = this.entries.size() - 1;
     }
 
     public int getCurrentEntry() { return currentEntry; }

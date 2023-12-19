@@ -32,6 +32,19 @@ This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz 
 The following screenshots and gifs represent the structure of our game and how it looks visually.
 
 ## Game
+<p align="center">
+  <img src="./resources/Images/game.png" alt="Game">
+</p>
+
+Killing a special enemy and winning a random power
+<p align="center">
+  <img src="./resources/Images/game_power.png" alt="Random_Power">
+</p>
+
+In this case, we won a doubleshot for a short period of time
+<p align="center">
+  <img src="./resources/Images/game_doubleshot.png" alt="Double_Shot">
+</p>
 
 ## Menus
 
@@ -123,6 +136,8 @@ As for the implementation, the factory creates a common controller interface or 
 - **Flexibility**: Makes it easy to add new types of elements.
 - **Decoupling**: Separates the object's creation logic from its specific implementations.
 
+## KNOWN CODE SMELLS
+// TO Do!
 
 ## TESTING
 We were able to successfully carry out some tests:

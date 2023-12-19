@@ -24,6 +24,8 @@ public class MenuTest {
         menu.nextEntry();
         menu.nextEntry();
         assertEquals(true, menu.isSelectedExit());
+        menu.nextEntry();
+        menu.previousEntry();
         assertEquals("Start", menu.getEntry(0));
         assertEquals("Instructions", menu.getEntry(1));
         assertEquals("Exit", menu.getEntry(2));

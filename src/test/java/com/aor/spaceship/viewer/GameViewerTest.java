@@ -78,8 +78,8 @@ public class GameViewerTest {
     }
 
     @Test
-    void drawElements() {
-        gameViewer.drawElements(application, gui);
+    void drawElements() throws IOException {
+        gameViewer.draw(application, gui);
         Mockito.verify(gui, Mockito.times(1)).drawSpaceship(arena.getSpaceship().getPosition());
         for (Meteor meteor : arena.getMeteors()) {
             Mockito.verify(gui, Mockito.times(1)).drawMeteor(meteor.getPosition());
