@@ -112,8 +112,4 @@ public class ArenaControllerTest {
         assertEquals(new Position(5, 6), power.getPosition());
     }
 
-    @Test
-    public void stepLoseGame() throws IOException {
-
-    }
 }

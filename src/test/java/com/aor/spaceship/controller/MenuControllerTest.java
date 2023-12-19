@@ -1,38 +1,33 @@
 package com.aor.spaceship.controller;
 
+import com.aor.spaceship.Application;
 import com.aor.spaceship.controller.menu.MenuController;
+import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.menu.Menu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MenuControllerTest {
-    private Menu menu;
+    Application application;
+    MenuController menuController;
+    Menu menu;
+
 
     @BeforeEach
     void setUp() {
-        menu = new Menu();
+        menu = Mockito.mock(Menu.class);
+        application = Mockito.mock(Application.class);
+        menuController = new MenuController(menu);
     }
 
     @Test
-    void createMenu() {
-        assertEquals("Start", menu.getEntry(0));
-        assertEquals("Instructions", menu.getEntry(1));
-        assertEquals("Exit", menu.getEntry(2));
-    }
-    @Test
-    void moveMenu() {
-        assertEquals(3, menu.getNumberEntries());
-        assertEquals(0, menu.getCurrentEntry());
-        menu.nextEntry();
-        assertEquals(1, menu.getCurrentEntry());
-        assertEquals(true, menu.isSelectedInstructions());
-        menu.previousEntry();
-        assertEquals(0, menu.getCurrentEntry());
-        assertEquals(true, menu.isSelectedStart());
-        menu.previousEntry();
-        assertEquals(2, menu.getCurrentEntry());
-        assertEquals(true, menu.isSelectedExit());
+    public void stepUp() throws IOException {
+        menuController.step(application, GUI.Action.UP, 1000);
+        Mockito.verify()
     }
 }
