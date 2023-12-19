@@ -29,8 +29,10 @@ public class EnemyShootingController {
             if (arena.hasCollided(enemyShot.getPosition()) || arena.hasCollided(enemyShot.getPosition().moveDown()) || arena.isEnemy(enemyShot.getPosition())) {
                 enemyShot.setPosition(new Position(0, arena.getHeight()));
             }
-            if (arena.getSpaceship().getPosition().equals(enemyShot.getPosition()))
+            if (arena.getSpaceship().getPosition().equals(enemyShot.getPosition())) {
                 arena.getSpaceship().reduceEnergy();
+                enemyShot.setPosition(new Position(0, arena.getHeight()));
+            }
         }
         cleanUpEnemyShots();
     }
