@@ -13,7 +13,7 @@ public class GameViewer extends Viewer<Arena> {
     public GameViewer(Arena arena) { super(arena); }
 
     @Override
-    protected void drawElements(Application application, GUI gui) {
+    public void drawElements(Application application, GUI gui) {
         drawElements(gui, getModel().getDefaultShots(), new DefaultShotsViewer());
         drawElements(gui, getModel().getDoubleShots(), new DoubleShotsViewer());
         drawElements(gui, getModel().getBurstShots(), new BurstShotsViewer());
