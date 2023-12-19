@@ -9,23 +9,23 @@ This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz 
 
 - **Implement a menu** - The game have an initial menu.
 - **Interactive menu** - The menu is interactive, and we can navigate it using the up and down arrows.
+- **Insert coin** - It's necessary to increase the number of credits by "inserting a coin", to be possible to play the game. Everytime we play we lose a coin.
 - **Spaceship moves** - The spaceship moves to the left, right, up and down using the respectively arrows.
 - **Spawn and catch power-ups** - When the game starts, a certain number of power-ups appear in the screen and, we are able to catch them with our spaceship.
 - **Meteors falling** - During the game, we have some meteors falling down the screen.
 - **Hit by a meteor** - If the spaceship has a collision with a meteor the game stops.
 - **Shots from our spaceship** - Our spaceship have guns capable to fire projectiles able to destroy enemies spaceships.
 - **Health of spaceships** - Every spaceship have a certain quantity of health and when that health is zero the spaceship is destroyed.
-
-
-## PLANNED FEATURES
-
-- **Enemies spaceships** - The game will have some enemies that are other spaceships.
-- **Shots from enemies spaceships** - The enemies spaceships will have guns capable to fire projectile.
-- **Enemies projectiles can kill our spaceship** - If a projectile from an enemy spaceship hit our spaceship we lost.
+- **Enemies spaceships** - The game have some enemies that are other spaceships.
+- **Shots from enemies spaceships** - The enemies spaceships have guns capable to fire projectile.
+- **Enemies projectiles can kill our spaceship** - If a projectile from an enemy spaceship hit our spaceship we lost energy.
 - **Spawning power-ups** - If we kill a special enemy spaceship it will drop a power-up that will fall down and if we can catch it, it will upgrade our spaceship.
 - **Power of shots** - During the game by catching power-ups the projectiles from our spaceship will have more power.
 - **Score** - Every time we hit an enemy spaceship our score increase.
 
+## PLANNED FEATURES
+
+- **Implement Sounds** - the game will have sound effects
 
 ## SCREENSHOTS
 
@@ -56,7 +56,7 @@ For MVC Pattern implementation, the **Model**: Refactors existing classes to rep
 and **Controller**: Manages user interaction (Arena.processKey(), input control methods).
 
 <p align="center">
-  <img src="./resources/Images/uml.png" alt="UML">
+  <img src="./resources/Images/space_shooter.drawio.png" alt="UML">
 </p>
 
 #### Consequences
@@ -90,15 +90,15 @@ The use of the State Pattern in the current design allows the following benefits
 ### Factory Pattern
 
 #### Problem in Context
-In this game, there will be two types of controllers: the **Game Controller**, which manages the movement of each element in the game (spaceships, meteors, etc.) and the **Menu Controller**, which allows you to move around the Menu, i.e. whether you want to leave or enter the game.
+In our game we have a few types of bullets. This turned out to be a problem related to the creation of diverse objects with varying configurations and functionalities. As the project evolved, new requirements emerged, necessitating the dynamic instantiation of different types of objects
 
 #### The Pattern
 
-With this problem in mind, we opted for the **Factory Pattern**, which allows objects to be created without specifying the exact class of the object to be created, and Creation Encapsulation, i.e. delegating responsibility for creation to subclasses. This way we can create more than one type of controller.
+To address this issue, we adopted the **Factory Pattern**. This design pattern provides a structured and modular solution to object creation by introducing a Creator interface or abstract class with a factory method.
 
 #### Implementation
 
-As for the implementation, the factory creates a common controller interface or an abstract class for the GameController and the MenuController, in the case of the GameController, the same goes for being able to create the concrete products, namely SpaceShipController, MeteorController, etc. The MenuController, on the other hand, can be modified in the future.
+As for the implementation, the factory creates a common controller interface or an abstract class for the Bullet
 <p align="center">
   <img src="./resources/Images/factory_pattern.png" alt="Factory Pattern">
 </p>
@@ -130,7 +130,7 @@ We were able to successfully carry out some tests:
 
 ## SELF-EVALUATION
 
-- Miguel Guerrinha: 33,33%
-- Rui Cruz: 33,33%
-- Sheila Albino: 33,33%
+- Miguel Guerrinha: 45%
+- Rui Cruz: 45%
+- Sheila Albino: 10%
   
