@@ -1,36 +1,29 @@
 package com.aor.spaceship.controller;
 
+import com.aor.spaceship.Application;
+import com.aor.spaceship.controller.menu.DefeatMenuController;
+import com.aor.spaceship.gui.GUI;
 import com.aor.spaceship.model.menu.DefeatMenu;
 import com.aor.spaceship.model.menu.Menu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DefeatMenuControllerTest {
-    private DefeatMenu defeatMenu;
+    DefeatMenuController defeatMenuController;
+    DefeatMenu defeatMenu;
+    Application application;
     @BeforeEach
     void setUp() {
-        defeatMenu = new DefeatMenu();
+        application = Mockito.mock(Application.class);
+        defeatMenu = Mockito.mock(DefeatMenu.class);
+        defeatMenuController = new DefeatMenuController(defeatMenu);
     }
 
     @Test
-    void createMenu() {
-        assertEquals("Rematch", defeatMenu.getEntry(0));
-        assertEquals("Exit", defeatMenu.getEntry(1));
-    }
-    @Test
-    void moveMenu() {
-        assertEquals(2, defeatMenu.getNumberEntries());
-        assertEquals(0, defeatMenu.getCurrentEntry());
-        defeatMenu.nextEntry();
-        assertEquals(1, defeatMenu.getCurrentEntry());
-        assertEquals(true, defeatMenu.isSelectedExit());
-        defeatMenu.previousEntry();
-        assertEquals(0, defeatMenu.getCurrentEntry());
-        assertEquals(true, defeatMenu.isSelectedStart());
-        defeatMenu.previousEntry();
-        assertEquals(1, defeatMenu.getCurrentEntry());
-        assertEquals(true, defeatMenu.isSelectedExit());
+    void insertCoin() {
+        assertEquals(0, application.getCredits());
     }
 }
