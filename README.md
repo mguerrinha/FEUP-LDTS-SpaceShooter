@@ -147,7 +147,7 @@ As for the implementation, the factory creates a common controller interface or 
 
 ### Mutation Tests - PIT
 <p align="center">
-  <img src="./resources/Images/.png" alt="Mutation_Tests">
+  <img src="./resources/Images/PitTest.png" alt="Mutation_Tests">
 </p>
 
 ## SELF-EVALUATION
