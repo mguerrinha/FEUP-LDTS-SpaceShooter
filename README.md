@@ -36,12 +36,12 @@ The following screenshots and gifs represent the structure of our game and how i
   <img src="./resources/Images/game.png" alt="Game">
 </p>
 
-Killing a special enemy and winning a random power
+Killing a special enemy and winning a random power.
 <p align="center">
   <img src="./resources/Images/game_power.png" alt="Random_Power">
 </p>
 
-In this case, we won a doubleshot for a short period of time
+In this case, we won a doubleshot for a short period of time.
 <p align="center">
   <img src="./resources/Images/game_doubleshot.png" alt="Double_Shot">
 </p>
@@ -137,26 +137,18 @@ As for the implementation, the factory creates a common controller interface or 
 - **Decoupling**: Separates the object's creation logic from its specific implementations.
 
 ## KNOWN CODE SMELLS
-// TO Do!
+// To Do!
 
 ## TESTING
-We were able to successfully carry out some tests:
-
-- The **SpaceShipControllerTest**, which tests the movement of our spaceship because if it doesn't work properly, we won't be able to defeat the enemies that will appear in the future.
-- The **InterfaceTest**, which tests whether the spaceship and text are drawn correctly.
-- The **PositionTest**, allows to check that the moves of the elements work well.
-- The **ArenaViewerTest**, tests whether the arena's setSpaceShip function is implemented correctly, as well as the Clear and Refresh functions relating to the GUI interface.
-- The **SpaceShipViewerTest**, which tests whether the spaceship is well designed.
-
+- **Screenshot of coverage report** - class coverage: 98%, method coverage: 88%, line coverage 80%
 <p align="center">
-  <img src="./resources/Images/all_tests.png" alt="Tests">
+  <img src="./resources/Images/class_coverage.png" alt="Class_Coverage">
 </p>
 
-- **Screenshot of coverage report** - class coverage: 47%, method coverage: 42%, line coverage 29%
+### Mutation Tests - PIT
 <p align="center">
-  <img src="./resources/Images/tests_coverage.png" alt="Tests_Coverage">
+  <img src="./resources/Images/.png" alt="Mutation_Tests">
 </p>
-
 
 ## SELF-EVALUATION
 
