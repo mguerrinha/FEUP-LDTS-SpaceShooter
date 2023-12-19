@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.IOException;
+
 import static java.awt.SystemColor.text;
 
 public class InterfaceTest {
@@ -110,6 +112,16 @@ public class InterfaceTest {
         gui.drawText(new Position(1, 1), "#", "#FFFFFF");
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(new TextColor.RGB(255, 255, 255));
         Mockito.verify(graphics, Mockito.times(1)).putString(1, 1, "#");
+    }
+
+    @Test
+    void Screen() throws IOException {
+        gui.clear();
+        gui.close();
+        gui.refresh();
+        Mockito.verify(screen, Mockito.times(1)).clear();
+        Mockito.verify(screen, Mockito.times(1)).close();
+        Mockito.verify(screen, Mockito.times(1)).refresh();
     }
 }
 
