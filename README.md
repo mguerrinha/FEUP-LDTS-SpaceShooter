@@ -25,20 +25,35 @@ This project was developed by Miguel Guerrinha (up202205038@fe.up.pt), Rui Cruz 
 
 ## PLANNED FEATURES
 
-- **Implement Sounds** - the game will have sound effects
+- **Implement Sounds** - the game will have sound effects.
 
 ## SCREENSHOTS
 
-- **Menu Preview** - Temporary menu that will still undergo several design and implementation changes. So far it's possible to start and exit the game.
+The following screenshots and gifs represent the structure of our game and how it looks visually.
+
+## Game
+
+## Menus
+
+- **Initial Menu Preview** - Just like retro arcade machines, you have to insert a credit to start the game.
 <p align="center">
-  <img src="./resources/Images/menu.png" alt="Menu">
+  <img src="./resources/Images/initial_menu.png" alt="Initial_Menu">
 </p>
 
-- **Arena Preview** - Like the menu, this arena is the basis of what we intend to implement in the future, the appearance of the elements will be changed, improving the visual aspect of the game and some missing elements will be added later, namely enemy spaceships.
+- **Main Menu Preview**
 <p align="center">
-  <img src="./resources/Images/arena.png" alt="Menu">
+  <img src="./resources/Images/default_menu.png" alt="Main_Menu">
 </p>
 
+- **Instructions Menu Preview** - Where you can learn all about our game, from the way the spaceship moves to the characters used.
+<p align="center">
+  <img src="./resources/Images/instructions_menu.png" alt="Instructions_Menu">
+</p>
+
+- **Lose Menu Preview** - When you die, you have the option of continuing in the game if there are credits for it or leaving.
+<p align="center">
+  <img src="./resources/Images/lose_menu.png" alt="Lose_Menu">
+</p>
 
 ## DESIGN
 
