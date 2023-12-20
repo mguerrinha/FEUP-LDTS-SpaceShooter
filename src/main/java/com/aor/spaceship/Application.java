@@ -24,8 +24,6 @@ public class Application {
 
     public Application() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new Interface(30, 30);
-        //this.state = new MenuState(new Menu());
-        //this.state = new DefeatMenuState(new DefeatMenu());
         this.state = new InitialState(new Initial());
         this.highestScore = loadHighestScore();
         this.credits = 0;
@@ -52,6 +50,8 @@ public class Application {
     }
 
     public void setState(State state) { this.state = state; }
+
+    public State getState() { return this.state; }
 
     private int loadHighestScore() {
         try (BufferedReader reader = new BufferedReader(new FileReader(SCORE_FILE))) {

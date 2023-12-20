@@ -30,7 +30,7 @@ public class SpaceshipController extends GameController {
         switch (getModel().getSpaceship().getShot()) {
             case "defaultShot":
                 if (time - lastMovement > 300) {
-                    shootingController.defaultShot();
+                    shootingController.defaultShots();
                     this.lastMovement = time;
                 }
                 break;
@@ -52,11 +52,11 @@ public class SpaceshipController extends GameController {
                 }
         }
         if (time - lastDefaultShot > 100) {
-            shootingController.moveDefaultShot();
+            shootingController.moveDefaultShots();
             this.lastDefaultShot = time;
         }
         if (time - lastDoubleShot > 100) {
-            shootingController.moveDoubletShot();
+            shootingController.moveDoubletShots();
             this.lastDoubleShot = time;
         }
         if (time - lastBurstShot > 10) {

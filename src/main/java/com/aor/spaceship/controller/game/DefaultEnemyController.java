@@ -24,11 +24,11 @@ public class DefaultEnemyController extends GameController {
     @Override
     public void step(Application application, GUI.Action action, long time) throws IOException {
         if (time - lastAdd > 1000) {
-            enemyShootingController.DefaultEnemyShot();
+            enemyShootingController.DefaultEnemyShots();
             this.lastAdd = time;
         }
         if (time - lastShot > 100) {
-            enemyShootingController.moveEnemyShot();
+            enemyShootingController.moveEnemyShots();
             this.lastShot = time;
         }
         Random random = new Random();

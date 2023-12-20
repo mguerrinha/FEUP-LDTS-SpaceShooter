@@ -1,38 +1,105 @@
 package com.aor.spaceship.controller;
 
+import com.aor.spaceship.Application;
 import com.aor.spaceship.controller.menu.MenuController;
+import com.aor.spaceship.gui.GUI;
+import com.aor.spaceship.model.game.arena.Arena;
+import com.aor.spaceship.model.menu.InstructionsMenu;
 import com.aor.spaceship.model.menu.Menu;
+import com.aor.spaceship.states.GameState;
+import com.aor.spaceship.states.InstructionsMenuState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class MenuControllerTest {
-    private Menu menu;
+    Application application;
+    MenuController menuController;
+    Menu menu;
+
 
     @BeforeEach
     void setUp() {
-        menu = new Menu();
+        menu = Mockito.mock(Menu.class);
+        application = Mockito.mock(Application.class);
+        menuController = new MenuController(menu);
     }
 
     @Test
-    void createMenu() {
-        assertEquals("Start", menu.getEntry(0));
-        assertEquals("Instructions", menu.getEntry(1));
-        assertEquals("Exit", menu.getEntry(2));
+    public void stepUp() {
+        menuController.step(application, GUI.Action.UP, 1000);
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).previousEntry();
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).nextEntry();
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).isSelectedExit();
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).isSelectedInstructions();
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).isSelectedStart();
+        Mockito.verify(application, Mockito.times(0)).setState(null);
     }
+
     @Test
-    void moveMenu() {
-        assertEquals(3, menu.getNumberEntries());
-        assertEquals(0, menu.getCurrentEntry());
-        menu.nextEntry();
-        assertEquals(1, menu.getCurrentEntry());
-        assertEquals(true, menu.isSelectedInstructions());
-        menu.previousEntry();
-        assertEquals(0, menu.getCurrentEntry());
-        assertEquals(true, menu.isSelectedStart());
-        menu.previousEntry();
-        assertEquals(2, menu.getCurrentEntry());
-        assertEquals(true, menu.isSelectedExit());
+    public void stepDown() {
+        menuController.step(application, GUI.Action.DOWN, 1000);
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).previousEntry();
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).nextEntry();
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).isSelectedExit();
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).isSelectedInstructions();
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).isSelectedStart();
+        Mockito.verify(application, Mockito.times(0)).setState(null);
+    }
+
+    @Test
+    public void stepSelectStart() {
+
+        Mockito.when(menuController.getModel().isSelectedStart()).thenReturn(true);
+        menuController.step(application, GUI.Action.SELECT, 1000);
+
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).previousEntry();
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).nextEntry();
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).isSelectedExit();
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).isSelectedInstructions();
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).isSelectedStart();
+        Mockito.verify(application, Mockito.times(0)).setState(null);
+    }
+
+    @Test
+    public void stepSelectSettings() {
+
+        Mockito.when(menuController.getModel().isSelectedInstructions()).thenReturn(true);
+        menuController.step(application, GUI.Action.SELECT, 1000);
+
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).previousEntry();
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).nextEntry();
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).isSelectedExit();
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).isSelectedInstructions();
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).isSelectedStart();
+        Mockito.verify(application, Mockito.times(0)).setState(null);
+    }
+
+    @Test
+    public void stepSelectExit() {
+
+        Mockito.when(menuController.getModel().isSelectedExit()).thenReturn(true);
+        menuController.step(application, GUI.Action.SELECT, 1000);
+
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).previousEntry();
+        Mockito.verify(menuController.getModel(), Mockito.times(0)).nextEntry();
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).isSelectedExit();
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).isSelectedInstructions();
+        Mockito.verify(menuController.getModel(), Mockito.times(1)).isSelectedStart();
+        Mockito.verify(application, Mockito.times(1)).setState(null);
+    }
+
+    @Test
+    public void selectSettings() {
+        menuController.step(application, GUI.Action.DOWN, 1000);
+        menuController.step(application, GUI.Action.SELECT, 1000);
+        InstructionsMenuState s=new InstructionsMenuState(new InstructionsMenu());
+        application.setState(s);
+        assertNull(application.getState());
     }
 }

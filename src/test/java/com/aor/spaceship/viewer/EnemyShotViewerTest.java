@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 public class EnemyShotViewerTest {
 
     @Test
-    public void testDraw() {
+    void testDraw() {
 
         GUI mockGUI = mock(GUI.class);
 
