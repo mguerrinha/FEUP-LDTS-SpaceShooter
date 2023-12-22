@@ -58,6 +58,7 @@ public class Interface implements GUI {
         return fontConfig;
     }
 
+    @Override
     public Action getNextAction() throws IOException {
         KeyStroke keyStroke = screen.pollInput();
         if (keyStroke == null) return Action.NONE;

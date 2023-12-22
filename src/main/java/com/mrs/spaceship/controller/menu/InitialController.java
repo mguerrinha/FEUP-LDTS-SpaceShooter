@@ -24,6 +24,8 @@ public class InitialController extends Controller<Initial> {
                 application.setState(new MenuState(new Menu()));
                 application.addCredit();
                 break;
+            default:
+                break;
         }
     }
 }

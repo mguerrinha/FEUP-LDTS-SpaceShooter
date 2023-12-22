@@ -20,6 +20,8 @@ public class DefeatMenuController extends Controller<DefeatMenu> {
                 case COIN:
                     application.addCredit();
                     break;
+                default:
+                    break;
             }
         }
         else {
@@ -40,6 +42,8 @@ public class DefeatMenuController extends Controller<DefeatMenu> {
                 case COIN:
                     if (application.getCredits() < 9)
                         application.addCredit();
+                    break;
+                default:
                     break;
             }
         }

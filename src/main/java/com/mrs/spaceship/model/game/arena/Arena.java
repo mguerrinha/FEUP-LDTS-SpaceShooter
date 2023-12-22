@@ -162,7 +162,7 @@ public class Arena {
             public void run() {
                 spaceship.setShot("defaultShot");
             }
-        }, seconds * 1000);
+        }, seconds * 1000L);
     }
     public void removePower(Position position) {
         for (int i = 0; i < powers.size(); i++) {

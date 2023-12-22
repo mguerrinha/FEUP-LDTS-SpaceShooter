@@ -8,6 +8,10 @@ import com.mrs.spaceship.states.State;
 import java.awt.*;
 import java.io.*;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Application {
 
@@ -50,7 +54,7 @@ public class Application {
     public State getState() { return this.state; }
 
     private int loadHighestScore() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(SCORE_FILE))) {
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(SCORE_FILE), UTF_8)) {
             String line = reader.readLine();
             return Integer.parseInt(line);
         } catch (IOException | NumberFormatException e) {

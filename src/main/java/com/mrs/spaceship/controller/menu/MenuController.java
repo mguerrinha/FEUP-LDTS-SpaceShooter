@@ -32,6 +32,8 @@ public class MenuController extends Controller<Menu> {
                 if (application.getCredits() < 9)
                     application.addCredit();
                 break;
+            default:
+                break;
 
         }
     }

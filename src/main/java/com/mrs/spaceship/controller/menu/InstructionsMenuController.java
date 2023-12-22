@@ -29,6 +29,9 @@ public class InstructionsMenuController extends Controller<InstructionsMenu> {
                 if (getModel().isSelectedExit()) {
                     application.setState(new MenuState(new Menu()));
                 }
+                break;
+            default:
+                break;
         }
     }
 }
