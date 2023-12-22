@@ -33,4 +33,9 @@ public class Position {
         Position p = (Position) o;
         return x == p.getX() && y == p.getY();
     }
+
+    @Override
+    public int hashCode() {
+        return ((int)this.x ^ (int)this.y);
+    }
 }

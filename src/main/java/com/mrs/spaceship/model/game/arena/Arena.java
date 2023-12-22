@@ -223,8 +223,9 @@ public class Arena {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
+
             if (getDefaultEnemies().isEmpty()) {
                 getDefaultEnemies().add(new DefaultEnemy(random.ints(9, width - 1).findFirst().getAsInt(), random.ints(3, height/2 - 4).findFirst().getAsInt(), 3));
             }

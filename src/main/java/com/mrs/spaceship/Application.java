@@ -28,11 +28,11 @@ public class Application {
         this.highestScore = loadHighestScore();
         this.credits = 0;
     }
-    public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
+    public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException, InterruptedException {
         new Application().start();
     }
 
-    public void setHighestScore(int highestScore) {
+    public void setHighestScore(int highestScore) throws IOException {
         this.highestScore = highestScore;
         saveHighestScore(highestScore);
 
@@ -62,15 +62,13 @@ public class Application {
         }
     }
 
-    private void saveHighestScore(int score) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(SCORE_FILE))) {
+    private void saveHighestScore(int score) throws IOException {
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(SCORE_FILE), UTF_8)) {
             writer.write(Integer.toString(score));
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-    public void start() throws IOException {
+    public void start() throws IOException, InterruptedException {
         int FPS = 10;
         int frameTime = 100/ FPS;
         while (this.state != null) {
@@ -79,11 +77,7 @@ public class Application {
             state.step(this, gui, startTime);
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;
-
-            try {
-                if (sleepTime > 0) Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
-            }
+            if (sleepTime > 0) Thread.sleep(sleepTime);
         }
         gui.close();
     }
