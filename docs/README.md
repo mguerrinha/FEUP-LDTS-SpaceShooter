@@ -124,11 +124,13 @@ These classes can be found here:
 - **Better Organization**: Facade can serve as a point for organizing subsystem components, providing a clear and organized structure to the overall system. 
 
 ## KNOWN CODE SMELLS
-<p> We were able to resolve practically all the errors reported by error-prone, except for those relating to the "scheduleSpecialEnemySpawnWithDelay()" and "scheduleDefaultEnemySpawnWithDelay()" functions, 
+We were able to resolve practically all the errors reported by error-prone, except for those relating to the [**scheduleSpecialEnemySpawnWithDelay**](https://github.com/FEUP-LDTS-2023/project-l03gr07/blob/main/src/main/java/com/mrs/spaceship/model/game/arena/Arena.java#L190) and [**scheduleDefaultEnemySpawnWithDelay**](https://github.com/FEUP-LDTS-2023/project-l03gr07/blob/main/src/main/java/com/mrs/spaceship/model/game/arena/Arena.java#L218) functions, 
 which we assume may be related to the fact that we use threads to time the spawning of the enemies. </p>
-<p> Still on the same class "Arena", it ended up becoming more extensive compared to the others because we were unable to find an effective way of connecting it to the ArenaBuilder without compromising the rest of the code. </p>
-<p> As for the controllers of the shootings, both the spaceship and the enemies, the classes ended up being larger than planned, due to the inefficient way in which we chose to eliminate the shots that collided with a certain element 
-(sending them outside the limits of the arena and then using an auxiliary function, using iterators to eliminate them). </p>
+Still on the same class [**Arena**](https://github.com/FEUP-LDTS-2023/project-l03gr07/blob/main/src/main/java/com/mrs/spaceship/model/game/arena/Arena.java), it ended up becoming more extensive compared to the others because we were unable to find an effective way of connecting it to the ArenaBuilder without compromising the rest of the code.
+<br>
+<br />
+As for the controllers of the shootings, both the [**spaceship**](https://github.com/FEUP-LDTS-2023/project-l03gr07/blob/main/src/main/java/com/mrs/spaceship/controller/game/ShootingController.java) and the [**enemies**](https://github.com/FEUP-LDTS-2023/project-l03gr07/blob/main/src/main/java/com/mrs/spaceship/controller/game/EnemyShootingController.java), the classes ended up being larger than planned, due to the inefficient way in which we chose to eliminate the shots that collided with a certain element 
+(sending them outside the limits of the arena and then using an auxiliary function, using iterators to eliminate them).
 
 ## TESTING
 - **Screenshot of coverage report** - class coverage: 98%, method coverage: 88%, line coverage 80%
