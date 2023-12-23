@@ -141,17 +141,14 @@ public class Arena {
             case 2:
                 this.spaceship.setShot("doubleShot");
                 schedulePowerDuration(10);
-                System.out.println("DS");
                 break;
             case 3:
                 this.spaceship.setShot("burst");
                 schedulePowerDuration(5);
-                System.out.println("BS");
                 break;
             case 4:
                 this.spaceship.setShot("tripleShot");
                 schedulePowerDuration(5);
-                System.out.println("TS");
                 break;
         }
     }
